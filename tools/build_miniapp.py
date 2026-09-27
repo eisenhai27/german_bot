@@ -1,19 +1,28 @@
 # -*- coding: utf-8 -*-
 """
 Regenerates miniapp/data.js from the bot's data/*.json files, so the chat
-bot and the mini app always quiz from the same content.
+bot and the mini app always quiz from the same content, and stamps the
+<script> tags in miniapp/index.html with a content hash (quiz.js?v=...).
 
-Run after editing anything in data/:
+The hash matters: GitHub Pages and Telegram's webview cache files, and a
+fresh index.html running against a stale quiz.js breaks the app. A new
+hash means a new URL, so the browser has to fetch the new file.
+
+Run after editing anything in data/ or miniapp/quiz.js:
     python tools/build_miniapp.py
-CI fails if data.js is out of date (python tools/build_miniapp.py --check).
+CI fails if anything is out of date (python tools/build_miniapp.py --check).
 """
+import hashlib
 import json
 import os
+import re
 import sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DATA = os.path.join(ROOT, "data")
-OUT = os.path.join(ROOT, "miniapp", "data.js")
+MINIAPP = os.path.join(ROOT, "miniapp")
+OUT = os.path.join(MINIAPP, "data.js")
+INDEX = os.path.join(MINIAPP, "index.html")
 
 VOCAB_FIELDS = ("id", "de", "uz", "gender", "pos")
 
@@ -46,18 +55,45 @@ def build():
     )
 
 
+def read(path):
+    with open(path, encoding="utf-8") as f:
+        return f.read()
+
+
+def stamp_index(index_html, files):
+    """Point each <script src="name"> at name?v=<hash of that file's contents>."""
+    for name, text in files.items():
+        digest = hashlib.sha1(text.encode("utf-8")).hexdigest()[:10]
+        pattern = r'src="' + re.escape(name) + r'(\?v=[0-9a-f]+)?"'
+        index_html, n = re.subn(pattern, f'src="{name}?v={digest}"', index_html)
+        if n != 1:
+            raise SystemExit(f'expected exactly one <script src="{name}"> in index.html, found {n}')
+    return index_html
+
+
 def main():
-    content = build()
+    data_js = build()
+    index_html = read(INDEX)
+    # read() normalises CRLF to LF, so the hash is the same on Windows and in CI.
+    stamped = stamp_index(index_html, {"data.js": data_js, "quiz.js": read(os.path.join(MINIAPP, "quiz.js"))})
+
     if "--check" in sys.argv:
-        current = open(OUT, encoding="utf-8").read() if os.path.exists(OUT) else ""
-        if current != content:
-            print("miniapp/data.js is out of date. Run: python tools/build_miniapp.py")
+        stale = []
+        if not os.path.exists(OUT) or read(OUT) != data_js:
+            stale.append("miniapp/data.js")
+        if stamped != index_html:
+            stale.append("script hashes in miniapp/index.html")
+        if stale:
+            print("Out of date: " + ", ".join(stale) + ". Run: python tools/build_miniapp.py")
             sys.exit(1)
-        print("miniapp/data.js is up to date.")
+        print("miniapp/data.js and script hashes are up to date.")
         return
+
     with open(OUT, "w", encoding="utf-8", newline="\n") as f:
-        f.write(content)
-    print(f"Wrote {os.path.relpath(OUT, ROOT)} ({len(content) // 1024} KB)")
+        f.write(data_js)
+    with open(INDEX, "w", encoding="utf-8", newline="\n") as f:
+        f.write(stamped)
+    print(f"Wrote {os.path.relpath(OUT, ROOT)} ({len(data_js) // 1024} KB); stamped script hashes in index.html")
 
 
 if __name__ == "__main__":

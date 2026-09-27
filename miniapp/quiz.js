@@ -336,8 +336,11 @@
     return dayIndex(today) - dayIndex(streak.last) <= 1 ? streak.count : 0;
   }
 
+  // Bump when index.html starts relying on a changed quiz.js API.
+  const API_VERSION = 2;
+
   const api = {
-    CONFIG, ARTICLE_BY_GENDER,
+    API_VERSION, CONFIG, ARTICLE_BY_GENDER,
     shuffle, sample, hasGap, stripParens,
     normalizeDe, acceptedAnswers, levenshtein, gradeTypeAnswer,
     buildVocabMc, buildVocabType, buildArticleDrill, articleNouns, nounStem,

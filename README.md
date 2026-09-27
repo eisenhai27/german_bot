@@ -33,7 +33,8 @@ german_bot/
     index.html                UI
     quiz.js                   pure quiz logic, unit-tested in tests/test_miniapp.js
     data.js                   GENERATED from data/ by tools/build_miniapp.py
-  tools/build_miniapp.py    regenerates miniapp/data.js after you edit data/
+  tools/build_miniapp.py    regenerates miniapp/data.js + cache-busting script hashes;
+                            run it after editing data/ or miniapp/quiz.js
   tests/                    mini app tests (node tests/test_miniapp.js)
   requirements.txt
 ```
