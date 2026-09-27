@@ -1,0 +1,238 @@
+# Words from the Momente A1.1 "Lernwortschatz" (Kursbuch pp. 184-212) that were
+# missing from data/vocabulary_data.json. Added by tools/add_book_words.py.
+# Uzbek glosses were written for this addition and should be reviewed.
+# lektion	de	uz	gender(m/f/n/-)	pos(noun/other/phrase)
+1	heißen	atalmoq, ismi ... bo'lmoq	-	other
+1	Und wer bist du?	sen-chi, sen kimsan?	-	phrase
+1	Der Familienname	familiya	m	noun
+1	Deutschland	Germaniya	-	other
+1	Wer ist das?	bu kim?	-	phrase
+1	Die Türkei	Turkiya	f	noun
+1	Spanien	Ispaniya	-	other
+1	Frankreich	Fransiya	-	other
+1	Österreich	Avstriya	-	other
+1	Eritrea	Eritreya	-	other
+1	Die USA	AQSH	-	noun
+1	Guten Tag.	xayrli kun	-	phrase
+1	Guten Morgen.	xayrli tong	-	phrase
+1	Guten Abend.	xayrli kech	-	phrase
+1	Gute Nacht.	xayrli tun	-	phrase
+2	machen	qilmoq	-	other
+2	ihr	sizlar (siz - ko'plik)	-	other
+2	plus	qo'shuv (+)	-	other
+2	beruflich	kasbi bo'yicha	-	other
+2	Die Partnerin	sherik (ayol)	f	noun
+2	Die Paketzustellerin	pochta kuryeri (ayol)	f	noun
+2	Der Ingenieur	muhandis	m	noun
+2	Die Ingenieurin	muhandis (ayol)	f	noun
+2	Der Kfz-Mechatroniker	avtomexanik	m	noun
+2	Die Kfz-Mechatronikerin	avtomexanik (ayol)	f	noun
+2	Der Student	talaba	m	noun
+2	Die Studentin	talaba qiz	f	noun
+2	Der Journalist	jurnalist	m	noun
+2	Die Journalistin	jurnalist (ayol)	f	noun
+2	Der Friseur	sartarosh	m	noun
+2	Die Friseurin	sartarosh (ayol)	f	noun
+2	Der Architekt	arxitektor, me'mor	m	noun
+2	Die Architektin	arxitektor (ayol)	f	noun
+2	Der Arzt	shifokor	m	noun
+2	Die Ärztin	shifokor (ayol)	f	noun
+2	Der Lehrer	o'qituvchi	m	noun
+2	Die Lehrerin	o'qituvchi (ayol)	f	noun
+2	Der Verkäufer	sotuvchi	m	noun
+2	Die Verkäuferin	sotuvchi (ayol)	f	noun
+2	Der Kellner	ofitsiant	m	noun
+2	Die Kellnerin	ofitsiant (ayol)	f	noun
+2	Die Rentnerin	nafaqaxo'r (ayol)	f	noun
+2	Die Tierärztin	veterinar (ayol)	f	noun
+2	Die Schauspielerin	aktrisa	f	noun
+2	Die Sängerin	qo'shiqchi (ayol)	f	noun
+3	Der Papa	dada	m	noun
+3	Die Mama	oyi, ona	f	noun
+3	Die Eltern	ota-ona	-	noun
+3	Der Sohn	o'g'il	m	noun
+3	Die Tochter	qiz (farzand)	f	noun
+3	Der Bruder	aka, uka	m	noun
+3	Die Geschwister	aka-uka va opa-singillar	-	noun
+3	Der Großvater	bobo	m	noun
+3	Die Großmutter	buvi	f	noun
+3	Die Großeltern	bobo va buvi	-	noun
+3	Der Enkel	nabira (o'g'il)	m	noun
+3	Die Enkelin	nabira (qiz)	f	noun
+3	Der Ehemann	er (turmush o'rtoq)	m	noun
+3	Die Ehefrau	xotin, rafiqa	f	noun
+3	Spanisch	ispan tili	-	other
+3	Englisch	ingliz tili	-	other
+3	Russisch	rus tili	-	other
+3	Chinesisch	xitoy tili	-	other
+3	Polnisch	polyak tili	-	other
+3	Französisch	fransuz tili	-	other
+3	Italienisch	italyan tili	-	other
+3	Türkisch	turk tili	-	other
+3	Deutsch	nemis tili	-	other
+3	Die IT-Trainerin	IT murabbiy (ayol)	f	noun
+3	Die Straße	ko'cha	f	noun
+3	Die Stadt	shahar	f	noun
+3	Die E-Mail-Adresse	elektron pochta manzili	f	noun
+3	Die Hausnummer	uy raqami	f	noun
+3	Die Telefonnummer	telefon raqami	f	noun
+3	Die Homepage	veb-sayt	f	noun
+3	Die IT-Abteilung	IT bo'limi	f	noun
+4	nur	faqat	-	other
+4	Das Bett	karavot	n	noun
+4	Der Sessel	kreslo	m	noun
+4	Die Lampe	chiroq	f	noun
+4	Das Sofa	divan	n	noun
+4	Der Tisch	stol	m	noun
+4	Der Schrank	shkaf	m	noun
+4	Der Teppich	gilam	m	noun
+4	Das Regal	javon	n	noun
+5	Der Bleistift	qalam	m	noun
+5	Die Brille	ko'zoynak	f	noun
+5	Die Flasche	shisha idish, butilka	f	noun
+5	Die Kamera	fotoapparat	f	noun
+5	Die Kette	marjon, zanjir	f	noun
+5	Der Kugelschreiber	ruchka	m	noun
+5	Der Schlüssel	kalit	m	noun
+5	Die Tasche	sumka	f	noun
+5	Das Material	material	n	noun
+5	Das Holz	yog'och	n	noun
+5	Das Papier	qog'oz	n	noun
+5	Das Metall	metall	n	noun
+5	Das Plastik	plastik	n	noun
+5	Das Glas	shisha	n	noun
+5	weiß	oq	-	other
+5	gelb	sariq	-	other
+5	orange	to'q sariq	-	other
+5	rot	qizil	-	other
+5	grün	yashil	-	other
+5	blau	ko'k	-	other
+5	braun	jigarrang	-	other
+5	schwarz	qora	-	other
+5	man	kishi (umumiy shaxs)	-	other
+5	Bitte schön. Kein Problem.	marhamat. hech gap emas.	-	phrase
+5	Ich weiß nicht.	bilmayman.	-	phrase
+5	Die Postleitzahl	pochta indeksi	f	noun
+5	Der Ort	joy, aholi punkti	m	noun
+6	Der Laptop	noutbuk	m	noun
+6	Der Drucker	printer	m	noun
+6	Die Maus	sichqoncha	f	noun
+6	Der Computer	kompyuter	m	noun
+6	Der Kalender	taqvim, kalendar	m	noun
+6	Der Bildschirm	ekran	m	noun
+6	Das Tablet	planshet	n	noun
+6	Die Tastatur	klaviatura	f	noun
+6	Die Bürokauffrau	ofis xodimi (ayol)	f	noun
+7	toll	ajoyib	-	other
+7	normal	oddiy, normal	-	other
+7	komisch	g'alati	-	other
+7	lustig	kulgili, qiziq	-	other
+7	überall	hamma joyda	-	other
+7	hören	eshitmoq, tinglamoq	-	other
+7	zurzeit	hozirda	-	other
+7	immer	doim	-	other
+7	kochen	ovqat pishirmoq	-	other
+7	singen	qo'shiq aytmoq	-	other
+7	schwimmen	suzmoq	-	other
+7	fotografieren	suratga olmoq	-	other
+7	Schach spielen	shaxmat o'ynamoq	-	phrase
+7	malen	rasm chizmoq	-	other
+7	backen	pishirmoq (non, pishiriq)	-	other
+7	Fußball spielen	futbol o'ynamoq	-	phrase
+7	Tennis spielen	tennis o'ynamoq	-	phrase
+7	Gitarre spielen	gitara chalmoq	-	phrase
+7	Rad fahren	velosiped haydamoq	-	phrase
+7	Ski fahren	chang'i uchmoq	-	phrase
+7	reiten	ot minmoq	-	other
+7	alle drei	uchalasi ham	-	other
+7	Die Kauffrau	savdo xodimi (ayol)	f	noun
+7	Die Kaufleute	savdo xodimlari	-	noun
+7	Der Versicherungskaufmann	sug'urta agenti	m	noun
+7	Die Versicherungskauffrau	sug'urta agenti (ayol)	f	noun
+7	Das Studio	studiya	n	noun
+7	Das Internet	internet	n	noun
+8	Die Woche	hafta	f	noun
+8	Der Montag	dushanba	m	noun
+8	Der Dienstag	seshanba	m	noun
+8	Der Mittwoch	chorshanba	m	noun
+8	Der Donnerstag	payshanba	m	noun
+8	Der Freitag	juma	m	noun
+8	Der Samstag	shanba	m	noun
+8	Der Sonntag	yakshanba	m	noun
+8	am Wochenende	dam olish kunlarida	-	phrase
+8	spät	kech	-	other
+8	Es ist …	soat ... (vaqt aytganda)	-	phrase
+8	Das Museum	muzey	n	noun
+8	Das Theater	teatr	n	noun
+8	Das Café	kafe	n	noun
+8	Die Ausstellung	ko'rgazma	f	noun
+8	Das Restaurant	restoran	n	noun
+8	Die Bar	bar	f	noun
+9	Der Kuchen	pirog, tort	m	noun
+9	Die Suppe	sho'rva	f	noun
+9	Der Apfel	olma	m	noun
+9	Der Tee	choy	m	noun
+9	Die Orange	apelsin	f	noun
+9	Der Fisch	baliq	m	noun
+9	Die Tomate	pomidor	f	noun
+9	Das Brot	non	n	noun
+9	Das Fleisch	go'sht	n	noun
+9	Das Brötchen	bulochka	n	noun
+9	Die Marmelade	murabbo	f	noun
+9	Der Saft	sharbat	m	noun
+9	Der Ketchup	ketchup	m	noun
+9	Das Mittagessen	tushlik	n	noun
+9	Das Müsli	myusli	n	noun
+9	Schöne Grüße	eng yaxshi tilaklar bilan (xat oxirida)	-	phrase
+9	Die Kundin	mijoz (ayol)	f	noun
+10	sich freuen	xursand bo'lmoq	-	other
+10	stehen	turmoq	-	other
+10	Die Kollegin	hamkasb (ayol)	f	noun
+10	Das Verkehrsmittel	transport vositasi	n	noun
+10	Der Bahnhof	vokzal	m	noun
+10	Die U-Bahn	metro	f	noun
+10	Das Taxi	taksi	n	noun
+10	Der Bus	avtobus	m	noun
+10	Der Zug	poyezd	m	noun
+10	Die Straßenbahn	tramvay	f	noun
+10	Die S-Bahn	shahar elektr poyezdi	f	noun
+10	Das Flugzeug	samolyot	n	noun
+10	Der Koffer	chamadon	m	noun
+10	Der Rucksack	ryukzak	m	noun
+11	die Zeitung lesen	gazeta o'qimoq	-	phrase
+11	eine Pause machen	tanaffus qilmoq	-	phrase
+11	einen Spaziergang machen	sayr qilmoq	-	phrase
+11	schlafen	uxlamoq	-	other
+11	Die Hausaufgabe	uy vazifasi	f	noun
+11	Hausaufgaben machen	uy vazifasini bajarmoq	-	phrase
+11	Die Serie	serial	f	noun
+11	eine Serie schauen	serial ko'rmoq	-	phrase
+11	kaufen	sotib olmoq	-	other
+11	Die Kinderärztin	bolalar shifokori (ayol)	f	noun
+11	Die Kursleiterin	kurs o'qituvchisi (ayol)	f	noun
+11	Der Zahn	tish	m	noun
+11	letzt-	o'tgan, oxirgi	-	other
+11	Der Sport	sport	m	noun
+11	einladen	taklif qilmoq	-	other
+11	Ja, habe ich.	ha, qildim.	-	phrase
+11	Nein, habe ich nicht.	yo'q, qilmadim.	-	phrase
+11	Der Chor	xor	m	noun
+11	Der Handball	qo'l to'pi (gandbol)	m	noun
+11	Die Wäsche	kir (yuviladigan kiyim)	f	noun
+11	waschen	yuvmoq	-	other
+11	Das Geschenk	sovg'a	n	noun
+12	Der Frühling	bahor	m	noun
+12	Der Januar	yanvar	m	noun
+12	Der Februar	fevral	m	noun
+12	Der März	mart	m	noun
+12	Der April	aprel	m	noun
+12	Der Mai	may	m	noun
+12	Der Juni	iyun	m	noun
+12	Der Juli	iyul	m	noun
+12	Der September	sentyabr	m	noun
+12	Weihnachten	Rojdestvo	-	other
+12	Silvester	Yangi yil kechasi (31-dekabr)	-	other
+12	springen	sakramoq	-	other
+12	Die Besucherin	tashrif buyuruvchi (ayol)	f	noun
+12	Die Bauingenieurin	qurilish muhandisi (ayol)	f	noun
+12	Die Bauleiterin	qurilish rahbari (ayol)	f	noun

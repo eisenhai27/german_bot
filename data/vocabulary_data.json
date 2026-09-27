@@ -4,12 +4,13 @@
     "target_language": "German",
     "gloss_language": "Uzbek",
     "lesson_count": 24,
-    "total_entries": 1158
+    "total_entries": 1392,
+    "book_check": "Lektion 1-12 checked against Momente A1.1 Kursbuch Lernwortschatz; entries tagged source='Momente A1.1 Lernwortschatz' were added from it."
   },
   "lessons": [
     {
       "lektion": 1,
-      "count": 49,
+      "count": 64,
       "items": [
         {
           "id": "L1-001",
@@ -353,12 +354,132 @@
           "uz": "suhbat",
           "gender": "n",
           "pos": "noun"
+        },
+        {
+          "id": "L1-050",
+          "de": "heißen",
+          "uz": "atalmoq, ismi ... bo'lmoq",
+          "gender": null,
+          "pos": "other",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L1-051",
+          "de": "Und wer bist du?",
+          "uz": "sen-chi, sen kimsan?",
+          "gender": null,
+          "pos": "phrase",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L1-052",
+          "de": "Der Familienname",
+          "uz": "familiya",
+          "gender": "m",
+          "pos": "noun",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L1-053",
+          "de": "Deutschland",
+          "uz": "Germaniya",
+          "gender": null,
+          "pos": "other",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L1-054",
+          "de": "Wer ist das?",
+          "uz": "bu kim?",
+          "gender": null,
+          "pos": "phrase",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L1-055",
+          "de": "Die Türkei",
+          "uz": "Turkiya",
+          "gender": "f",
+          "pos": "noun",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L1-056",
+          "de": "Spanien",
+          "uz": "Ispaniya",
+          "gender": null,
+          "pos": "other",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L1-057",
+          "de": "Frankreich",
+          "uz": "Fransiya",
+          "gender": null,
+          "pos": "other",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L1-058",
+          "de": "Österreich",
+          "uz": "Avstriya",
+          "gender": null,
+          "pos": "other",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L1-059",
+          "de": "Eritrea",
+          "uz": "Eritreya",
+          "gender": null,
+          "pos": "other",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L1-060",
+          "de": "Die USA",
+          "uz": "AQSH",
+          "gender": null,
+          "pos": "noun",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L1-061",
+          "de": "Guten Tag.",
+          "uz": "xayrli kun",
+          "gender": null,
+          "pos": "phrase",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L1-062",
+          "de": "Guten Morgen.",
+          "uz": "xayrli tong",
+          "gender": null,
+          "pos": "phrase",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L1-063",
+          "de": "Guten Abend.",
+          "uz": "xayrli kech",
+          "gender": null,
+          "pos": "phrase",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L1-064",
+          "de": "Gute Nacht.",
+          "uz": "xayrli tun",
+          "gender": null,
+          "pos": "phrase",
+          "source": "Momente A1.1 Lernwortschatz"
         }
       ]
     },
     {
       "lektion": 2,
-      "count": 64,
+      "count": 94,
       "items": [
         {
           "id": "L2-001",
@@ -565,7 +686,7 @@
         },
         {
           "id": "L2-030",
-          "de": "gechieden sein",
+          "de": "geschieden sein",
           "uz": "ajrashgan",
           "gender": null,
           "pos": "other"
@@ -807,12 +928,252 @@
           "uz": "qóshiqchi",
           "gender": "m",
           "pos": "noun"
+        },
+        {
+          "id": "L2-065",
+          "de": "machen",
+          "uz": "qilmoq",
+          "gender": null,
+          "pos": "other",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L2-066",
+          "de": "ihr",
+          "uz": "sizlar (siz - ko'plik)",
+          "gender": null,
+          "pos": "other",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L2-067",
+          "de": "plus",
+          "uz": "qo'shuv (+)",
+          "gender": null,
+          "pos": "other",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L2-068",
+          "de": "beruflich",
+          "uz": "kasbi bo'yicha",
+          "gender": null,
+          "pos": "other",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L2-069",
+          "de": "Die Partnerin",
+          "uz": "sherik (ayol)",
+          "gender": "f",
+          "pos": "noun",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L2-070",
+          "de": "Die Paketzustellerin",
+          "uz": "pochta kuryeri (ayol)",
+          "gender": "f",
+          "pos": "noun",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L2-071",
+          "de": "Der Ingenieur",
+          "uz": "muhandis",
+          "gender": "m",
+          "pos": "noun",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L2-072",
+          "de": "Die Ingenieurin",
+          "uz": "muhandis (ayol)",
+          "gender": "f",
+          "pos": "noun",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L2-073",
+          "de": "Der Kfz-Mechatroniker",
+          "uz": "avtomexanik",
+          "gender": "m",
+          "pos": "noun",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L2-074",
+          "de": "Die Kfz-Mechatronikerin",
+          "uz": "avtomexanik (ayol)",
+          "gender": "f",
+          "pos": "noun",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L2-075",
+          "de": "Der Student",
+          "uz": "talaba",
+          "gender": "m",
+          "pos": "noun",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L2-076",
+          "de": "Die Studentin",
+          "uz": "talaba qiz",
+          "gender": "f",
+          "pos": "noun",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L2-077",
+          "de": "Der Journalist",
+          "uz": "jurnalist",
+          "gender": "m",
+          "pos": "noun",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L2-078",
+          "de": "Die Journalistin",
+          "uz": "jurnalist (ayol)",
+          "gender": "f",
+          "pos": "noun",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L2-079",
+          "de": "Der Friseur",
+          "uz": "sartarosh",
+          "gender": "m",
+          "pos": "noun",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L2-080",
+          "de": "Die Friseurin",
+          "uz": "sartarosh (ayol)",
+          "gender": "f",
+          "pos": "noun",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L2-081",
+          "de": "Der Architekt",
+          "uz": "arxitektor, me'mor",
+          "gender": "m",
+          "pos": "noun",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L2-082",
+          "de": "Die Architektin",
+          "uz": "arxitektor (ayol)",
+          "gender": "f",
+          "pos": "noun",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L2-083",
+          "de": "Der Arzt",
+          "uz": "shifokor",
+          "gender": "m",
+          "pos": "noun",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L2-084",
+          "de": "Die Ärztin",
+          "uz": "shifokor (ayol)",
+          "gender": "f",
+          "pos": "noun",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L2-085",
+          "de": "Der Lehrer",
+          "uz": "o'qituvchi",
+          "gender": "m",
+          "pos": "noun",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L2-086",
+          "de": "Die Lehrerin",
+          "uz": "o'qituvchi (ayol)",
+          "gender": "f",
+          "pos": "noun",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L2-087",
+          "de": "Der Verkäufer",
+          "uz": "sotuvchi",
+          "gender": "m",
+          "pos": "noun",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L2-088",
+          "de": "Die Verkäuferin",
+          "uz": "sotuvchi (ayol)",
+          "gender": "f",
+          "pos": "noun",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L2-089",
+          "de": "Der Kellner",
+          "uz": "ofitsiant",
+          "gender": "m",
+          "pos": "noun",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L2-090",
+          "de": "Die Kellnerin",
+          "uz": "ofitsiant (ayol)",
+          "gender": "f",
+          "pos": "noun",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L2-091",
+          "de": "Die Rentnerin",
+          "uz": "nafaqaxo'r (ayol)",
+          "gender": "f",
+          "pos": "noun",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L2-092",
+          "de": "Die Tierärztin",
+          "uz": "veterinar (ayol)",
+          "gender": "f",
+          "pos": "noun",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L2-093",
+          "de": "Die Schauspielerin",
+          "uz": "aktrisa",
+          "gender": "f",
+          "pos": "noun",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L2-094",
+          "de": "Die Sängerin",
+          "uz": "qo'shiqchi (ayol)",
+          "gender": "f",
+          "pos": "noun",
+          "source": "Momente A1.1 Lernwortschatz"
         }
       ]
     },
     {
       "lektion": 3,
-      "count": 34,
+      "count": 65,
       "items": [
         {
           "id": "L3-001",
@@ -963,7 +1324,7 @@
         },
         {
           "id": "L3-022",
-          "de": "Welche Sprache sprichst du?",
+          "de": "Welche Sprachen sprichst du?",
           "uz": "Qaysi tillarni bilasan?",
           "gender": null,
           "pos": "phrase"
@@ -1051,12 +1412,260 @@
           "uz": "reklama bo'limi",
           "gender": "f",
           "pos": "noun"
+        },
+        {
+          "id": "L3-035",
+          "de": "Der Papa",
+          "uz": "dada",
+          "gender": "m",
+          "pos": "noun",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L3-036",
+          "de": "Die Mama",
+          "uz": "oyi, ona",
+          "gender": "f",
+          "pos": "noun",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L3-037",
+          "de": "Die Eltern",
+          "uz": "ota-ona",
+          "gender": null,
+          "pos": "noun",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L3-038",
+          "de": "Der Sohn",
+          "uz": "o'g'il",
+          "gender": "m",
+          "pos": "noun",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L3-039",
+          "de": "Die Tochter",
+          "uz": "qiz (farzand)",
+          "gender": "f",
+          "pos": "noun",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L3-040",
+          "de": "Der Bruder",
+          "uz": "aka, uka",
+          "gender": "m",
+          "pos": "noun",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L3-041",
+          "de": "Die Geschwister",
+          "uz": "aka-uka va opa-singillar",
+          "gender": null,
+          "pos": "noun",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L3-042",
+          "de": "Der Großvater",
+          "uz": "bobo",
+          "gender": "m",
+          "pos": "noun",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L3-043",
+          "de": "Die Großmutter",
+          "uz": "buvi",
+          "gender": "f",
+          "pos": "noun",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L3-044",
+          "de": "Die Großeltern",
+          "uz": "bobo va buvi",
+          "gender": null,
+          "pos": "noun",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L3-045",
+          "de": "Der Enkel",
+          "uz": "nabira (o'g'il)",
+          "gender": "m",
+          "pos": "noun",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L3-046",
+          "de": "Die Enkelin",
+          "uz": "nabira (qiz)",
+          "gender": "f",
+          "pos": "noun",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L3-047",
+          "de": "Der Ehemann",
+          "uz": "er (turmush o'rtoq)",
+          "gender": "m",
+          "pos": "noun",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L3-048",
+          "de": "Die Ehefrau",
+          "uz": "xotin, rafiqa",
+          "gender": "f",
+          "pos": "noun",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L3-049",
+          "de": "Spanisch",
+          "uz": "ispan tili",
+          "gender": null,
+          "pos": "other",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L3-050",
+          "de": "Englisch",
+          "uz": "ingliz tili",
+          "gender": null,
+          "pos": "other",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L3-051",
+          "de": "Russisch",
+          "uz": "rus tili",
+          "gender": null,
+          "pos": "other",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L3-052",
+          "de": "Chinesisch",
+          "uz": "xitoy tili",
+          "gender": null,
+          "pos": "other",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L3-053",
+          "de": "Polnisch",
+          "uz": "polyak tili",
+          "gender": null,
+          "pos": "other",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L3-054",
+          "de": "Französisch",
+          "uz": "fransuz tili",
+          "gender": null,
+          "pos": "other",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L3-055",
+          "de": "Italienisch",
+          "uz": "italyan tili",
+          "gender": null,
+          "pos": "other",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L3-056",
+          "de": "Türkisch",
+          "uz": "turk tili",
+          "gender": null,
+          "pos": "other",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L3-057",
+          "de": "Deutsch",
+          "uz": "nemis tili",
+          "gender": null,
+          "pos": "other",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L3-058",
+          "de": "Die IT-Trainerin",
+          "uz": "IT murabbiy (ayol)",
+          "gender": "f",
+          "pos": "noun",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L3-059",
+          "de": "Die Straße",
+          "uz": "ko'cha",
+          "gender": "f",
+          "pos": "noun",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L3-060",
+          "de": "Die Stadt",
+          "uz": "shahar",
+          "gender": "f",
+          "pos": "noun",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L3-061",
+          "de": "Die E-Mail-Adresse",
+          "uz": "elektron pochta manzili",
+          "gender": "f",
+          "pos": "noun",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L3-062",
+          "de": "Die Hausnummer",
+          "uz": "uy raqami",
+          "gender": "f",
+          "pos": "noun",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L3-063",
+          "de": "Die Telefonnummer",
+          "uz": "telefon raqami",
+          "gender": "f",
+          "pos": "noun",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L3-064",
+          "de": "Die Homepage",
+          "uz": "veb-sayt",
+          "gender": "f",
+          "pos": "noun",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L3-065",
+          "de": "Die IT-Abteilung",
+          "uz": "IT bo'limi",
+          "gender": "f",
+          "pos": "noun",
+          "source": "Momente A1.1 Lernwortschatz"
         }
       ]
     },
     {
       "lektion": 4,
-      "count": 37,
+      "count": 46,
       "items": [
         {
           "id": "L4-001",
@@ -1316,12 +1925,84 @@
           "uz": "katta",
           "gender": null,
           "pos": "other"
+        },
+        {
+          "id": "L4-038",
+          "de": "nur",
+          "uz": "faqat",
+          "gender": null,
+          "pos": "other",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L4-039",
+          "de": "Das Bett",
+          "uz": "karavot",
+          "gender": "n",
+          "pos": "noun",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L4-040",
+          "de": "Der Sessel",
+          "uz": "kreslo",
+          "gender": "m",
+          "pos": "noun",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L4-041",
+          "de": "Die Lampe",
+          "uz": "chiroq",
+          "gender": "f",
+          "pos": "noun",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L4-042",
+          "de": "Das Sofa",
+          "uz": "divan",
+          "gender": "n",
+          "pos": "noun",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L4-043",
+          "de": "Der Tisch",
+          "uz": "stol",
+          "gender": "m",
+          "pos": "noun",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L4-044",
+          "de": "Der Schrank",
+          "uz": "shkaf",
+          "gender": "m",
+          "pos": "noun",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L4-045",
+          "de": "Der Teppich",
+          "uz": "gilam",
+          "gender": "m",
+          "pos": "noun",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L4-046",
+          "de": "Das Regal",
+          "uz": "javon",
+          "gender": "n",
+          "pos": "noun",
+          "source": "Momente A1.1 Lernwortschatz"
         }
       ]
     },
     {
       "lektion": 5,
-      "count": 59,
+      "count": 86,
       "items": [
         {
           "id": "L5-001",
@@ -1735,12 +2416,228 @@
           "uz": "kuchukcha",
           "gender": null,
           "pos": "other"
+        },
+        {
+          "id": "L5-060",
+          "de": "Der Bleistift",
+          "uz": "qalam",
+          "gender": "m",
+          "pos": "noun",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L5-061",
+          "de": "Die Brille",
+          "uz": "ko'zoynak",
+          "gender": "f",
+          "pos": "noun",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L5-062",
+          "de": "Die Flasche",
+          "uz": "shisha idish, butilka",
+          "gender": "f",
+          "pos": "noun",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L5-063",
+          "de": "Die Kamera",
+          "uz": "fotoapparat",
+          "gender": "f",
+          "pos": "noun",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L5-064",
+          "de": "Die Kette",
+          "uz": "marjon, zanjir",
+          "gender": "f",
+          "pos": "noun",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L5-065",
+          "de": "Der Kugelschreiber",
+          "uz": "ruchka",
+          "gender": "m",
+          "pos": "noun",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L5-066",
+          "de": "Der Schlüssel",
+          "uz": "kalit",
+          "gender": "m",
+          "pos": "noun",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L5-067",
+          "de": "Die Tasche",
+          "uz": "sumka",
+          "gender": "f",
+          "pos": "noun",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L5-068",
+          "de": "Das Material",
+          "uz": "material",
+          "gender": "n",
+          "pos": "noun",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L5-069",
+          "de": "Das Holz",
+          "uz": "yog'och",
+          "gender": "n",
+          "pos": "noun",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L5-070",
+          "de": "Das Papier",
+          "uz": "qog'oz",
+          "gender": "n",
+          "pos": "noun",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L5-071",
+          "de": "Das Metall",
+          "uz": "metall",
+          "gender": "n",
+          "pos": "noun",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L5-072",
+          "de": "Das Plastik",
+          "uz": "plastik",
+          "gender": "n",
+          "pos": "noun",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L5-073",
+          "de": "Das Glas",
+          "uz": "shisha",
+          "gender": "n",
+          "pos": "noun",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L5-074",
+          "de": "weiß",
+          "uz": "oq",
+          "gender": null,
+          "pos": "other",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L5-075",
+          "de": "gelb",
+          "uz": "sariq",
+          "gender": null,
+          "pos": "other",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L5-076",
+          "de": "orange",
+          "uz": "to'q sariq",
+          "gender": null,
+          "pos": "other",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L5-077",
+          "de": "rot",
+          "uz": "qizil",
+          "gender": null,
+          "pos": "other",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L5-078",
+          "de": "grün",
+          "uz": "yashil",
+          "gender": null,
+          "pos": "other",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L5-079",
+          "de": "blau",
+          "uz": "ko'k",
+          "gender": null,
+          "pos": "other",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L5-080",
+          "de": "braun",
+          "uz": "jigarrang",
+          "gender": null,
+          "pos": "other",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L5-081",
+          "de": "schwarz",
+          "uz": "qora",
+          "gender": null,
+          "pos": "other",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L5-082",
+          "de": "man",
+          "uz": "kishi (umumiy shaxs)",
+          "gender": null,
+          "pos": "other",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L5-083",
+          "de": "Bitte schön. Kein Problem.",
+          "uz": "marhamat. hech gap emas.",
+          "gender": null,
+          "pos": "phrase",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L5-084",
+          "de": "Ich weiß nicht.",
+          "uz": "bilmayman.",
+          "gender": null,
+          "pos": "phrase",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L5-085",
+          "de": "Die Postleitzahl",
+          "uz": "pochta indeksi",
+          "gender": "f",
+          "pos": "noun",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L5-086",
+          "de": "Der Ort",
+          "uz": "joy, aholi punkti",
+          "gender": "m",
+          "pos": "noun",
+          "source": "Momente A1.1 Lernwortschatz"
         }
       ]
     },
     {
       "lektion": 6,
-      "count": 60,
+      "count": 69,
       "items": [
         {
           "id": "L6-001",
@@ -1982,7 +2879,7 @@
         },
         {
           "id": "L6-035",
-          "de": "Ach, das ist er ja!",
+          "de": "Ach, da ist er ja!",
           "uz": "eh, bu osha!",
           "gender": null,
           "pos": "phrase"
@@ -2161,12 +3058,84 @@
           "uz": "rangda",
           "gender": null,
           "pos": "other"
+        },
+        {
+          "id": "L6-061",
+          "de": "Der Laptop",
+          "uz": "noutbuk",
+          "gender": "m",
+          "pos": "noun",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L6-062",
+          "de": "Der Drucker",
+          "uz": "printer",
+          "gender": "m",
+          "pos": "noun",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L6-063",
+          "de": "Die Maus",
+          "uz": "sichqoncha",
+          "gender": "f",
+          "pos": "noun",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L6-064",
+          "de": "Der Computer",
+          "uz": "kompyuter",
+          "gender": "m",
+          "pos": "noun",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L6-065",
+          "de": "Der Kalender",
+          "uz": "taqvim, kalendar",
+          "gender": "m",
+          "pos": "noun",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L6-066",
+          "de": "Der Bildschirm",
+          "uz": "ekran",
+          "gender": "m",
+          "pos": "noun",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L6-067",
+          "de": "Das Tablet",
+          "uz": "planshet",
+          "gender": "n",
+          "pos": "noun",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L6-068",
+          "de": "Die Tastatur",
+          "uz": "klaviatura",
+          "gender": "f",
+          "pos": "noun",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L6-069",
+          "de": "Die Bürokauffrau",
+          "uz": "ofis xodimi (ayol)",
+          "gender": "f",
+          "pos": "noun",
+          "source": "Momente A1.1 Lernwortschatz"
         }
       ]
     },
     {
       "lektion": 7,
-      "count": 52,
+      "count": 80,
       "items": [
         {
           "id": "L7-001",
@@ -2531,12 +3500,236 @@
           "uz": "bo'sh vaqtingda",
           "gender": null,
           "pos": "other"
+        },
+        {
+          "id": "L7-053",
+          "de": "toll",
+          "uz": "ajoyib",
+          "gender": null,
+          "pos": "other",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L7-054",
+          "de": "normal",
+          "uz": "oddiy, normal",
+          "gender": null,
+          "pos": "other",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L7-055",
+          "de": "komisch",
+          "uz": "g'alati",
+          "gender": null,
+          "pos": "other",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L7-056",
+          "de": "lustig",
+          "uz": "kulgili, qiziq",
+          "gender": null,
+          "pos": "other",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L7-057",
+          "de": "überall",
+          "uz": "hamma joyda",
+          "gender": null,
+          "pos": "other",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L7-058",
+          "de": "hören",
+          "uz": "eshitmoq, tinglamoq",
+          "gender": null,
+          "pos": "other",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L7-059",
+          "de": "zurzeit",
+          "uz": "hozirda",
+          "gender": null,
+          "pos": "other",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L7-060",
+          "de": "immer",
+          "uz": "doim",
+          "gender": null,
+          "pos": "other",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L7-061",
+          "de": "kochen",
+          "uz": "ovqat pishirmoq",
+          "gender": null,
+          "pos": "other",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L7-062",
+          "de": "singen",
+          "uz": "qo'shiq aytmoq",
+          "gender": null,
+          "pos": "other",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L7-063",
+          "de": "schwimmen",
+          "uz": "suzmoq",
+          "gender": null,
+          "pos": "other",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L7-064",
+          "de": "fotografieren",
+          "uz": "suratga olmoq",
+          "gender": null,
+          "pos": "other",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L7-065",
+          "de": "Schach spielen",
+          "uz": "shaxmat o'ynamoq",
+          "gender": null,
+          "pos": "phrase",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L7-066",
+          "de": "malen",
+          "uz": "rasm chizmoq",
+          "gender": null,
+          "pos": "other",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L7-067",
+          "de": "backen",
+          "uz": "pishirmoq (non, pishiriq)",
+          "gender": null,
+          "pos": "other",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L7-068",
+          "de": "Fußball spielen",
+          "uz": "futbol o'ynamoq",
+          "gender": null,
+          "pos": "phrase",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L7-069",
+          "de": "Tennis spielen",
+          "uz": "tennis o'ynamoq",
+          "gender": null,
+          "pos": "phrase",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L7-070",
+          "de": "Gitarre spielen",
+          "uz": "gitara chalmoq",
+          "gender": null,
+          "pos": "phrase",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L7-071",
+          "de": "Rad fahren",
+          "uz": "velosiped haydamoq",
+          "gender": null,
+          "pos": "phrase",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L7-072",
+          "de": "Ski fahren",
+          "uz": "chang'i uchmoq",
+          "gender": null,
+          "pos": "phrase",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L7-073",
+          "de": "reiten",
+          "uz": "ot minmoq",
+          "gender": null,
+          "pos": "other",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L7-074",
+          "de": "alle drei",
+          "uz": "uchalasi ham",
+          "gender": null,
+          "pos": "other",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L7-075",
+          "de": "Die Kauffrau",
+          "uz": "savdo xodimi (ayol)",
+          "gender": "f",
+          "pos": "noun",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L7-076",
+          "de": "Die Kaufleute",
+          "uz": "savdo xodimlari",
+          "gender": null,
+          "pos": "noun",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L7-077",
+          "de": "Der Versicherungskaufmann",
+          "uz": "sug'urta agenti",
+          "gender": "m",
+          "pos": "noun",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L7-078",
+          "de": "Die Versicherungskauffrau",
+          "uz": "sug'urta agenti (ayol)",
+          "gender": "f",
+          "pos": "noun",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L7-079",
+          "de": "Das Studio",
+          "uz": "studiya",
+          "gender": "n",
+          "pos": "noun",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L7-080",
+          "de": "Das Internet",
+          "uz": "internet",
+          "gender": "n",
+          "pos": "noun",
+          "source": "Momente A1.1 Lernwortschatz"
         }
       ]
     },
     {
       "lektion": 8,
-      "count": 37,
+      "count": 54,
       "items": [
         {
           "id": "L8-001",
@@ -2701,7 +3894,7 @@
         },
         {
           "id": "L8-024",
-          "de": "okey",
+          "de": "okay",
           "uz": "hammasi a'lo",
           "gender": null,
           "pos": "other"
@@ -2796,12 +3989,148 @@
           "uz": "afsusdaman",
           "gender": null,
           "pos": "other"
+        },
+        {
+          "id": "L8-038",
+          "de": "Die Woche",
+          "uz": "hafta",
+          "gender": "f",
+          "pos": "noun",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L8-039",
+          "de": "Der Montag",
+          "uz": "dushanba",
+          "gender": "m",
+          "pos": "noun",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L8-040",
+          "de": "Der Dienstag",
+          "uz": "seshanba",
+          "gender": "m",
+          "pos": "noun",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L8-041",
+          "de": "Der Mittwoch",
+          "uz": "chorshanba",
+          "gender": "m",
+          "pos": "noun",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L8-042",
+          "de": "Der Donnerstag",
+          "uz": "payshanba",
+          "gender": "m",
+          "pos": "noun",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L8-043",
+          "de": "Der Freitag",
+          "uz": "juma",
+          "gender": "m",
+          "pos": "noun",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L8-044",
+          "de": "Der Samstag",
+          "uz": "shanba",
+          "gender": "m",
+          "pos": "noun",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L8-045",
+          "de": "Der Sonntag",
+          "uz": "yakshanba",
+          "gender": "m",
+          "pos": "noun",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L8-046",
+          "de": "am Wochenende",
+          "uz": "dam olish kunlarida",
+          "gender": null,
+          "pos": "phrase",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L8-047",
+          "de": "spät",
+          "uz": "kech",
+          "gender": null,
+          "pos": "other",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L8-048",
+          "de": "Es ist …",
+          "uz": "soat ... (vaqt aytganda)",
+          "gender": null,
+          "pos": "phrase",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L8-049",
+          "de": "Das Museum",
+          "uz": "muzey",
+          "gender": "n",
+          "pos": "noun",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L8-050",
+          "de": "Das Theater",
+          "uz": "teatr",
+          "gender": "n",
+          "pos": "noun",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L8-051",
+          "de": "Das Café",
+          "uz": "kafe",
+          "gender": "n",
+          "pos": "noun",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L8-052",
+          "de": "Die Ausstellung",
+          "uz": "ko'rgazma",
+          "gender": "f",
+          "pos": "noun",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L8-053",
+          "de": "Das Restaurant",
+          "uz": "restoran",
+          "gender": "n",
+          "pos": "noun",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L8-054",
+          "de": "Die Bar",
+          "uz": "bar",
+          "gender": "f",
+          "pos": "noun",
+          "source": "Momente A1.1 Lernwortschatz"
         }
       ]
     },
     {
       "lektion": 9,
-      "count": 90,
+      "count": 107,
       "items": [
         {
           "id": "L9-001",
@@ -2910,7 +4239,7 @@
         },
         {
           "id": "L9-016",
-          "de": "inteligent",
+          "de": "intelligent",
           "uz": "aqlli",
           "gender": null,
           "pos": "other"
@@ -3432,12 +4761,148 @@
           "uz": "tushlikdagi tanaffus",
           "gender": "f",
           "pos": "noun"
+        },
+        {
+          "id": "L9-091",
+          "de": "Der Kuchen",
+          "uz": "pirog, tort",
+          "gender": "m",
+          "pos": "noun",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L9-092",
+          "de": "Die Suppe",
+          "uz": "sho'rva",
+          "gender": "f",
+          "pos": "noun",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L9-093",
+          "de": "Der Apfel",
+          "uz": "olma",
+          "gender": "m",
+          "pos": "noun",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L9-094",
+          "de": "Der Tee",
+          "uz": "choy",
+          "gender": "m",
+          "pos": "noun",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L9-095",
+          "de": "Die Orange",
+          "uz": "apelsin",
+          "gender": "f",
+          "pos": "noun",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L9-096",
+          "de": "Der Fisch",
+          "uz": "baliq",
+          "gender": "m",
+          "pos": "noun",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L9-097",
+          "de": "Die Tomate",
+          "uz": "pomidor",
+          "gender": "f",
+          "pos": "noun",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L9-098",
+          "de": "Das Brot",
+          "uz": "non",
+          "gender": "n",
+          "pos": "noun",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L9-099",
+          "de": "Das Fleisch",
+          "uz": "go'sht",
+          "gender": "n",
+          "pos": "noun",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L9-100",
+          "de": "Das Brötchen",
+          "uz": "bulochka",
+          "gender": "n",
+          "pos": "noun",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L9-101",
+          "de": "Die Marmelade",
+          "uz": "murabbo",
+          "gender": "f",
+          "pos": "noun",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L9-102",
+          "de": "Der Saft",
+          "uz": "sharbat",
+          "gender": "m",
+          "pos": "noun",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L9-103",
+          "de": "Der Ketchup",
+          "uz": "ketchup",
+          "gender": "m",
+          "pos": "noun",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L9-104",
+          "de": "Das Mittagessen",
+          "uz": "tushlik",
+          "gender": "n",
+          "pos": "noun",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L9-105",
+          "de": "Das Müsli",
+          "uz": "myusli",
+          "gender": "n",
+          "pos": "noun",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L9-106",
+          "de": "Schöne Grüße",
+          "uz": "eng yaxshi tilaklar bilan (xat oxirida)",
+          "gender": null,
+          "pos": "phrase",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L9-107",
+          "de": "Die Kundin",
+          "uz": "mijoz (ayol)",
+          "gender": "f",
+          "pos": "noun",
+          "source": "Momente A1.1 Lernwortschatz"
         }
       ]
     },
     {
       "lektion": 10,
-      "count": 59,
+      "count": 73,
       "items": [
         {
           "id": "L10-001",
@@ -3851,12 +5316,124 @@
           "uz": "diqqat",
           "gender": null,
           "pos": "other"
+        },
+        {
+          "id": "L10-060",
+          "de": "sich freuen",
+          "uz": "xursand bo'lmoq",
+          "gender": null,
+          "pos": "other",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L10-061",
+          "de": "stehen",
+          "uz": "turmoq",
+          "gender": null,
+          "pos": "other",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L10-062",
+          "de": "Die Kollegin",
+          "uz": "hamkasb (ayol)",
+          "gender": "f",
+          "pos": "noun",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L10-063",
+          "de": "Das Verkehrsmittel",
+          "uz": "transport vositasi",
+          "gender": "n",
+          "pos": "noun",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L10-064",
+          "de": "Der Bahnhof",
+          "uz": "vokzal",
+          "gender": "m",
+          "pos": "noun",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L10-065",
+          "de": "Die U-Bahn",
+          "uz": "metro",
+          "gender": "f",
+          "pos": "noun",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L10-066",
+          "de": "Das Taxi",
+          "uz": "taksi",
+          "gender": "n",
+          "pos": "noun",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L10-067",
+          "de": "Der Bus",
+          "uz": "avtobus",
+          "gender": "m",
+          "pos": "noun",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L10-068",
+          "de": "Der Zug",
+          "uz": "poyezd",
+          "gender": "m",
+          "pos": "noun",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L10-069",
+          "de": "Die Straßenbahn",
+          "uz": "tramvay",
+          "gender": "f",
+          "pos": "noun",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L10-070",
+          "de": "Die S-Bahn",
+          "uz": "shahar elektr poyezdi",
+          "gender": "f",
+          "pos": "noun",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L10-071",
+          "de": "Das Flugzeug",
+          "uz": "samolyot",
+          "gender": "n",
+          "pos": "noun",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L10-072",
+          "de": "Der Koffer",
+          "uz": "chamadon",
+          "gender": "m",
+          "pos": "noun",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L10-073",
+          "de": "Der Rucksack",
+          "uz": "ryukzak",
+          "gender": "m",
+          "pos": "noun",
+          "source": "Momente A1.1 Lernwortschatz"
         }
       ]
     },
     {
       "lektion": 11,
-      "count": 37,
+      "count": 59,
       "items": [
         {
           "id": "L11-001",
@@ -4116,12 +5693,188 @@
           "uz": "matbuot",
           "gender": "m",
           "pos": "noun"
+        },
+        {
+          "id": "L11-038",
+          "de": "die Zeitung lesen",
+          "uz": "gazeta o'qimoq",
+          "gender": null,
+          "pos": "phrase",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L11-039",
+          "de": "eine Pause machen",
+          "uz": "tanaffus qilmoq",
+          "gender": null,
+          "pos": "phrase",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L11-040",
+          "de": "einen Spaziergang machen",
+          "uz": "sayr qilmoq",
+          "gender": null,
+          "pos": "phrase",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L11-041",
+          "de": "schlafen",
+          "uz": "uxlamoq",
+          "gender": null,
+          "pos": "other",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L11-042",
+          "de": "Die Hausaufgabe",
+          "uz": "uy vazifasi",
+          "gender": "f",
+          "pos": "noun",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L11-043",
+          "de": "Hausaufgaben machen",
+          "uz": "uy vazifasini bajarmoq",
+          "gender": null,
+          "pos": "phrase",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L11-044",
+          "de": "Die Serie",
+          "uz": "serial",
+          "gender": "f",
+          "pos": "noun",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L11-045",
+          "de": "eine Serie schauen",
+          "uz": "serial ko'rmoq",
+          "gender": null,
+          "pos": "phrase",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L11-046",
+          "de": "kaufen",
+          "uz": "sotib olmoq",
+          "gender": null,
+          "pos": "other",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L11-047",
+          "de": "Die Kinderärztin",
+          "uz": "bolalar shifokori (ayol)",
+          "gender": "f",
+          "pos": "noun",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L11-048",
+          "de": "Die Kursleiterin",
+          "uz": "kurs o'qituvchisi (ayol)",
+          "gender": "f",
+          "pos": "noun",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L11-049",
+          "de": "Der Zahn",
+          "uz": "tish",
+          "gender": "m",
+          "pos": "noun",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L11-050",
+          "de": "letzt-",
+          "uz": "o'tgan, oxirgi",
+          "gender": null,
+          "pos": "other",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L11-051",
+          "de": "Der Sport",
+          "uz": "sport",
+          "gender": "m",
+          "pos": "noun",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L11-052",
+          "de": "einladen",
+          "uz": "taklif qilmoq",
+          "gender": null,
+          "pos": "other",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L11-053",
+          "de": "Ja, habe ich.",
+          "uz": "ha, qildim.",
+          "gender": null,
+          "pos": "phrase",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L11-054",
+          "de": "Nein, habe ich nicht.",
+          "uz": "yo'q, qilmadim.",
+          "gender": null,
+          "pos": "phrase",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L11-055",
+          "de": "Der Chor",
+          "uz": "xor",
+          "gender": "m",
+          "pos": "noun",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L11-056",
+          "de": "Der Handball",
+          "uz": "qo'l to'pi (gandbol)",
+          "gender": "m",
+          "pos": "noun",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L11-057",
+          "de": "Die Wäsche",
+          "uz": "kir (yuviladigan kiyim)",
+          "gender": "f",
+          "pos": "noun",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L11-058",
+          "de": "waschen",
+          "uz": "yuvmoq",
+          "gender": null,
+          "pos": "other",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L11-059",
+          "de": "Das Geschenk",
+          "uz": "sovg'a",
+          "gender": "n",
+          "pos": "noun",
+          "source": "Momente A1.1 Lernwortschatz"
         }
       ]
     },
     {
       "lektion": 12,
-      "count": 71,
+      "count": 86,
       "items": [
         {
           "id": "L12-001",
@@ -4517,7 +6270,7 @@
         },
         {
           "id": "L12-057",
-          "de": "Die Betreffziele",
+          "de": "Die Betreffzeile",
           "uz": "suhbat mavzusi",
           "gender": "f",
           "pos": "noun"
@@ -4619,6 +6372,126 @@
           "uz": "keyin, keyinroq",
           "gender": null,
           "pos": "other"
+        },
+        {
+          "id": "L12-072",
+          "de": "Der Frühling",
+          "uz": "bahor",
+          "gender": "m",
+          "pos": "noun",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L12-073",
+          "de": "Der Januar",
+          "uz": "yanvar",
+          "gender": "m",
+          "pos": "noun",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L12-074",
+          "de": "Der Februar",
+          "uz": "fevral",
+          "gender": "m",
+          "pos": "noun",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L12-075",
+          "de": "Der März",
+          "uz": "mart",
+          "gender": "m",
+          "pos": "noun",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L12-076",
+          "de": "Der April",
+          "uz": "aprel",
+          "gender": "m",
+          "pos": "noun",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L12-077",
+          "de": "Der Mai",
+          "uz": "may",
+          "gender": "m",
+          "pos": "noun",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L12-078",
+          "de": "Der Juni",
+          "uz": "iyun",
+          "gender": "m",
+          "pos": "noun",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L12-079",
+          "de": "Der Juli",
+          "uz": "iyul",
+          "gender": "m",
+          "pos": "noun",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L12-080",
+          "de": "Der September",
+          "uz": "sentyabr",
+          "gender": "m",
+          "pos": "noun",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L12-081",
+          "de": "Weihnachten",
+          "uz": "Rojdestvo",
+          "gender": null,
+          "pos": "other",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L12-082",
+          "de": "Silvester",
+          "uz": "Yangi yil kechasi (31-dekabr)",
+          "gender": null,
+          "pos": "other",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L12-083",
+          "de": "springen",
+          "uz": "sakramoq",
+          "gender": null,
+          "pos": "other",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L12-084",
+          "de": "Die Besucherin",
+          "uz": "tashrif buyuruvchi (ayol)",
+          "gender": "f",
+          "pos": "noun",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L12-085",
+          "de": "Die Bauingenieurin",
+          "uz": "qurilish muhandisi (ayol)",
+          "gender": "f",
+          "pos": "noun",
+          "source": "Momente A1.1 Lernwortschatz"
+        },
+        {
+          "id": "L12-086",
+          "de": "Die Bauleiterin",
+          "uz": "qurilish rahbari (ayol)",
+          "gender": "f",
+          "pos": "noun",
+          "source": "Momente A1.1 Lernwortschatz"
         }
       ]
     },

@@ -184,6 +184,9 @@ you collect a stamp for each of the 24 lektionen.
 - **Pronunciation:** 🔊 buttons read German words aloud, using the
   phone's own text-to-speech.
 - **Daily streak** and a stats card on the home screen.
+- **Light / dark theme:** the round button on the passport cover switches
+  Auto → Light → Dark. Auto follows Telegram (or the device); a chosen
+  theme sticks even if Telegram is in dark mode.
 - **Inside Telegram:** it uses Telegram's theme, back button and
   vibration feedback, and progress **syncs across your devices** through
   Telegram CloudStorage. In a normal browser it saves progress on that
@@ -218,6 +221,17 @@ No Claude account, no sign-in — it's a plain static page on your own
 GitHub Pages, which is exactly what Telegram Mini Apps expect.
 
 ## Notes on the data
+
+Lektion 1–12 were checked word by word against the *Lernwortschatz*
+pages of the Momente A1.1 Kursbuch (pp. 184–212). The original word list
+had skipped every picture box (countries, jobs, family, colours, days,
+food, transport…) and most female job titles; those 234 words were added
+from `tools/book_additions.tsv` by `tools/add_book_words.py` and are
+tagged `"source": "Momente A1.1 Lernwortschatz"` in
+`data/vocabulary_data.json`. Their Uzbek glosses were written during that
+check, so it's worth a quick look by a native speaker. Six OCR typos were
+fixed at the same time (e.g. *gechieden* → *geschieden*). Lektion 13–24
+are in the A1.2 book and haven't been checked yet.
 
 The vocabulary was OCR'd from a scanned book, so a few entries carry
 typos or regional-variant notes from the original — nothing that breaks
