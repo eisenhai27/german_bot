@@ -74,6 +74,27 @@ test('every lektion builds every mode with valid questions', () => {
   }
 });
 
+test('flashcards: review words come first, articles are split out', () => {
+  const vocab = VOCAB_DATA['3'];
+  const due = vocab.slice(0, 3).map(i => i.id);
+  const deck = Q.buildFlashcards(vocab, 10, null, due);
+  assert.strictEqual(deck.length, 10);
+  assert.strictEqual(new Set(deck.map(c => c.id)).size, 10, 'no duplicate cards');
+  for (const id of due) assert.ok(deck.some(c => c.id === id && c.due), 'due word in deck: ' + id);
+  const many = Q.buildFlashcards(vocab, 10, null, vocab.map(i => i.id));
+  assert.strictEqual(many.filter(c => c.due).length, 5, 'review words fill at most half the deck');
+
+  assert.deepStrictEqual(Q.splitArticle({ de: 'Der Tisch', pos: 'noun', gender: 'm' }), { article: 'Der', gender: 'm', rest: 'Tisch' });
+  assert.strictEqual(Q.splitArticle({ de: 'Das ist …', pos: 'phrase', gender: null }).article, '');
+});
+
+test('flashAdvance re-queues a missed card a few places back', () => {
+  assert.deepStrictEqual(Q.flashAdvance(['a', 'b', 'c', 'd', 'e'], true, 3), ['b', 'c', 'd', 'e']);
+  assert.deepStrictEqual(Q.flashAdvance(['a', 'b', 'c', 'd', 'e'], false, 3), ['b', 'c', 'd', 'a', 'e']);
+  assert.deepStrictEqual(Q.flashAdvance(['a', 'b'], false, 3), ['b', 'a'], 'goes to the end of a short queue');
+  assert.deepStrictEqual(Q.flashAdvance(['a'], false, 3), ['a']);
+});
+
 test('review pile needs two correct answers to clear', () => {
   let pile = Q.updateReview({}, 'w1', false);
   assert.strictEqual(pile.w1, 2);

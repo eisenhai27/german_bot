@@ -199,9 +199,47 @@
     };
   }
 
-  function buildFlashcards(vocab, n, rand) {
-    return sample(vocab.filter(i => i.uz), n || CONFIG.FLASHCARD_BATCH_SIZE, rand)
-      .map(i => ({ kind: 'vocab_flash', id: i.id, de: i.de, uz: i.uz, speak: i.de }));
+  /** "Der Tisch" -> {article: 'Der', gender: 'm', rest: 'Tisch'}; non-nouns get article ''. */
+  function splitArticle(item) {
+    const m = /^(der|die|das)\s+(.+)$/i.exec(item.de || '');
+    if (item.pos === 'noun' && m && ARTICLE_BY_GENDER[item.gender]) {
+      return { article: m[1], gender: item.gender, rest: m[2] };
+    }
+    return { article: '', gender: null, rest: item.de };
+  }
+
+  /**
+   * A deck of flashcards. Words from the review pile (`priorityIds`) come
+   * first, up to half the deck, so the cards you struggle with come back
+   * more often; the rest is random.
+   */
+  function buildFlashcards(vocab, n, rand, priorityIds) {
+    const size = n || CONFIG.FLASHCARD_BATCH_SIZE;
+    const usable = vocab.filter(i => i.uz);
+    const prio = new Set(priorityIds || []);
+    const due = sample(usable.filter(i => prio.has(i.id)), Math.ceil(size / 2), rand);
+    const dueIds = new Set(due.map(i => i.id));
+    const fresh = sample(usable.filter(i => !dueIds.has(i.id)), size - due.length, rand);
+    return shuffle(due.concat(fresh), rand).map(i => {
+      const s = splitArticle(i);
+      return {
+        kind: 'vocab_flash', id: i.id, de: i.de, uz: i.uz, speak: i.de,
+        article: s.article, gender: s.gender, rest: s.rest, due: dueIds.has(i.id),
+      };
+    });
+  }
+
+  /**
+   * In-session repetition: a card you missed goes back into the queue a few
+   * cards later (not immediately, so it isn't just short-term memory).
+   * Returns a new queue with `card` removed from the front and, if missed,
+   * reinserted `gap` places back.
+   */
+  function flashAdvance(queue, knew, gap) {
+    const [card, ...rest] = queue;
+    if (knew) return rest;
+    const at = Math.min(gap == null ? 3 : gap, rest.length);
+    return rest.slice(0, at).concat([card], rest.slice(at));
   }
 
   function buildReviewRound(reviewIds, vocab, rand) {
@@ -303,7 +341,7 @@
     shuffle, sample, hasGap, stripParens,
     normalizeDe, acceptedAnswers, levenshtein, gradeTypeAnswer,
     buildVocabMc, buildVocabType, buildArticleDrill, articleNouns, nounStem,
-    buildMatchingRound, buildFlashcards, buildReviewRound, buildGrammarQuiz, buildFinalTest,
+    buildMatchingRound, buildFlashcards, splitArticle, flashAdvance, buildReviewRound, buildGrammarQuiz, buildFinalTest,
     updateReview, recordFinal, isUnlocked, currentLektion,
     bumpStreak, liveStreak,
   };

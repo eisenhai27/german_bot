@@ -250,20 +250,54 @@
   .hint-line{font-size:13px; color:var(--muted); margin:0 0 14px;}
 
   /* ---------- flashcards ---------- */
-  .flip{perspective:1400px; margin-bottom:14px;}
-  .card{position:relative; height:260px; transform-style:preserve-3d; transition:transform .5s cubic-bezier(.2,.8,.25,1); cursor:pointer;}
-  .card.flipped{transform:rotateY(180deg); cursor:default;}
-  .face{
-    position:absolute; inset:0; border-radius:22px; backface-visibility:hidden; -webkit-backface-visibility:hidden;
-    display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:24px;
+  .dirbtn{height:40px; padding:0 12px; border-radius:12px; border:1px solid var(--line); background:var(--surface); font:700 11.5px var(--sans); letter-spacing:.08em; flex:none;}
+  .deck{position:relative; height:310px; margin:6px 0 16px; perspective:1400px;}
+  .deck-card{
+    position:absolute; inset:0; border-radius:24px; background:var(--surface); border:1px solid var(--line);
+    transition:transform .35s ease, opacity .35s ease;
   }
-  .face.front{color:#F6E7C4; background:repeating-radial-gradient(circle at 110% 0%, rgba(255,255,255,.06) 0 1px, transparent 1px 8px), linear-gradient(150deg,var(--cover-a),var(--cover-b)); box-shadow:0 18px 40px -22px rgba(86,20,35,.9);}
+  .deck-card.d1{transform:translateY(12px) scale(.95); opacity:.8;}
+  .deck-card.d2{transform:translateY(24px) scale(.9); opacity:.5;}
+  .swipe{position:absolute; inset:0; touch-action:pan-y; will-change:transform; z-index:2;}
+  .swipe.enter{animation:rise .38s cubic-bezier(.2,.9,.3,1.15) both;}
+  @keyframes rise{from{transform:translateY(12px) scale(.95); opacity:.8;}}
+  .swipe.dragging{transition:none; cursor:grabbing;}
+  .swipe.settle{transition:transform .35s cubic-bezier(.2,.9,.3,1.3);}
+  .swipe.fly-right{transition:transform .3s ease-in, opacity .3s ease-in; transform:translateX(130%) rotate(20deg) !important; opacity:0;}
+  .swipe.fly-left{transition:transform .3s ease-in, opacity .3s ease-in; transform:translateX(-130%) rotate(-20deg) !important; opacity:0;}
+  .card{
+    position:absolute; inset:0; transform-style:preserve-3d; cursor:pointer;
+    transition:transform .65s cubic-bezier(.3,1.35,.45,1);
+  }
+  .card.flipped{transform:rotateY(180deg);}
+  .face{
+    position:absolute; inset:0; border-radius:24px; backface-visibility:hidden; -webkit-backface-visibility:hidden;
+    display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:28px 24px;
+  }
+  .face.front{color:#F6E7C4; background:repeating-radial-gradient(circle at 110% 0%, rgba(255,255,255,.06) 0 1px, transparent 1px 8px), linear-gradient(150deg,var(--cover-a),var(--cover-b)); box-shadow:0 22px 44px -24px rgba(86,20,35,.95);}
   .face.back{transform:rotateY(180deg); background:var(--surface); border:1px solid var(--line); box-shadow:var(--shadow);}
-  .face .w{font:600 30px/1.25 var(--serif); overflow-wrap:anywhere;}
-  .face .lbl{font-size:11px; font-weight:700; letter-spacing:.16em; text-transform:uppercase; opacity:.7; margin-bottom:10px;}
+  .face .w{font:600 32px/1.25 var(--serif); overflow-wrap:anywhere;}
+  .face .sub-w{margin-top:12px; font-size:14.5px; color:var(--muted);}
+  .face .lbl{font-size:11px; font-weight:700; letter-spacing:.16em; text-transform:uppercase; opacity:.7; margin-bottom:12px;}
   .face .say{background:rgba(0,0,0,.18); border-color:rgba(255,255,255,.2); color:#F6E7C4;}
   .face.back .say{background:var(--bg); border-color:var(--line); color:var(--brand);}
-  .tap-hint{text-align:center; font-size:12.5px; color:var(--muted);}
+  .face .tag{position:absolute; top:14px; left:14px; padding:3px 9px; border-radius:99px; font-size:10.5px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; background:rgba(0,0,0,.2);}
+  .face.back .tag{background:var(--surface-2);}
+  .face .flip-cue{position:absolute; bottom:16px; left:0; right:0; font-size:12px; opacity:.6;}
+  .g-m{color:var(--der);} .g-f{color:var(--die);} .g-n{color:var(--das);}
+  .face.front .g-m{color:#A9C3FF;} .face.front .g-f{color:#FFB3BD;} .face.front .g-n{color:#9DE7C2;}
+  .verdict{
+    position:absolute; top:62px; z-index:3; padding:6px 12px; border:3px solid currentColor; border-radius:10px; pointer-events:none;
+    font:700 17px var(--mono); letter-spacing:.18em; background:var(--surface); opacity:0;
+  }
+  .verdict.yes{left:20px; color:var(--ok); transform:rotate(-14deg); opacity:var(--yes,0);}
+  .verdict.no{right:20px; color:var(--bad); transform:rotate(14deg); opacity:var(--no,0);}
+  .flash-hint{text-align:center; font-size:12.5px; color:var(--muted);}
+  .flash-dock{animation:none; transform:translateY(110%); transition:transform .32s cubic-bezier(.2,.9,.3,1.1);}
+  .view.revealed + .flash-dock{transform:none;}
+  .flash-dock .btn.again{color:var(--bad);}
+  .kbd-hint{text-align:center; font-size:11.5px; color:var(--muted); margin-top:8px;}
+  @media (hover:none){ .kbd-hint{display:none;} }
 
   /* ---------- result ---------- */
   .result{text-align:center; padding-top:8px;}
@@ -365,6 +399,9 @@ const CLOUD_KEYS = ['core'].concat(Array.from({length: TOTAL}, (_, i) => 'r' + (
 
 function lsGet(k){ try { const v = localStorage.getItem(k); return v ? JSON.parse(v) : null; } catch (e) { return null; } }
 function lsSet(k, v){ try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} }
+// Per-device UI preferences (not synced).
+const PREFS = lsGet('dp_prefs') || {};
+function savePrefs(){ lsSet('dp_prefs', PREFS); }
 function freshDB(){ return {progress:{}, review:{}, streak:{last:null, count:0}, stats:{answered:0, correct:0}, t:{}}; }
 
 function migrateV1(db){
@@ -520,7 +557,7 @@ function confetti(){
 
 /* ---------------------------------------------------------------- state */
 const MODES = {
-  flash:   {label:'Flashcards',       desc:'Flip and check yourself', icon:'cards'},
+  flash:   {label:'Flashcards',       desc:'Flip, swipe, repeat',     icon:'cards'},
   mc:      {label:'Multiple choice',  desc:'Pick the meaning',        icon:'target'},
   match:   {label:'Matching',         desc:'Pair up 5 words',         icon:'link'},
   type:    {label:'Type it',          desc:'Write the German word',   icon:'keyboard'},
@@ -565,8 +602,14 @@ function startMode(n, mode){
     S = {mode, lektion:n, round, selL:null, selR:null, done:new Set(), missed:new Set(), wrong:null, mistakes:[]};
     return go({name:'match'});
   }
+  if (mode === 'flash') {
+    const deck = Q.buildFlashcards(vocab, null, null, reviewIds(n));
+    if (!deck.length) return toast('Not enough words for this yet.');
+    S = {mode, lektion:n, queue:deck, total:deck.length, known:0, firstTry:0, missedIds:new Set(),
+         flipped:false, revealed:false, busy:false, enter:true, reverse:!!PREFS.flashReverse, mistakes:[]};
+    return go({name:'flash'});
+  }
   switch (mode) {
-    case 'flash':   qs = Q.buildFlashcards(vocab); break;
     case 'mc':      qs = Q.buildVocabMc(vocab); break;
     case 'type':    qs = Q.buildVocabType(vocab); break;
     case 'article': qs = Q.buildArticleDrill(vocab); break;
@@ -685,16 +728,109 @@ function finishMatch(){
   finish(total - S.missed.size, total);
 }
 
-/* flashcards */
-function flip(){ if (S && !S.flipped) { S.flipped = true; haptic.tap(); render(); } }
-function rate(knew){
-  if (!S || !S.flipped) return;
-  const q = current();
-  if (knew) S.score++; else S.mistakes.push({q:q.de, right:q.uz});
-  trackReview(S.lektion, q.id, knew);
-  trackAnswer(knew);
-  next();
+/* flashcards
+   Flip and swipe animate the existing DOM instead of re-rendering, so the
+   CSS transitions actually play. A full render() only happens between cards. */
+const REDUCED_MOTION = !!(window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches);
+const MAX_AGAIN = 2; // a card comes back at most twice per round; after that it stays in Review
+
+function flip(){
+  if (!S || S.busy) return;
+  S.flipped = !S.flipped;
+  const card = document.getElementById('card');
+  const view = document.querySelector('.view');
+  if (card) card.classList.toggle('flipped', S.flipped);
+  if (S.flipped && !S.revealed) {
+    S.revealed = true;
+    if (view) view.classList.add('revealed');
+    const hint = document.getElementById('flashHint');
+    if (hint) hint.textContent = 'Swipe right if you knew it, left to see it again';
+  }
+  haptic.tap();
+  if (S.flipped && S.reverse) speak(S.queue[0].speak); // German is on the back in reverse mode
 }
+
+function flyOut(knew){
+  if (!S || S.busy) return;
+  if (!S.revealed) { flip(); return; }
+  S.busy = true;
+  const el = document.getElementById('swipe');
+  knew ? haptic.ok() : haptic.tap();
+  if (!el || REDUCED_MOTION) return rateFlash(knew);
+  el.style.setProperty(knew ? '--yes' : '--no', 1);
+  el.classList.add(knew ? 'fly-right' : 'fly-left');
+  setTimeout(() => rateFlash(knew), 280);
+}
+
+function rateFlash(knew){
+  const card = S.queue[0];
+  const firstLook = !S.missedIds.has(card.id);
+  if (firstLook) {
+    // Only the first attempt counts toward the score and the review pile.
+    if (knew) S.firstTry++;
+    else { S.missedIds.add(card.id); S.mistakes.push({q:card.de, right:card.uz}); }
+    trackReview(S.lektion, card.id, knew);
+    trackAnswer(knew);
+  }
+  if (!knew) card.again = (card.again || 0) + 1;
+  const done = knew || card.again > MAX_AGAIN;
+  if (done) S.known++;
+  S.queue = Q.flashAdvance(S.queue, done, 3);
+  S.flipped = S.revealed = S.busy = false;
+  S.enter = true;
+  if (!S.queue.length) return finish(S.firstTry, S.total);
+  render();
+}
+
+function toggleFlashDirection(){
+  if (!S || S.busy) return;
+  S.reverse = !S.reverse;
+  PREFS.flashReverse = S.reverse; savePrefs();
+  S.flipped = S.revealed = false; S.enter = true;
+  render();
+}
+
+/* swipe gesture on the top card */
+let drag = null, swallowClick = false;
+document.addEventListener('pointerdown', e => {
+  const el = e.target.closest('#swipe');
+  if (!el || !S || S.busy || e.target.closest('.say') || e.button > 0) return;
+  drag = {el, id:e.pointerId, x0:e.clientX, y0:e.clientY, dx:0, moved:false};
+});
+document.addEventListener('pointermove', e => {
+  if (!drag || e.pointerId !== drag.id) return;
+  const dx = e.clientX - drag.x0, dy = e.clientY - drag.y0;
+  if (!drag.moved) {
+    if (Math.abs(dx) < 8) return;
+    if (Math.abs(dy) > Math.abs(dx)) { drag = null; return; } // vertical: let the page scroll
+    drag.moved = true;
+    drag.el.classList.remove('enter', 'settle');
+    drag.el.classList.add('dragging');
+    try { drag.el.setPointerCapture(e.pointerId); } catch (err) {}
+  }
+  drag.dx = dx;
+  drag.el.style.transform = `translateX(${dx}px) rotate(${dx / 18}deg)`;
+  const p = Math.min(Math.abs(dx) / 110, 1);
+  drag.el.style.setProperty('--yes', dx > 0 ? p : 0);
+  drag.el.style.setProperty('--no', dx < 0 ? p : 0);
+});
+function endDrag(e){
+  if (!drag || e.pointerId !== drag.id) return;
+  const d = drag; drag = null;
+  if (!d.moved) return; // a plain tap: the click handler flips the card
+  swallowClick = true; setTimeout(() => { swallowClick = false; }, 0);
+  d.el.classList.remove('dragging');
+  if (Math.abs(d.dx) > 100 && S && S.revealed) { d.el.style.transform = ''; return flyOut(d.dx > 0); }
+  d.el.classList.add('settle');
+  d.el.style.transform = '';
+  d.el.style.setProperty('--yes', 0); d.el.style.setProperty('--no', 0);
+  if (Math.abs(d.dx) > 100 && S && !S.revealed) flip(); // swiping an unseen card just reveals it
+}
+document.addEventListener('pointerup', endDrag);
+document.addEventListener('pointercancel', endDrag);
+document.addEventListener('click', e => {
+  if (swallowClick) { swallowClick = false; e.stopPropagation(); e.preventDefault(); }
+}, true);
 
 /* ---------------------------------------------------------------- views */
 function viewHome(){
@@ -890,22 +1026,41 @@ function viewMatch(){
     <div class="match"><div class="match-col">${left}</div><div class="match-col">${right}</div></div></div>`;
 }
 
+/** German word with its article coloured by gender (blue der, red die, green das). */
+function germanHtml(c){
+  return c.article ? `<span class="g-${c.gender}">${esc(c.article)}</span> ${esc(c.rest)}` : esc(c.de);
+}
+
 function viewFlash(){
-  const q = current();
-  return `<div class="view ${S.flipped ? 'docked' : ''}"><div class="top">${backBtn()}
-    <div class="progress"><div class="bar"><i style="width:${S.index / S.questions.length * 100}%"></i></div></div>
-    <span class="chip">${S.index + 1}/${S.questions.length}</span></div>
-    <div class="flip"><div class="card ${S.flipped ? 'flipped' : ''}" data-act="flip">
-      <div class="face front">${sayBtn(q.speak)}<div class="lbl">Deutsch</div><div class="w">${esc(q.de)}</div></div>
-      <div class="face back">${sayBtn(q.speak)}<div class="lbl">O'zbekcha</div><div class="w">${esc(q.uz)}</div>
-        <div style="margin-top:10px;color:var(--muted);font-size:14px">${esc(q.de)}</div></div>
-    </div></div>
-    ${S.flipped ? '' : '<div class="tap-hint">Tap the card (or press Space) to reveal</div>'}
+  const c = S.queue[0];
+  const de = `<div class="lbl">Deutsch</div><div class="w">${germanHtml(c)}</div>`;
+  const uz = `<div class="lbl">O'zbekcha</div><div class="w">${esc(c.uz)}</div>`;
+  const tag = c.again ? '<span class="tag">again</span>' : c.due ? '<span class="tag">review</span>' : '';
+  const front = S.reverse ? uz : de + sayBtn(c.speak);
+  const back = S.reverse
+    ? de + sayBtn(c.speak) + `<div class="sub-w">${esc(c.uz)}</div>`
+    : uz + `<div class="sub-w">${germanHtml(c)}</div>` + sayBtn(c.speak);
+  const stack = (S.queue[2] ? '<div class="deck-card d2"></div>' : '') + (S.queue[1] ? '<div class="deck-card d1"></div>' : '');
+  const enter = S.enter; S.enter = false;
+  return `<div class="view docked ${S.revealed ? 'revealed' : ''}"><div class="top">${backBtn()}
+    <div class="progress"><div class="bar"><i style="width:${S.known / S.total * 100}%"></i></div></div>
+    <span class="chip">${S.queue.length} left</span>
+    <button class="dirbtn" data-act="flashdir" aria-label="Switch card direction">${S.reverse ? 'UZ→DE' : 'DE→UZ'}</button></div>
+    <div class="deck">${stack}
+      <div class="swipe ${enter && !REDUCED_MOTION ? 'enter' : ''}" id="swipe">
+        <div class="card ${S.flipped ? 'flipped' : ''}" id="card" data-act="flip">
+          <div class="face front">${tag}${front}<div class="flip-cue">tap to flip</div></div>
+          <div class="face back">${tag}${back}</div>
+        </div>
+        <div class="verdict yes">GEWUSST</div><div class="verdict no">NOCHMAL</div>
+      </div>
+    </div>
+    <div class="flash-hint" id="flashHint">${S.revealed ? 'Swipe right if you knew it, left to see it again' : 'Say the answer in your head, then flip'}</div>
   </div>
-  ${S.flipped ? `<div class="dock"><div class="dock-inner"><div class="row2">
-    <button class="btn" data-act="rate" data-knew="0" style="color:var(--bad)">${icon('x')} Missed it</button>
+  <div class="dock flash-dock"><div class="dock-inner"><div class="row2">
+    <button class="btn again" data-act="rate" data-knew="0">${icon('repeat')} Again</button>
     <button class="btn ok" data-act="rate" data-knew="1">${icon('check')} Knew it</button>
-  </div></div></div>` : ''}`;
+  </div><div class="kbd-hint">Space flips · ← again · → knew it</div></div></div>`;
 }
 
 function viewResult(){
@@ -983,7 +1138,8 @@ const ACTIONS = {
   ins:    el => insertChar(el.dataset.ch),
   pick:   el => matchPick(el.dataset.side, +el.dataset.k),
   flip:   () => flip(),
-  rate:   el => rate(el.dataset.knew === '1'),
+  rate:   el => flyOut(el.dataset.knew === '1'),
+  flashdir: () => toggleFlashDirection(),
   reset:  () => askConfirm('Reset all progress? Stamps, streak and review lists will be cleared.', () => {
     DB = freshDB(); commit(CLOUD_KEYS); go({name:'home'}); toast('Progress reset.');
   }),
@@ -1005,9 +1161,9 @@ document.addEventListener('keydown', e => {
   } else if (VIEW.name === 'type' && e.key === 'Enter') {
     e.preventDefault(); S.answered ? next() : submitType(false);
   } else if (VIEW.name === 'flash') {
-    if (!S.flipped && (e.key === ' ' || e.key === 'Enter')) { e.preventDefault(); flip(); }
-    else if (S.flipped && (e.key === '1' || e.key === 'ArrowLeft')) rate(false);
-    else if (S.flipped && (e.key === '2' || e.key === 'ArrowRight')) rate(true);
+    if (e.key === ' ' || e.key === 'Enter') { e.preventDefault(); flip(); }
+    else if (e.key === '1' || e.key === 'ArrowLeft') flyOut(false);
+    else if (e.key === '2' || e.key === 'ArrowRight') flyOut(true);
   }
 });
 
