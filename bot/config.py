@@ -31,6 +31,10 @@ MISSED_ROUND_SIZE = 10        # max items per "missed words" round
 
 TOTAL_LEKTIONEN = 24
 
+# Shown in /help and in the mini app.
+AUTHOR_HANDLE = "@Eisenhai"
+AUTHOR_URL = "https://t.me/Eisenhai"
+
 # The mini app is your own file: miniapp/index.html. It needs to live at a
 # public HTTPS URL for Telegram to open it (Telegram can't load a file
 # straight off your computer). Set it via the MINI_APP_URL env var once you have one — the

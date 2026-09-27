@@ -18,7 +18,8 @@ HELP_TEXT = (
     "Each lektion has: Vocabulary practice (flashcards, multiple choice, "
     "matching, type-the-word, missed words), a Grammar quiz (where available), "
     "and a Final Test that mixes both. Score 80%+ on the Final Test to unlock "
-    "the next lektion — you can retry it as many times as you need."
+    "the next lektion — you can retry it as many times as you need.\n\n"
+    f"Muallif: {config.AUTHOR_HANDLE} ({config.AUTHOR_URL})"
 )
 
 MODE_CODES = {

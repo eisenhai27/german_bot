@@ -140,6 +140,8 @@
   .stamp.passed::after{inset:11px; border-width:1px; border-style:dashed; opacity:.55;}
 
   .foot{text-align:center; font-size:12px; color:var(--muted); padding:10px 0 0;}
+  .author{margin-top:14px; font-size:13px;}
+  .author a{color:var(--brand); font-weight:600; text-decoration:none;}
   .linkbtn{background:none; border:none; color:var(--muted); text-decoration:underline; font-size:12px; padding:6px;}
 
   /* ---------- lektion ---------- */
@@ -379,6 +381,8 @@ if (!Q || Q.API_VERSION !== NEED_QUIZ_API) {
 }
 const TOTAL = Q.CONFIG.TOTAL_LEKTIONEN;
 const PASS_PCT = Math.round(Q.CONFIG.PASS_THRESHOLD * 100);
+const AUTHOR_HANDLE = '@Eisenhai';
+const AUTHOR_URL = 'https://t.me/Eisenhai';
 
 /* ---------------------------------------------------------------- Telegram */
 const tg = window.Telegram && window.Telegram.WebApp;
@@ -934,6 +938,7 @@ function viewHome(){
     <div class="foot">
       ${CLOUD ? 'Progress syncs with your Telegram account.' : 'Progress is saved on this device.'}<br>
       <button class="linkbtn" data-act="reset">Reset progress</button>
+      <div class="author">Muallif: <a href="${AUTHOR_URL}" target="_blank" rel="noopener" data-act="author">${esc(AUTHOR_HANDLE)}</a></div>
     </div>
   </div>`;
 }
@@ -1187,6 +1192,8 @@ const ACTIONS = {
   rate:   el => flyOut(el.dataset.knew === '1'),
   flashdir: () => toggleFlashDirection(),
   theme:  () => { haptic.tap(); cycleTheme(); },
+  // Inside Telegram, open the profile natively instead of leaving the mini app.
+  author: () => { if (tgAtLeast('6.1')) tg.openTelegramLink(AUTHOR_URL); else window.open(AUTHOR_URL, '_blank', 'noopener'); },
   reset:  () => askConfirm('Reset all progress? Stamps, streak and review lists will be cleared.', () => {
     DB = freshDB(); commit(CLOUD_KEYS); go({name:'home'}); toast('Progress reset.');
   }),

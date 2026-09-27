@@ -4,6 +4,8 @@ A Telegram bot that **only tests** what you've studied — vocabulary and
 grammar, no explanations up front. Built around your *Momente A1*
 vocabulary (24 lektionen) and grammar (Lektion 1–12 so far).
 
+**Muallif (author):** [@Eisenhai](https://t.me/Eisenhai)
+
 ## What it does
 
 - **Vocabulary practice**, per lektion: Flashcards, Multiple Choice,
