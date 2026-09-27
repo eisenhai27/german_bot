@@ -57,7 +57,7 @@
     let t = (text || '').toLowerCase().trim();
     t = t.replace(/ä/g, 'a').replace(/ö/g, 'o').replace(/ü/g, 'u').replace(/ß/g, 'ss');
     t = t.replace(/…|\.\.+/g, ' ');
-    t = t.replace(/[!?.,;:()"„“]/g, ' ');
+    t = t.replace(/[()]/g, '').replace(/[!?.,;:"„“]/g, ' ');
     t = t.replace(/^\s*-\s*/, '').replace(/-\s*$/, '');
     t = t.split(/\s+/).filter(Boolean).join(' ');
     for (const art of ['der ', 'die ', 'das ', 'ein ', 'eine ']) {

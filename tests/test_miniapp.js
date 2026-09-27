@@ -41,6 +41,16 @@ test('gradeTypeAnswer: exact, typo-tolerant, wrong', () => {
   assert.strictEqual(Q.gradeTypeAnswer(short, 'Bis').correct, false, 'no typo tolerance for short words');
 });
 
+test('every typeable word accepts its own displayed spelling', () => {
+  for (const n in VOCAB_DATA) {
+    for (const item of VOCAB_DATA[n]) {
+      if (!item.uz || Q.hasGap(item.de)) continue;
+      const q = { accepted: Q.acceptedAnswers(item.de) };
+      assert.ok(Q.gradeTypeAnswer(q, item.de).exact, 'own answer must grade exact: ' + item.de);
+    }
+  }
+});
+
 test('every lektion builds every mode with valid questions', () => {
   for (let n = 1; n <= 24; n++) {
     const vocab = VOCAB_DATA[n], gq = GRAMMAR_DATA[n] || [];
