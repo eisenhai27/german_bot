@@ -1,0 +1,8 @@
+__pycache__/
+*.pyc
+*.db
+.env
+.venv/
+venv/
+# duplicate of miniapp/index.html
+deutsch_pass.html

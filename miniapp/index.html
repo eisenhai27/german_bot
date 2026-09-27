@@ -1,0 +1,835 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Deutsch Pass</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,500;0,600;0,700;1,500&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    box-sizing:border-box;
+    padding-top:env(safe-area-inset-top,0px);
+    padding-bottom:env(safe-area-inset-bottom,0px);
+    --paper:#EDE7D8;
+    --paper-raised:#F7F2E6;
+    --ink:#232A3B;
+    --ink-soft:#5B6178;
+    --brass:#A9772F;
+    --brass-soft:#E6D3AE;
+    --green:#3F6B52;
+    --green-soft:#DCE9DF;
+    --red:#9A3B3B;
+    --red-soft:#F1DCDC;
+    --line: rgba(35,42,59,0.14);
+    --shadow: 0 1px 0 rgba(35,42,59,0.06);
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --paper:#171A24;
+      --paper-raised:#242938;
+      --ink:#EDE7D8;
+      --ink-soft:#A7ACC0;
+      --brass:#D2A860;
+      --brass-soft:#3A311E;
+      --green:#8FC7A6;
+      --green-soft:#1E2E24;
+      --red:#E39B9B;
+      --red-soft:#3A2020;
+      --line: rgba(237,231,216,0.14);
+      --shadow: 0 1px 0 rgba(0,0,0,0.3);
+    }
+  }
+  :root[data-theme="dark"]{
+    --paper:#171A24;
+    --paper-raised:#242938;
+    --ink:#EDE7D8;
+    --ink-soft:#A7ACC0;
+    --brass:#D2A860;
+    --brass-soft:#3A311E;
+    --green:#8FC7A6;
+    --green-soft:#1E2E24;
+    --red:#E39B9B;
+    --red-soft:#3A2020;
+    --line: rgba(237,231,216,0.14);
+    --shadow: 0 1px 0 rgba(0,0,0,0.3);
+  }
+  *{box-sizing:border-box;}
+  html,body{height:100%;}
+  html{scroll-padding-top:env(safe-area-inset-top,0px);}
+  body{
+    margin:0; background:var(--paper); color:var(--ink);
+    font-family:'Work Sans',-apple-system,BlinkMacSystemFont,sans-serif;
+    -webkit-font-smoothing:antialiased;
+    overscroll-behavior-y:none;
+  }
+  h1,h2,h3,.serif{font-family:'Lora',Georgia,serif;}
+  #app{max-width:520px;margin:0 auto;min-height:100%;display:flex;flex-direction:column;}
+
+  .topbar{
+    position:sticky; top:env(safe-area-inset-top,0px); z-index:5;
+    display:flex; align-items:center; gap:12px;
+    padding:16px 20px; background:var(--paper);
+    border-bottom:1px solid var(--line);
+  }
+  .topbar .back{
+    width:34px;height:34px;border-radius:50%;border:1px solid var(--line);
+    background:var(--paper-raised); color:var(--ink); font-size:16px;
+    display:flex;align-items:center;justify-content:center; cursor:pointer; flex:none;
+  }
+  .topbar h1{font-size:19px;margin:0;font-weight:600;letter-spacing:0.2px;}
+  .topbar .sub{font-size:12px;color:var(--ink-soft);margin-top:1px;}
+
+  .content{flex:1; padding:20px 20px 40px;}
+
+  .intro{margin-bottom:22px;}
+  .intro .kicker{color:var(--brass); font-size:13px; font-weight:600; margin-bottom:4px;}
+  .intro h2{font-size:26px; margin:0 0 6px; line-height:1.15;}
+  .intro p{color:var(--ink-soft); font-size:14px; margin:0; line-height:1.5;}
+
+  .module-block{margin-bottom:22px;}
+  .module-block .module-label{
+    font-size:12px; color:var(--ink-soft); margin-bottom:8px;
+    display:flex; align-items:center; gap:8px;
+  }
+  .module-block .module-label::after{
+    content:""; flex:1; height:1px; background:var(--line);
+  }
+  .stamp-row{display:grid; grid-template-columns:repeat(3,1fr); gap:12px;}
+  .stamp{
+    aspect-ratio:1; border-radius:50%; border:2px solid var(--line);
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    background:var(--paper-raised); cursor:pointer; position:relative;
+    font-family:'Lora',serif; user-select:none;
+    transition:transform .12s ease;
+  }
+  .stamp:active{transform:scale(0.94);}
+  .stamp .num{font-size:22px; font-weight:600;}
+  .stamp .state{font-size:10px; color:var(--ink-soft); margin-top:2px; font-family:'Work Sans',sans-serif;}
+  .stamp.locked{border-style:dashed; opacity:0.55;}
+  .stamp.unlocked{border-color:var(--brass); box-shadow:inset 0 0 0 2px var(--brass-soft);}
+  .stamp.passed{border-color:var(--green); background:var(--green-soft); color:var(--green);}
+  .stamp.passed .num{color:var(--green);}
+
+  .btn{
+    display:block; width:100%; text-align:left; padding:15px 16px;
+    border-radius:10px; border:1px solid var(--line); background:var(--paper-raised);
+    color:var(--ink); font-size:15px; font-weight:500; font-family:inherit;
+    cursor:pointer; margin-bottom:10px;
+  }
+  .btn:active{transform:translateY(1px);}
+  .btn .desc{display:block; font-size:12px; color:var(--ink-soft); font-weight:400; margin-top:2px;}
+  .btn.primary{background:var(--ink); color:var(--paper); border-color:var(--ink); font-weight:600;}
+  .btn.brass{border-color:var(--brass); box-shadow:inset 0 0 0 1px var(--brass);}
+  .btn.disabled{opacity:0.45; pointer-events:none;}
+
+  .badge{
+    display:inline-block; font-size:11px; padding:3px 9px; border-radius:20px;
+    border:1px solid var(--line); color:var(--ink-soft); margin-bottom:14px;
+  }
+  .badge.pass{color:var(--green); border-color:var(--green);}
+
+  .locked-note{
+    padding:18px; border:1px dashed var(--line); border-radius:12px;
+    color:var(--ink-soft); font-size:14px; line-height:1.5; text-align:center;
+  }
+
+  .progress-line{display:flex; align-items:center; gap:10px; margin-bottom:18px;}
+  .progress-line .track{flex:1; height:4px; background:var(--line); border-radius:2px; overflow:hidden;}
+  .progress-line .fill{height:100%; background:var(--brass);}
+  .progress-line .count{font-size:12px; color:var(--ink-soft); white-space:nowrap;}
+
+  .prompt-card{
+    background:var(--paper-raised); border:1px solid var(--line); border-radius:14px;
+    padding:26px 20px; margin-bottom:20px; text-align:center;
+  }
+  .prompt-card .label{font-size:12px; color:var(--ink-soft); margin-bottom:10px;}
+  .prompt-card .word{font-size:24px; font-weight:600; line-height:1.3;}
+
+  .option{
+    display:flex; align-items:center; gap:12px;
+    width:100%; text-align:left; padding:14px 16px; margin-bottom:9px;
+    border-radius:10px; border:1px solid var(--line); background:var(--paper-raised);
+    font-size:15px; color:var(--ink); font-family:inherit; cursor:pointer;
+  }
+  .option .letter{
+    width:24px;height:24px;border-radius:50%; border:1px solid var(--line);
+    display:flex;align-items:center;justify-content:center; font-size:12px; color:var(--ink-soft); flex:none;
+  }
+  .option.correct{background:var(--green-soft); border-color:var(--green);}
+  .option.correct .letter{border-color:var(--green); color:var(--green);}
+  .option.wrong{background:var(--red-soft); border-color:var(--red);}
+  .option.wrong .letter{border-color:var(--red); color:var(--red);}
+  .option.disabled{pointer-events:none;}
+
+  .explain{
+    font-size:13.5px; color:var(--ink-soft); background:var(--paper-raised);
+    border-left:3px solid var(--brass); padding:10px 14px; border-radius:6px; margin:6px 0 16px;
+    line-height:1.5;
+  }
+
+  .type-input{
+    width:100%; padding:14px 4px; font-size:20px; font-family:'Lora',serif;
+    border:none; border-bottom:2px solid var(--ink); background:transparent; color:var(--ink);
+    outline:none; margin-bottom:22px;
+  }
+  .type-input::placeholder{color:var(--ink-soft); font-style:italic;}
+
+  .flash-wrap{perspective:1200px; margin-bottom:20px;}
+  .flash-card{
+    position:relative; height:220px; width:100%;
+    transform-style:preserve-3d; transition:transform .45s cubic-bezier(.2,.8,.3,1);
+  }
+  .flash-card.flipped{transform:rotateY(180deg);}
+  .flash-face{
+    position:absolute; inset:0; backface-visibility:hidden;
+    border-radius:16px; border:1px solid var(--line);
+    display:flex; align-items:center; justify-content:center; text-align:center; padding:20px;
+  }
+  .flash-face.front{background:var(--ink); color:var(--paper); font-size:26px; font-weight:600; font-family:'Lora',serif;}
+  .flash-face.back{background:var(--paper-raised); color:var(--ink); font-size:22px; font-weight:600; transform:rotateY(180deg); font-family:'Lora',serif;}
+  .flash-hint{text-align:center; font-size:12px; color:var(--ink-soft); margin-bottom:18px;}
+  .know-row{display:grid; grid-template-columns:1fr 1fr; gap:10px;}
+  .know-row .btn{margin-bottom:0; text-align:center;}
+
+  .match-cols{display:grid; grid-template-columns:1fr 1fr; gap:10px; align-items:start;}
+  .match-item{
+    padding:12px 10px; border-radius:9px; border:1px solid var(--line); background:var(--paper-raised);
+    font-size:13.5px; text-align:center; cursor:pointer; margin-bottom:8px; line-height:1.3;
+  }
+  .match-item.selected{border-color:var(--brass); box-shadow:inset 0 0 0 1.5px var(--brass);}
+  .match-item.matched{background:var(--green-soft); border-color:var(--green); color:var(--green); opacity:0.75; pointer-events:none;}
+  .match-item.wrong-flash{background:var(--red-soft); border-color:var(--red);}
+
+  .result-wrap{text-align:center; padding:20px 10px 10px;}
+  .result-stamp{
+    width:110px;height:110px;border-radius:50%; margin:0 auto 18px; border:3px solid var(--green);
+    display:flex; align-items:center; justify-content:center; font-size:40px;
+    animation:stampIn .4s cubic-bezier(.2,.9,.3,1.2);
+  }
+  .result-stamp.fail{border-color:var(--red);}
+  @keyframes stampIn{from{transform:scale(2) rotate(-8deg); opacity:0;} to{transform:scale(1) rotate(-6deg); opacity:1;}}
+  .result-score{font-size:34px; font-weight:700; font-family:'Lora',serif; margin-bottom:6px;}
+  .result-msg{color:var(--ink-soft); font-size:14.5px; line-height:1.5; margin-bottom:26px;}
+
+  .footer-note{text-align:center; font-size:11.5px; color:var(--ink-soft); padding:18px 20px 4px;}
+
+  /* ---- motion ---- */
+  @keyframes viewIn{ from{opacity:0; transform:translateY(6px);} to{opacity:1; transform:translateY(0);} }
+  .content{ animation:viewIn .28s ease; }
+
+  @keyframes matchPop{ 0%{transform:scale(1);} 45%{transform:scale(1.07);} 100%{transform:scale(1);} }
+  .match-item.matched{ animation:matchPop .32s ease; }
+
+  @keyframes shakeX{ 0%,100%{transform:translateX(0);} 20%{transform:translateX(-6px);} 40%{transform:translateX(6px);} 60%{transform:translateX(-4px);} 80%{transform:translateX(4px);} }
+  .match-item.wrong-flash{ animation:shakeX .35s ease; }
+
+  @keyframes stampPress{ 0%{transform:scale(0.9); opacity:0.6;} 60%{transform:scale(1.05);} 100%{transform:scale(1); opacity:1;} }
+  .stamp{ animation:stampPress .22s ease; }
+
+  .confetti-piece{
+    position:fixed; top:-12px; width:8px; height:14px; border-radius:2px; pointer-events:none; z-index:80;
+    animation:confettiFall 1.8s ease-in forwards;
+  }
+  @keyframes confettiFall{
+    0%{ transform:translateY(0) rotate(0deg); opacity:1; }
+    100%{ transform:translateY(112vh) rotate(360deg); opacity:0.85; }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .content, .stamp, .match-item.matched, .match-item.wrong-flash, .confetti-piece{ animation:none !important; }
+    .flash-card{ transition:none !important; }
+    .btn:active, .stamp:active{ transform:none !important; }
+  }
+</style>
+</head>
+<body>
+<div id="app"></div>
+<script>
+/* =========================== DATA (placeholder, replaced by build script) =========================== */
+const VOCAB_DATA = {"1":[{"id":"L1-001","de":"Wie heißt du?","uz":"isming nima?","gender":null,"pos":"phrase"},{"id":"L1-002","de":"Wie?","uz":"qanday?","gender":null,"pos":"phrase"},{"id":"L1-003","de":"Du","uz":"sen","gender":null,"pos":"other"},{"id":"L1-004","de":"ich","uz":"men","gender":null,"pos":"other"},{"id":"L1-005","de":"Wer","uz":"kim","gender":null,"pos":"other"},{"id":"L1-006","de":"bist (sein)","uz":"bolmoq","gender":null,"pos":"other"},{"id":"L1-007","de":"ich bin …","uz":"men … man.","gender":null,"pos":"other"},{"id":"L1-008","de":"Hallo","uz":"salom","gender":null,"pos":"other"},{"id":"L1-009","de":"Ah, du bist …","uz":"Aa, sen … misan?","gender":null,"pos":"phrase"},{"id":"L1-010","de":"Das Alphabet","uz":"alifbo","gender":"n","pos":"noun"},{"id":"L1-011","de":"Entschuldigung","uz":"kechirasiz","gender":null,"pos":"other"},{"id":"L1-012","de":"Wie bitte?","uz":"nima dedingiz?","gender":null,"pos":"phrase"},{"id":"L1-013","de":"Danke!","uz":"rahmat!","gender":null,"pos":"other"},{"id":"L1-014","de":"Mein Name ist …","uz":"mening ismim …","gender":null,"pos":"phrase"},{"id":"L1-015","de":"Mein(e)","uz":"mening","gender":null,"pos":"other"},{"id":"L1-016","de":"Der Name","uz":"Ism","gender":"m","pos":"noun"},{"id":"L1-017","de":"Der Vorname","uz":"familiya","gender":"m","pos":"noun"},{"id":"L1-018","de":"wie geht's dir?","uz":"axvollaring qalay?","gender":null,"pos":"phrase"},{"id":"L1-019","de":"gehen","uz":"bormoq","gender":null,"pos":"other"},{"id":"L1-020","de":"dir","uz":"senda","gender":null,"pos":"other"},{"id":"L1-021","de":"super","uz":"ajoyib","gender":null,"pos":"other"},{"id":"L1-022","de":"sehr gut, danke","uz":"juda yaxshi, rahmat","gender":null,"pos":"other"},{"id":"L1-023","de":"gut, danke","uz":"rahmat, yaxshi","gender":null,"pos":"other"},{"id":"L1-024","de":"es geht","uz":"ketyapti","gender":null,"pos":"other"},{"id":"L1-025","de":"nicht so gut","uz":"yaxshi emas","gender":null,"pos":"other"},{"id":"L1-026","de":"und Dir?","uz":"sendachi?","gender":null,"pos":"phrase"},{"id":"L1-027","de":"Auch super","uz":"menda ham yaxshi","gender":null,"pos":"other"},{"id":"L1-028","de":"Woher kommst du?","uz":"qayerliksan?","gender":null,"pos":"phrase"},{"id":"L1-029","de":"Woher?","uz":"qayerdan?","gender":null,"pos":"phrase"},{"id":"L1-030","de":"kommen","uz":"kelmoq","gender":null,"pos":"other"},{"id":"L1-031","de":"- aus","uz":"- dan","gender":null,"pos":"other"},{"id":"L1-032","de":"das","uz":"bu, (manabu)","gender":null,"pos":"other"},{"id":"L1-033","de":"Das ist …","uz":"Bu …","gender":"n","pos":"noun"},{"id":"L1-034","de":"Sie lernt Deutsch.","uz":"U nemis tili o'rganyapti.","gender":null,"pos":"phrase"},{"id":"L1-035","de":"lernen","uz":"o'rganmoq","gender":null,"pos":"other"},{"id":"L1-036","de":"sie","uz":"u (ayol)","gender":null,"pos":"other"},{"id":"L1-037","de":"er","uz":"u (erkak)","gender":null,"pos":"other"},{"id":"L1-038","de":"Die Schweiz","uz":"Shveysariya","gender":"f","pos":"noun"},{"id":"L1-039","de":"Er kommt aus der Schweiz.","uz":"U Shveysariyalik.","gender":null,"pos":"phrase"},{"id":"L1-040","de":"Tschüs","uz":"xayr","gender":null,"pos":"other"},{"id":"L1-041","de":"Auf wiedersehen","uz":"ko'rishguncha","gender":null,"pos":"other"},{"id":"L1-042","de":"Die Musik","uz":"musiqa","gender":"f","pos":"noun"},{"id":"L1-043","de":"Das Land","uz":"mamlakat","gender":"n","pos":"noun"},{"id":"L1-044","de":"Die Information","uz":"malumot","gender":"f","pos":"noun"},{"id":"L1-045","de":"Wer sind Sie?","uz":"kimsiz?","gender":null,"pos":"phrase"},{"id":"L1-046","de":"Sie","uz":"Siz (hurmat)","gender":null,"pos":"other"},{"id":"L1-047","de":"Der Herr","uz":"janob","gender":"m","pos":"noun"},{"id":"L1-048","de":"Die Frau","uz":"xonim","gender":"f","pos":"noun"},{"id":"L1-049","de":"Das Gespräch","uz":"suhbat","gender":"n","pos":"noun"}],"2":[{"id":"L2-001","de":"… Jahre alt","uz":"… yoshda","gender":null,"pos":"other"},{"id":"L2-002","de":"Das Jahr","uz":"yil","gender":"n","pos":"noun"},{"id":"L2-003","de":"alt","uz":"qari, keksa, eski","gender":null,"pos":"other"},{"id":"L2-004","de":"verheiratet","uz":"turmush qurgan","gender":null,"pos":"other"},{"id":"L2-005","de":"haben","uz":"ega(si) bolmoq","gender":null,"pos":"other"},{"id":"L2-006","de":"Das Kind","uz":"Bola (3-5 yosh)","gender":"n","pos":"noun"},{"id":"L2-007","de":"Keine Kinder","uz":"Bolalar(i) yoq","gender":null,"pos":"other"},{"id":"L2-008","de":"kein","uz":"emas, yoq","gender":null,"pos":"other"},{"id":"L2-009","de":"wohnen","uz":"yashamoq","gender":null,"pos":"other"},{"id":"L2-010","de":"in","uz":"ichi(da, ga)","gender":null,"pos":"other"},{"id":"L2-011","de":"Das Interview","uz":"intervyu","gender":"n","pos":"noun"},{"id":"L2-012","de":"Der Partner","uz":"Sherik, hamkor","gender":"m","pos":"noun"},{"id":"L2-013","de":"Wie alt seid ihr?","uz":"nechi yoshsizlar?","gender":null,"pos":"phrase"},{"id":"L2-014","de":"sein","uz":"bolmoq","gender":null,"pos":"other"},{"id":"L2-015","de":"Lebt ihr zusammen?","uz":"Birga yashaysizlarmi?","gender":null,"pos":"phrase"},{"id":"L2-016","de":"zusammenleben","uz":"birga yashamoq","gender":null,"pos":"other"},{"id":"L2-017","de":"ja","uz":"ha (tasdiq)","gender":null,"pos":"other"},{"id":"L2-018","de":"wir","uz":"biz","gender":null,"pos":"other"},{"id":"L2-019","de":"aber","uz":"ammo, lekin, biroq","gender":null,"pos":"other"},{"id":"L2-020","de":"wo","uz":"qayerda","gender":null,"pos":"other"},{"id":"L2-021","de":"sie","uz":"ular","gender":null,"pos":"other"},{"id":"L2-022","de":"Der Satz","uz":"gap","gender":"m","pos":"noun"},{"id":"L2-023","de":"richtig","uz":"togri","gender":null,"pos":"other"},{"id":"L2-024","de":"Der Punkt","uz":"nuqta","gender":"m","pos":"noun"},{"id":"L2-025","de":"Die Zahl","uz":"son","gender":"f","pos":"noun"},{"id":"L2-026","de":"Das Rätsel","uz":"topishmoq","gender":"n","pos":"noun"},{"id":"L2-027","de":"falsch","uz":"xato","gender":null,"pos":"other"},{"id":"L2-028","de":"Was ist …?","uz":"Nima …?","gender":null,"pos":"phrase"},{"id":"L2-029","de":"Minus","uz":"Minus","gender":null,"pos":"other"},{"id":"L2-030","de":"gechieden sein","uz":"ajrashgan","gender":null,"pos":"other"},{"id":"L2-031","de":"Der Single","uz":"boydoq","gender":"m","pos":"noun"},{"id":"L2-032","de":"Allein","uz":"yolgiz","gender":null,"pos":"other"},{"id":"L2-033","de":"Was macht ihr beruflich?","uz":"Kasbingiz nima?","gender":null,"pos":"phrase"},{"id":"L2-034","de":"Der Paketzusteller","uz":"pochtalyon","gender":"m","pos":"noun"},{"id":"L2-035","de":"arbeiten","uz":"ishlamoq","gender":null,"pos":"other"},{"id":"L2-036","de":"als","uz":"bolib","gender":null,"pos":"other"},{"id":"L2-037","de":"bei","uz":"-da","gender":null,"pos":"other"},{"id":"L2-038","de":"Die Firma","uz":"Korxona","gender":"f","pos":"noun"},{"id":"L2-039","de":"Der Job","uz":"kasb","gender":"m","pos":"noun"},{"id":"L2-040","de":"vielen Dank","uz":"katta rahmat","gender":null,"pos":"other"},{"id":"L2-041","de":"Der Beruf","uz":"kasb","gender":"m","pos":"noun"},{"id":"L2-042","de":"sammeln","uz":"yigmoq","gender":null,"pos":"other"},{"id":"L2-043","de":"von Beruf","uz":"kasbi boyicha","gender":null,"pos":"other"},{"id":"L2-044","de":"Die Stelle","uz":"joy","gender":"f","pos":"noun"},{"id":"L2-045","de":"studieren","uz":"tahsil olmoq","gender":null,"pos":"other"},{"id":"L2-046","de":"Der Schüler","uz":"O'quvchi","gender":"m","pos":"noun"},{"id":"L2-047","de":"Die Schülerin","uz":"Óquvchi qiz","gender":"f","pos":"noun"},{"id":"L2-048","de":"Der Rentner","uz":"nafaqaxo'r","gender":"m","pos":"noun"},{"id":"L2-049","de":"Der Pensionierte (Shveysariya shevasi)","uz":"nafaqaxór","gender":"m","pos":"noun"},{"id":"L2-050","de":"Der Pensionist (Avstriya shevasi)","uz":"Nafaqaxór","gender":"m","pos":"noun"},{"id":"L2-051","de":"Die Ausbildung","uz":"kasbiy talim","gender":"f","pos":"noun"},{"id":"L2-052","de":"Das Praktikum","uz":"amaliyot","gender":"n","pos":"noun"},{"id":"L2-053","de":"Der Moment","uz":"vaziyat","gender":"m","pos":"noun"},{"id":"L2-054","de":"jetzt","uz":"hozir","gender":null,"pos":"other"},{"id":"L2-055","de":"Die Herkunft","uz":"kelib chiqish","gender":"f","pos":"noun"},{"id":"L2-056","de":"Der Wohnort","uz":"Yashash joyi","gender":"m","pos":"noun"},{"id":"L2-057","de":"Das Alter","uz":"yoshi","gender":"n","pos":"noun"},{"id":"L2-058","de":"Der Familienstand","uz":"oilaviy ahvoli","gender":"m","pos":"noun"},{"id":"L2-059","de":"Das Studium","uz":"Óqish","gender":"n","pos":"noun"},{"id":"L2-060","de":"Die Krankenschwester","uz":"Xamshira","gender":"f","pos":"noun"},{"id":"L2-061","de":"Das Tier","uz":"Xayvon","gender":"n","pos":"noun"},{"id":"L2-062","de":"Der Tierarzt","uz":"Veterinar","gender":"m","pos":"noun"},{"id":"L2-063","de":"Der Schauspieler","uz":"aktyor","gender":"m","pos":"noun"},{"id":"L2-064","de":"Der Sänger","uz":"qóshiqchi","gender":"m","pos":"noun"}],"3":[{"id":"L3-001","de":"Die Familie","uz":"oila","gender":"f","pos":"noun"},{"id":"L3-002","de":"Die Mutter","uz":"ona","gender":"f","pos":"noun"},{"id":"L3-003","de":"Der Vater","uz":"ota","gender":"m","pos":"noun"},{"id":"L3-004","de":"Die Schwester","uz":"opa","gender":"f","pos":"noun"},{"id":"L3-005","de":"Ich glaube","uz":"men ishonamanki …","gender":null,"pos":"other"},{"id":"L3-006","de":"glauben","uz":"ishonmoq","gender":null,"pos":"other"},{"id":"L3-007","de":"Der Onkel","uz":"amaki, tog'a","gender":"m","pos":"noun"},{"id":"L3-008","de":"Die Oma","uz":"buvi","gender":"f","pos":"noun"},{"id":"L3-009","de":"dein","uz":"sening","gender":null,"pos":"other"},{"id":"L3-010","de":"Das Enkelkind","uz":"nabira","gender":"n","pos":"noun"},{"id":"L3-011","de":"Der Verwandte","uz":"erkak qarindoshlar","gender":"m","pos":"noun"},{"id":"L3-012","de":"Die Verwandte","uz":"ayol qarindoshlar","gender":"f","pos":"noun"},{"id":"L3-013","de":"Die Tante","uz":"xola","gender":"f","pos":"noun"},{"id":"L3-014","de":"planen","uz":"rejalashtirmoq","gender":null,"pos":"other"},{"id":"L3-015","de":"Das Fest","uz":"bayram","gender":"n","pos":"noun"},{"id":"L3-016","de":"Die Liste","uz":"ro'yxat","gender":"f","pos":"noun"},{"id":"L3-017","de":"nein","uz":"yo'q","gender":null,"pos":"other"},{"id":"L3-018","de":"doch","uz":"aksincha","gender":null,"pos":"other"},{"id":"L3-019","de":"Polen","uz":"Polsha","gender":null,"pos":"other"},{"id":"L3-020","de":"Der Mann","uz":"erkak","gender":"m","pos":"noun"},{"id":"L3-021","de":"Das Mitglied","uz":"a'zo, qatnashuvchi","gender":"n","pos":"noun"},{"id":"L3-022","de":"Welche Sprache sprichst du?","uz":"Qaysi tillarni bilasan?","gender":null,"pos":"phrase"},{"id":"L3-023","de":"Welche","uz":"qaysi","gender":null,"pos":"other"},{"id":"L3-024","de":"Die Sprache","uz":"til","gender":"f","pos":"noun"},{"id":"L3-025","de":"sprechen","uz":"gapirmoq","gender":null,"pos":"other"},{"id":"L3-026","de":"ein bisschen","uz":"biroz","gender":null,"pos":"other"},{"id":"L3-027","de":"gar nicht","uz":"umuman","gender":null,"pos":"other"},{"id":"L3-028","de":"Der Master","uz":"usta","gender":"m","pos":"noun"},{"id":"L3-029","de":"freut mich","uz":"mamnunman","gender":null,"pos":"other"},{"id":"L3-030","de":"interessant","uz":"qiziqarli","gender":null,"pos":"other"},{"id":"L3-031","de":"Der IT-Trainer","uz":"IT mutaxasisi","gender":"m","pos":"noun"},{"id":"L3-032","de":"Die Visitenkarte","uz":"tashrif qog'ozi","gender":"f","pos":"noun"},{"id":"L3-033","de":"Die Personalabteilung","uz":"kadrlar bo'limi","gender":"f","pos":"noun"},{"id":"L3-034","de":"Die Marketingabteilung","uz":"reklama bo'limi","gender":"f","pos":"noun"}],"4":[{"id":"L4-001","de":"zu Hause","uz":"uyda","gender":null,"pos":"other"},{"id":"L4-002","de":"Das Geschäft","uz":"do'kon","gender":"n","pos":"noun"},{"id":"L4-003","de":"Das Möbel","uz":"mebel","gender":"n","pos":"noun"},{"id":"L4-004","de":"Das Bild","uz":"rasm","gender":"n","pos":"noun"},{"id":"L4-005","de":"schön","uz":"chiroyli","gender":null,"pos":"other"},{"id":"L4-006","de":"teuer","uz":"qimmat","gender":null,"pos":"other"},{"id":"L4-007","de":"hässlich","uz":"xunuk","gender":null,"pos":"other"},{"id":"L4-008","de":"günstig","uz":"arzon","gender":null,"pos":"other"},{"id":"L4-009","de":"Ich finde ..","uz":".. deb topmanan.","gender":null,"pos":"phrase"},{"id":"L4-010","de":"finden","uz":"topmoq","gender":null,"pos":"other"},{"id":"L4-011","de":"Der Stuhl","uz":"stol","gender":"m","pos":"noun"},{"id":"L4-012","de":"Oh","uz":"Eh (his hayajon)","gender":null,"pos":"other"},{"id":"L4-013","de":"Oh ja","uz":"E ha","gender":null,"pos":"other"},{"id":"L4-014","de":"Schau doch mal, da!","uz":"buyoqqa bir qara!","gender":null,"pos":"phrase"},{"id":"L4-015","de":"schauen","uz":"qaramoq","gender":null,"pos":"other"},{"id":"L4-016","de":"mal","uz":"(bir)marta","gender":null,"pos":"other"},{"id":"L4-017","de":"da","uz":"shuyerda","gender":null,"pos":"other"},{"id":"L4-018","de":"Wie viel kostet er denn?","uz":"U qancha turadi ózi","gender":null,"pos":"phrase"},{"id":"L4-019","de":"Wie viel","uz":"qancha, nechta","gender":null,"pos":"other"},{"id":"L4-020","de":"kosten","uz":"narx turmoq","gender":null,"pos":"other"},{"id":"L4-021","de":"Das Glück","uz":"baxt","gender":"n","pos":"noun"},{"id":"L4-022","de":"Der Euro","uz":"yevro (pul birligi)","gender":"m","pos":"noun"},{"id":"L4-023","de":"Das Sonderangebot","uz":"maxsus taklif","gender":"n","pos":"noun"},{"id":"L4-024","de":"wirklich","uz":"haqiqatdan, rostdan","gender":null,"pos":"other"},{"id":"L4-025","de":"kennen","uz":"tanimoq","gender":null,"pos":"other"},{"id":"L4-026","de":"Der Spiegel","uz":"oyna","gender":"m","pos":"noun"},{"id":"L4-027","de":"Die Million","uz":"million","gender":"f","pos":"noun"},{"id":"L4-028","de":"Der Preis","uz":"narx","gender":"m","pos":"noun"},{"id":"L4-029","de":"Der Cent","uz":"sent","gender":"m","pos":"noun"},{"id":"L4-030","de":"Das Zimmer","uz":"xona","gender":"n","pos":"noun"},{"id":"L4-031","de":"modern","uz":"zamonaviy","gender":null,"pos":"other"},{"id":"L4-032","de":"praktisch","uz":"qulay","gender":null,"pos":"other"},{"id":"L4-033","de":"zu","uz":"juda","gender":null,"pos":"other"},{"id":"L4-034","de":"klein","uz":"kichkina","gender":null,"pos":"other"},{"id":"L4-035","de":"Das Hotel","uz":"mehmonxona","gender":"n","pos":"noun"},{"id":"L4-036","de":"Der Stern","uz":"yulduz","gender":"m","pos":"noun"},{"id":"L4-037","de":"groß","uz":"katta","gender":null,"pos":"other"}],"5":[{"id":"L5-001","de":"Die Uhr","uz":"soat","gender":"f","pos":"noun"},{"id":"L5-002","de":"Das Auto","uz":"avtomobil","gender":"n","pos":"noun"},{"id":"L5-003","de":"Das Handy","uz":"telefon","gender":"n","pos":"noun"},{"id":"L5-004","de":"zeichnen","uz":"chizmoq","gender":null,"pos":"other"},{"id":"L5-005","de":"Das Buch","uz":"kitob","gender":"n","pos":"noun"},{"id":"L5-006","de":"Die Farbe","uz":"rang","gender":"f","pos":"noun"},{"id":"L5-007","de":"sehen","uz":"kórmoq","gender":null,"pos":"other"},{"id":"L5-008","de":"etwas","uz":"niamdir","gender":null,"pos":"other"},{"id":"L5-009","de":"viele","uz":"koplab","gender":null,"pos":"other"},{"id":"L5-010","de":"Das Ding","uz":"narsa, buyum","gender":"n","pos":"noun"},{"id":"L5-011","de":"und so weiter","uz":"va boshqalar","gender":null,"pos":"other"},{"id":"L5-012","de":"sagen","uz":"aytmmoq","gender":null,"pos":"other"},{"id":"L5-013","de":"fragen","uz":"soramoq","gender":null,"pos":"other"},{"id":"L5-014","de":"antworten","uz":"javob bermoq","gender":null,"pos":"other"},{"id":"L5-015","de":"weiter","uz":"yana, davomida","gender":null,"pos":"other"},{"id":"L5-016","de":"Das Feuerzeug","uz":"olov yondirgich","gender":"n","pos":"noun"},{"id":"L5-017","de":"Der Geldbeutel","uz":"hamyon","gender":"m","pos":"noun"},{"id":"L5-018","de":"Das Portenmonnaie","uz":"hamyon","gender":"n","pos":"noun"},{"id":"L5-019","de":"Das Taschentuch","uz":"salfetka","gender":"n","pos":"noun"},{"id":"L5-020","de":"Der Regen","uz":"yomg'ir","gender":"m","pos":"noun"},{"id":"L5-021","de":"auf Deutsch","uz":"nemischa","gender":null,"pos":"other"},{"id":"L5-022","de":"Das Wort","uz":"sóz","gender":"n","pos":"noun"},{"id":"L5-023","de":"nennen","uz":"atamoq, nomlammoq","gender":null,"pos":"other"},{"id":"L5-024","de":"bitten","uz":"iltimos qilmoq","gender":null,"pos":"other"},{"id":"L5-025","de":"bitte","uz":"iltimos","gender":null,"pos":"other"},{"id":"L5-026","de":"noch einmal, bitte","uz":"yana bir marta, iltimos","gender":null,"pos":"other"},{"id":"L5-027","de":"Wie schreibt man …?","uz":".. qanday yoziladi?","gender":null,"pos":"phrase"},{"id":"L5-028","de":"schreiben","uz":"yozmoq","gender":null,"pos":"other"},{"id":"L5-029","de":"sich bedanken","uz":"minnatdor bólmoq","gender":null,"pos":"other"},{"id":"L5-030","de":"danke schön","uz":"katta rahmat","gender":null,"pos":"other"},{"id":"L5-031","de":"Das Problem","uz":"muammo","gender":"n","pos":"noun"},{"id":"L5-032","de":"Bitte schön","uz":"arzimaydi","gender":null,"pos":"other"},{"id":"L5-033","de":"Das Wörterbuch","uz":"lugát","gender":"n","pos":"noun"},{"id":"L5-034","de":"Die Jacke","uz":"kurtka","gender":"f","pos":"noun"},{"id":"L5-035","de":"Das Streichholz","uz":"gugurt","gender":"n","pos":"noun"},{"id":"L5-036","de":"Das Zündholz","uz":"gugurt","gender":"n","pos":"noun"},{"id":"L5-037","de":"Die Bürste","uz":"chotka","gender":"f","pos":"noun"},{"id":"L5-038","de":"Die Seife","uz":"sovun","gender":"f","pos":"noun"},{"id":"L5-039","de":"Das Handtuch","uz":"rómolcha","gender":"n","pos":"noun"},{"id":"L5-040","de":"Der Föhn","uz":"fen","gender":"m","pos":"noun"},{"id":"L5-041","de":"online","uz":"onlayn","gender":null,"pos":"other"},{"id":"L5-042","de":"bestellen","uz":"buyurtma","gender":null,"pos":"other"},{"id":"L5-043","de":"Die Sonne","uz":"quyosh","gender":"f","pos":"noun"},{"id":"L5-044","de":"Die Sonnenbrille","uz":"quyoshdan himoyalovchi kozoynak","gender":"f","pos":"noun"},{"id":"L5-045","de":"dunkel-","uz":"tóq-","gender":null,"pos":"other"},{"id":"L5-046","de":"hell-","uz":"och-","gender":null,"pos":"other"},{"id":"L5-047","de":"Die Nummer","uz":"son","gender":"f","pos":"noun"},{"id":"L5-048","de":"Der Kunststoff","uz":"plastik","gender":"m","pos":"noun"},{"id":"L5-049","de":"Das Produkt","uz":"mahsulot","gender":"n","pos":"noun"},{"id":"L5-050","de":"Der Produktname","uz":"mahsulot nomi","gender":"m","pos":"noun"},{"id":"L5-051","de":"Die Menge","uz":"miqdor","gender":"f","pos":"noun"},{"id":"L5-052","de":"Das Formular","uz":"ariza","gender":"n","pos":"noun"},{"id":"L5-053","de":"Die Anrede","uz":"nutq boshi","gender":"f","pos":"noun"},{"id":"L5-054","de":"Die E-mail","uz":"elektron xat","gender":"f","pos":"noun"},{"id":"L5-055","de":"Das Telefon","uz":"trubkali telefon","gender":"n","pos":"noun"},{"id":"L5-056","de":"Das Haus","uz":"uy","gender":"n","pos":"noun"},{"id":"L5-057","de":"Die Adresse","uz":"manzil","gender":"f","pos":"noun"},{"id":"L5-058","de":"Der Unterstrich","uz":"pastki chiziq","gender":"m","pos":"noun"},{"id":"L5-059","de":"ät","uz":"kuchukcha","gender":null,"pos":"other"}],"6":[{"id":"L6-001","de":"Oh Gott","uz":"e xudoyim","gender":null,"pos":"other"},{"id":"L6-002","de":"Der Gott","uz":"xudo","gender":"m","pos":"noun"},{"id":"L6-003","de":"viel","uz":"kóp","gender":null,"pos":"other"},{"id":"L6-004","de":"Die Arbeit","uz":"ish","gender":"f","pos":"noun"},{"id":"L6-005","de":"Hilfe!","uz":"yordam!","gender":null,"pos":"other"},{"id":"L6-006","de":"Das Passwort","uz":"kod, parol","gender":"n","pos":"noun"},{"id":"L6-007","de":"Der Traum","uz":"orzu","gender":"m","pos":"noun"},{"id":"L6-008","de":"Der Albtraum","uz":"qorqinchli tush","gender":"m","pos":"noun"},{"id":"L6-009","de":"Die Person","uz":"inson","gender":"f","pos":"noun"},{"id":"L6-010","de":"Der Hunger","uz":"ochlik","gender":"m","pos":"noun"},{"id":"L6-011","de":"hunger haben","uz":"och qolmoq","gender":null,"pos":"other"},{"id":"L6-012","de":"telefonieren mit","uz":"- bilan telefonlashmoq","gender":null,"pos":"other"},{"id":"L6-013","de":"Das WLAN","uz":"wi-fi","gender":"n","pos":"noun"},{"id":"L6-014","de":"Der Stift","uz":"qalam","gender":"m","pos":"noun"},{"id":"L6-015","de":"brauchen","uz":"kerak bolmoq","gender":null,"pos":"other"},{"id":"L6-016","de":"Der Kaffee","uz":"kafe","gender":"m","pos":"noun"},{"id":"L6-017","de":"Die Nachricht","uz":"xabar","gender":"f","pos":"noun"},{"id":"L6-018","de":"Das Büro","uz":"byuro","gender":"n","pos":"noun"},{"id":"L6-019","de":"neu","uz":"yangi","gender":null,"pos":"other"},{"id":"L6-020","de":"viele Grüße","uz":"iliq salomlar","gender":null,"pos":"other"},{"id":"L6-021","de":"Der Gruß","uz":"salom","gender":"m","pos":"noun"},{"id":"L6-022","de":"Das Yoga","uz":"yoga","gender":"n","pos":"noun"},{"id":"L6-023","de":"morgen","uz":"ertaga","gender":null,"pos":"other"},{"id":"L6-024","de":"leider","uz":"afsuski","gender":null,"pos":"other"},{"id":"L6-025","de":"keine Zeit haben","uz":"vaqti yoq bolmoq","gender":null,"pos":"other"},{"id":"L6-026","de":"Die Zeit","uz":"vaqt","gender":"f","pos":"noun"},{"id":"L6-027","de":"Der Termin","uz":"uchrashuv","gender":"m","pos":"noun"},{"id":"L6-028","de":"von","uz":".. -dan","gender":null,"pos":"other"},{"id":"L6-029","de":"Liebe Grüße","uz":"qaynoq salomlar ila","gender":null,"pos":"other"},{"id":"L6-030","de":"dann","uz":"songra","gender":null,"pos":"other"},{"id":"L6-031","de":"notieren","uz":"belgilamoq","gender":null,"pos":"other"},{"id":"L6-032","de":"in die Tasche packen","uz":"sumkaga joylamoq","gender":null,"pos":"phrase"},{"id":"L6-033","de":"Der Schreibtisch","uz":"yozuv stoli","gender":"m","pos":"noun"},{"id":"L6-034","de":"Der Arbeitsplatz","uz":"ish joyi","gender":"m","pos":"noun"},{"id":"L6-035","de":"Ach, das ist er ja!","uz":"eh, bu osha!","gender":null,"pos":"phrase"},{"id":"L6-036","de":"ach","uz":"eh","gender":null,"pos":"other"},{"id":"L6-037","de":"schon wieder","uz":"yana … endi","gender":null,"pos":"other"},{"id":"L6-038","de":"Vielleicht","uz":"ehtimol","gender":null,"pos":"other"},{"id":"L6-039","de":"Hallo, …hier","uz":"salom, … buyerda.","gender":null,"pos":"other"},{"id":"L6-040","de":"Grüß Gott, da ist ..","uz":"ollohning salomi bolsin, buyerda…","gender":null,"pos":"phrase"},{"id":"L6-041","de":"hier","uz":"shuyerda","gender":null,"pos":"other"},{"id":"L6-042","de":"was kann ich für Sie tun!","uz":"siz uchun nima qilib bera olaman.","gender":null,"pos":"phrase"},{"id":"L6-043","de":"da sein","uz":"shuyerda bolmoq","gender":null,"pos":"other"},{"id":"L6-044","de":"auf Wiederhören","uz":"qayta gaplashguncha","gender":null,"pos":"other"},{"id":"L6-045","de":"Der Bürokaufmann","uz":"ofis xodimi","gender":"m","pos":"noun"},{"id":"L6-046","de":"verkaufen","uz":"sotmoq","gender":null,"pos":"other"},{"id":"L6-047","de":"öko(logisch)","uz":"eko(logik)","gender":null,"pos":"other"},{"id":"L6-048","de":"fair","uz":"adolatli","gender":null,"pos":"other"},{"id":"L6-049","de":"Die Frage","uz":"savol","gender":"f","pos":"noun"},{"id":"L6-050","de":"Heute","uz":"bugun","gender":null,"pos":"other"},{"id":"L6-051","de":"ich verbinde","uz":"ulayapman (telefonda)","gender":null,"pos":"other"},{"id":"L6-052","de":"gerade","uz":"xozir, tóg´ri","gender":null,"pos":"other"},{"id":"L6-053","de":"später","uz":"kechroq","gender":null,"pos":"other"},{"id":"L6-054","de":"am Platz sein","uz":"joyida bólmoq","gender":null,"pos":"other"},{"id":"L6-055","de":"zurückrufen","uz":"qayta qóngíroq qilmoq","gender":null,"pos":"other"},{"id":"L6-056","de":"Die Mappe","uz":"doska tozalagich","gender":"f","pos":"noun"},{"id":"L6-057","de":"Das Notizbuch","uz":"qaydlar daftari","gender":"n","pos":"noun"},{"id":"L6-058","de":"bio(logisch)","uz":"bio(logik)","gender":null,"pos":"other"},{"id":"L6-059","de":"Die Bestellung","uz":"buyurtma","gender":"f","pos":"noun"},{"id":"L6-060","de":"in (Farbe)","uz":"rangda","gender":null,"pos":"other"}],"7":[{"id":"L7-001","de":"können","uz":"qila olmoq","gender":null,"pos":"other"},{"id":"L7-002","de":"tanzen","uz":"raqsga tushmoq","gender":null,"pos":"other"},{"id":"L7-003","de":"das Hobby","uz":"hobbi, qiziqish","gender":"n","pos":"noun"},{"id":"L7-004","de":"Du kannst ja …","uz":"Sen … qila olasan.","gender":null,"pos":"phrase"},{"id":"L7-005","de":"ja","uz":"ha","gender":null,"pos":"other"},{"id":"L7-006","de":"Du kannst wirklich ..","uz":"Sen haqiqatdan ham … qila olasan!","gender":null,"pos":"phrase"},{"id":"L7-007","de":"Du kannst aber …","uz":"Sen qila olasan-u biroq …","gender":null,"pos":"phrase"},{"id":"L7-008","de":"aber","uz":"biroq","gender":null,"pos":"other"},{"id":"L7-009","de":"Herzlichen Dank","uz":"chin kongildan rahmat","gender":null,"pos":"other"},{"id":"L7-010","de":"wir alle","uz":"biz hammamiz","gender":null,"pos":"other"},{"id":"L7-011","de":"alle","uz":"hamma","gender":null,"pos":"other"},{"id":"L7-012","de":"beide","uz":"har ikkalasi","gender":null,"pos":"other"},{"id":"L7-013","de":"auch nicht","uz":".. ham emas","gender":null,"pos":"other"},{"id":"L7-014","de":"auflegen","uz":"qóymoq","gender":null,"pos":"other"},{"id":"L7-015","de":"mixen","uz":"aralashtirmoq, (re)mix qilmoq","gender":null,"pos":"other"},{"id":"L7-016","de":"Der DJ","uz":"DJ","gender":"m","pos":"noun"},{"id":"L7-017","de":"lieben","uz":"sevmoq","gender":null,"pos":"other"},{"id":"L7-018","de":"Das Kickboxen","uz":"kikboksing","gender":"n","pos":"noun"},{"id":"L7-019","de":"Die Senioren","uz":"qariyalar","gender":"f","pos":"noun"},{"id":"L7-020","de":"Das Seniorenheim","uz":"qariyalar uyi","gender":"n","pos":"noun"},{"id":"L7-021","de":"Das Altersheim","uz":"qariyalar uyi","gender":"n","pos":"noun"},{"id":"L7-022","de":"richtig","uz":"tóg´ri","gender":null,"pos":"other"},{"id":"L7-023","de":"gehen","uz":"bormoq","gender":null,"pos":"other"},{"id":"L7-024","de":"Die Versicherung","uz":"sugúrta","gender":"f","pos":"noun"},{"id":"L7-025","de":"Der Kaufmann","uz":"xodim, sotuvchi","gender":"m","pos":"noun"},{"id":"L7-026","de":"Die Versicherungskaufleute","uz":"sugúrta xodimlari","gender":"f","pos":"noun"},{"id":"L7-027","de":"in der Freizeit","uz":"bósh vaqtda","gender":null,"pos":"other"},{"id":"L7-028","de":"Die Freizeit","uz":"bósh vaqt","gender":"f","pos":"noun"},{"id":"L7-029","de":"oft","uz":"tez-tez","gender":null,"pos":"other"},{"id":"L7-030","de":"Der Klub","uz":"klub","gender":"m","pos":"noun"},{"id":"L7-031","de":"Das Konzert","uz":"konsert","gender":"n","pos":"noun"},{"id":"L7-032","de":"Das Start-up","uz":"yang biznes g´oyalar","gender":"n","pos":"noun"},{"id":"L7-033","de":"Die Fitness","uz":"fitnes","gender":"f","pos":"noun"},{"id":"L7-034","de":"Das Fitnessstudio","uz":"fitnes studiya","gender":"n","pos":"noun"},{"id":"L7-035","de":"nie","uz":"hech qachon","gender":null,"pos":"other"},{"id":"L7-036","de":"lange","uz":"uzoq","gender":null,"pos":"other"},{"id":"L7-037","de":"manchmal","uz":"bazan","gender":null,"pos":"other"},{"id":"L7-038","de":"lesen","uz":"O`qimoq","gender":null,"pos":"other"},{"id":"L7-039","de":"Freunde treffen","uz":"dóstlar bilan uchrashmoq","gender":null,"pos":"other"},{"id":"L7-040","de":"Der Freund","uz":"do'st","gender":"m","pos":"noun"},{"id":"L7-041","de":"die Freundin","uz":"dugona","gender":"f","pos":"noun"},{"id":"L7-042","de":"fahren","uz":"bormoq","gender":null,"pos":"other"},{"id":"L7-043","de":"Der Ausflug","uz":"sayohat","gender":"m","pos":"noun"},{"id":"L7-044","de":"Das Radio","uz":"radio","gender":"n","pos":"noun"},{"id":"L7-045","de":"im Internet surfen","uz":"internetda o'tirmoq","gender":null,"pos":"other"},{"id":"L7-046","de":"surfen","uz":"syorfing uchmoq","gender":null,"pos":"other"},{"id":"L7-047","de":"Spaß machen","uz":"hazillashmoq","gender":null,"pos":"other"},{"id":"L7-048","de":"Der Spaß","uz":"hazil","gender":"m","pos":"noun"},{"id":"L7-049","de":"Lieblings-","uz":"sevimli","gender":null,"pos":"other"},{"id":"L7-050","de":"was machst du gerne?","uz":"sevimli mashg'uloting nima?","gender":null,"pos":"phrase"},{"id":"L7-051","de":"gern","uz":"bajonidil","gender":null,"pos":"other"},{"id":"L7-052","de":"in deiner Freizeit","uz":"bo'sh vaqtingda","gender":null,"pos":"other"}],"8":[{"id":"L8-001","de":"Das Schwimmbad","uz":"suzish havzasi","gender":"n","pos":"noun"},{"id":"L8-002","de":"Das Kino","uz":"kinoteatr","gender":"n","pos":"noun"},{"id":"L8-003","de":"heute","uz":"bugun","gender":null,"pos":"other"},{"id":"L8-004","de":"der Nachmittag","uz":"tushlikdan so'ng","gender":"m","pos":"noun"},{"id":"L8-005","de":"um","uz":"(soat)da","gender":null,"pos":"other"},{"id":"L8-006","de":"am","uz":"(kun)da","gender":null,"pos":"other"},{"id":"L8-007","de":"Der Wochentag","uz":"hafta kunlari","gender":"m","pos":"noun"},{"id":"L8-008","de":"Wann?","uz":"qachon?","gender":null,"pos":"phrase"},{"id":"L8-009","de":"Das Wochenende","uz":"Dam olish kunlari","gender":"n","pos":"noun"},{"id":"L8-010","de":"frei","uz":"erkin, tekin","gender":null,"pos":"other"},{"id":"L8-011","de":"Der Chat","uz":"chat","gender":"m","pos":"noun"},{"id":"L8-012","de":"Die Nacht","uz":"tun","gender":"f","pos":"noun"},{"id":"L8-013","de":"in der Nacht","uz":"tunda","gender":null,"pos":"other"},{"id":"L8-014","de":"Das weiß ich noch nicht.","uz":"bundan xabarim yo'q","gender":"n","pos":"noun"},{"id":"L8-015","de":"wissen","uz":"bilmoq","gender":null,"pos":"other"},{"id":"L8-016","de":"Lust auf","uz":"xohish (biror narsa)ga","gender":null,"pos":"other"},{"id":"L8-017","de":"Keine Lust","uz":"xohlamaslik","gender":null,"pos":"other"},{"id":"L8-018","de":"Die Lust","uz":"xohish","gender":"f","pos":"noun"},{"id":"L8-019","de":"Die Idee","uz":"g'oya","gender":"f","pos":"noun"},{"id":"L8-020","de":"Gute Idee","uz":"yaxshi g'oya","gender":null,"pos":"other"},{"id":"L8-021","de":"um viertel nach","uz":"..dan 15 minut o'tganda","gender":null,"pos":"other"},{"id":"L8-022","de":"um halb","uz":"..ga yarim soat qolganda","gender":null,"pos":"other"},{"id":"L8-023","de":"oder","uz":"yoki","gender":null,"pos":"other"},{"id":"L8-024","de":"okey","uz":"hammasi a'lo","gender":null,"pos":"other"},{"id":"L8-025","de":"bis dann","uz":"ko'rishguncha","gender":null,"pos":"other"},{"id":"L8-026","de":"Der Morgen","uz":"Erta(si kun)","gender":"m","pos":"noun"},{"id":"L8-027","de":"Der Vormittag","uz":"tushlikdan oldin","gender":"m","pos":"noun"},{"id":"L8-028","de":"Der Mittag","uz":"tushlik","gender":"m","pos":"noun"},{"id":"L8-029","de":"Der Abend","uz":"kechqurun","gender":"m","pos":"noun"},{"id":"L8-030","de":"Wie viel Uhr?","uz":"soat nechida?","gender":null,"pos":"phrase"},{"id":"L8-031","de":"Wie spät …?","uz":"soat nechi?","gender":null,"pos":"phrase"},{"id":"L8-032","de":"Der Rücken","uz":"bel sohasi","gender":"m","pos":"noun"},{"id":"L8-033","de":"ja, genau","uz":"ha, xuddi shunday","gender":null,"pos":"other"},{"id":"L8-034","de":"Der Vorschlag","uz":"taklif","gender":"m","pos":"noun"},{"id":"L8-035","de":"Die Frage","uz":"savol","gender":"f","pos":"noun"},{"id":"L8-036","de":"Die Antwort","uz":"javob","gender":"f","pos":"noun"},{"id":"L8-037","de":"tut mir leid","uz":"afsusdaman","gender":null,"pos":"other"}],"9":[{"id":"L9-001","de":"mögen","uz":"yoqtirmoq","gender":null,"pos":"other"},{"id":"L9-002","de":"Der Hamburger","uz":"Gamburger","gender":"m","pos":"noun"},{"id":"L9-003","de":"Die Schokolade","uz":"shokolad","gender":"f","pos":"noun"},{"id":"L9-004","de":"Der Käse","uz":"pishloq","gender":"m","pos":"noun"},{"id":"L9-005","de":"Der Salat","uz":"salat","gender":"m","pos":"noun"},{"id":"L9-006","de":"zum Frühstück","uz":"nonushtaga","gender":null,"pos":"other"},{"id":"L9-007","de":"Das Frühstück","uz":"nonushta","gender":"n","pos":"noun"},{"id":"L9-008","de":"besonders","uz":"ayniqsa","gender":null,"pos":"other"},{"id":"L9-009","de":"Guten Appetit","uz":"yoqimli ishtaha","gender":null,"pos":"other"},{"id":"L9-010","de":"hier bitte","uz":"marhamat","gender":null,"pos":"other"},{"id":"L9-011","de":"lecker","uz":"mazali","gender":null,"pos":"other"},{"id":"L9-012","de":"essen","uz":"yemoq","gender":null,"pos":"other"},{"id":"L9-013","de":"Der/das Ketchup","uz":"ketchup","gender":null,"pos":"other"},{"id":"L9-014","de":"Der Witz","uz":"hazil","gender":"m","pos":"noun"},{"id":"L9-015","de":"fit","uz":"tetik, sog'lom","gender":null,"pos":"other"},{"id":"L9-016","de":"inteligent","uz":"aqlli","gender":null,"pos":"other"},{"id":"L9-017","de":"prima/super","uz":"ajoyib","gender":null,"pos":"other"},{"id":"L9-018","de":"Das Gedicht","uz":"sher (o'qiladigan)","gender":"n","pos":"noun"},{"id":"L9-019","de":"auf","uz":"usti, -da, -ga","gender":null,"pos":"other"},{"id":"L9-020","de":"trinken","uz":"ichmoq","gender":null,"pos":"other"},{"id":"L9-021","de":"Das Abendessen","uz":"kechki ovqat","gender":"n","pos":"noun"},{"id":"L9-022","de":"Das Mitagessen","uz":"tushlik","gender":"n","pos":"noun"},{"id":"L9-023","de":"Das Getränk","uz":"ichimlik","gender":"n","pos":"noun"},{"id":"L9-024","de":"Das Essen","uz":"ovqat","gender":"n","pos":"noun"},{"id":"L9-025","de":"Die Butter","uz":"sariyog'","gender":"f","pos":"noun"},{"id":"L9-026","de":"Der Schinken","uz":"qovurdoq","gender":"m","pos":"noun"},{"id":"L9-027","de":"das Ei","uz":"tuxum","gender":"n","pos":"noun"},{"id":"L9-028","de":"Die Milch","uz":"sut","gender":"f","pos":"noun"},{"id":"L9-029","de":"wünschen","uz":"xohlamoq","gender":null,"pos":"other"},{"id":"L9-030","de":"Die Tasse","uz":"taqsimcha, tarelka","gender":"f","pos":"noun"},{"id":"L9-031","de":"möchten","uz":"xohlamoq","gender":null,"pos":"other"},{"id":"L9-032","de":"Der Nusskuchen","uz":"yong'oqli shirinlik","gender":"m","pos":"noun"},{"id":"L9-033","de":"Der Apfelkuchen","uz":"olmali shirinlik","gender":"m","pos":"noun"},{"id":"L9-034","de":"Der Schokoladenkuchen","uz":"shokoladli shirinlik","gender":"m","pos":"noun"},{"id":"L9-035","de":"schade","uz":"afsus, attang","gender":null,"pos":"other"},{"id":"L9-036","de":"na gut","uz":"ha, yaxshi","gender":null,"pos":"other"},{"id":"L9-037","de":"nehmen","uz":"olmoq","gender":null,"pos":"other"},{"id":"L9-038","de":"unser","uz":"bizning","gender":null,"pos":"other"},{"id":"L9-039","de":"Der Gast","uz":"mehmon","gender":"m","pos":"noun"},{"id":"L9-040","de":"Die Speisekarte","uz":"menyu","gender":"f","pos":"noun"},{"id":"L9-041","de":"der Apfelsaft","uz":"olmali sok","gender":"m","pos":"noun"},{"id":"L9-042","de":"Der Orangensaft","uz":"apelsinli sok","gender":"m","pos":"noun"},{"id":"L9-043","de":"Das Wasser","uz":"suv","gender":"n","pos":"noun"},{"id":"L9-044","de":"Die Speise","uz":"taom","gender":"f","pos":"noun"},{"id":"L9-045","de":"Die Vorspeise","uz":"tamaddi, birinchi taom","gender":"f","pos":"noun"},{"id":"L9-046","de":"Der Tomatensalat","uz":"pomidorli salat","gender":"m","pos":"noun"},{"id":"L9-047","de":"Die Kartoffel","uz":"kartoshka","gender":"f","pos":"noun"},{"id":"L9-048","de":"Das Würstchen","uz":"sasiska","gender":"n","pos":"noun"},{"id":"L9-049","de":"Das Würstel","uz":"sasiska","gender":"n","pos":"noun"},{"id":"L9-050","de":"Das Hauptgericht","uz":"asosiy ovqat","gender":"n","pos":"noun"},{"id":"L9-051","de":"Die Pommes Frites","uz":"qovurilgan kartoshka, fri","gender":"f","pos":"noun"},{"id":"L9-052","de":"Die Nudel","uz":"makaron","gender":"f","pos":"noun"},{"id":"L9-053","de":"Die Teigwaren","uz":"makaron","gender":"f","pos":"noun"},{"id":"L9-054","de":"Die Soße","uz":"sous","gender":"f","pos":"noun"},{"id":"L9-055","de":"Die Sauce","uz":"sous","gender":"f","pos":"noun"},{"id":"L9-056","de":"das Huhn","uz":"tovuq","gender":"n","pos":"noun"},{"id":"L9-057","de":"Das Hendl","uz":"tovuq","gender":"n","pos":"noun"},{"id":"L9-058","de":"Das Poulet","uz":"tovuq","gender":"n","pos":"noun"},{"id":"L9-059","de":"Der Reis","uz":"guruch","gender":"m","pos":"noun"},{"id":"L9-060","de":"Das Dessert","uz":"desert","gender":"n","pos":"noun"},{"id":"L9-061","de":"Das Eis","uz":"Muzqaymoq","gender":"n","pos":"noun"},{"id":"L9-062","de":"Die Vanille","uz":"vanil","gender":"f","pos":"noun"},{"id":"L9-063","de":"Die Erdbeere","uz":"malina","gender":"f","pos":"noun"},{"id":"L9-064","de":"Die Kugel","uz":"yumaloq, sharsimon","gender":"f","pos":"noun"},{"id":"L9-065","de":"Die Portion","uz":"porsiya","gender":"f","pos":"noun"},{"id":"L9-066","de":"Die Sahne","uz":"qaymoq","gender":"f","pos":"noun"},{"id":"L9-067","de":"Das Schlagobers","uz":"ko'pirtirilgan qaymoq","gender":"n","pos":"noun"},{"id":"L9-068","de":"Der Rahm","uz":"krem, qaymoq","gender":"m","pos":"noun"},{"id":"L9-069","de":"Das Obst","uz":"ho'l meva","gender":"n","pos":"noun"},{"id":"L9-070","de":"das Stück","uz":"parcha, bo'lak, qism","gender":"n","pos":"noun"},{"id":"L9-071","de":"Die Zitrone","uz":"limon","gender":"f","pos":"noun"},{"id":"L9-072","de":"Der Zitronenkuchen","uz":"limonli pishiriq","gender":"m","pos":"noun"},{"id":"L9-073","de":"Der Nachtisch","uz":"dessert","gender":"m","pos":"noun"},{"id":"L9-074","de":"Die Nachspeise","uz":"dessert","gender":"f","pos":"noun"},{"id":"L9-075","de":"perfekt","uz":"mukammal","gender":null,"pos":"other"},{"id":"L9-076","de":"das Menü","uz":"menyu, taomnoma","gender":"n","pos":"noun"},{"id":"L9-077","de":"Die Hochschule","uz":"oliy o'quv yurti","gender":"f","pos":"noun"},{"id":"L9-078","de":"Die Stunde","uz":"soat","gender":"f","pos":"noun"},{"id":"L9-079","de":"Die Teilzeit","uz":"yarim stavka","gender":"f","pos":"noun"},{"id":"L9-080","de":"Die Grafikagentur","uz":"grafik agenturasi","gender":"f","pos":"noun"},{"id":"L9-081","de":"denken","uz":"o'ylamoq","gender":null,"pos":"other"},{"id":"L9-082","de":"privat","uz":"sahxsiy","gender":null,"pos":"other"},{"id":"L9-083","de":"Die Besprechung","uz":"suhbat","gender":"f","pos":"noun"},{"id":"L9-084","de":"sich verabschieden","uz":"xayrlashmoq","gender":null,"pos":"other"},{"id":"L9-085","de":"Alles klar","uz":"hammasi tushunarli","gender":null,"pos":"other"},{"id":"L9-086","de":"Der Workshop","uz":"tajriba almashinuv suhbati","gender":"m","pos":"noun"},{"id":"L9-087","de":"Mit freundlichen Grüßen","uz":"Do'stona salomlar ila","gender":null,"pos":"other"},{"id":"L9-088","de":"Das Team","uz":"jamoa","gender":"n","pos":"noun"},{"id":"L9-089","de":"Der Kunde","uz":"xaridor","gender":"m","pos":"noun"},{"id":"L9-090","de":"Die Mittagspause","uz":"tushlikdagi tanaffus","gender":"f","pos":"noun"}],"10":[{"id":"L10-001","de":"Der Flughafen","uz":"aeroport","gender":"m","pos":"noun"},{"id":"L10-002","de":"chatten","uz":"chatlashmoq","gender":null,"pos":"other"},{"id":"L10-003","de":"Der Kollege","uz":"hamkasb","gender":"m","pos":"noun"},{"id":"L10-004","de":"Der Flug","uz":"parvoz","gender":"m","pos":"noun"},{"id":"L10-005","de":"Der Abendflug","uz":"kechki parvoz","gender":"m","pos":"noun"},{"id":"L10-006","de":"Die Reise","uz":"sayohat","gender":"f","pos":"noun"},{"id":"L10-007","de":"kurz","uz":"qisqa","gender":null,"pos":"other"},{"id":"L10-008","de":"abfliegen","uz":"uchib ketmoq","gender":null,"pos":"other"},{"id":"L10-009","de":"starten","uz":"boshlanmoq, uchmoq","gender":null,"pos":"other"},{"id":"L10-010","de":"ankommen","uz":"yetib kelmoq","gender":null,"pos":"other"},{"id":"L10-011","de":"dort","uz":"uyerda","gender":null,"pos":"other"},{"id":"L10-012","de":"so","uz":"shunday","gender":null,"pos":"other"},{"id":"L10-013","de":"anrufen","uz":"qo'ngiroq qilmoq","gender":null,"pos":"other"},{"id":"L10-014","de":"noch mal","uz":"yana bir marta","gender":null,"pos":"other"},{"id":"L10-015","de":"früh","uz":"erta","gender":null,"pos":"other"},{"id":"L10-016","de":"bald","uz":"erta","gender":null,"pos":"other"},{"id":"L10-017","de":"sicher","uz":"ishonch","gender":null,"pos":"other"},{"id":"L10-018","de":"Die Stimme","uz":"ovoz","gender":"f","pos":"noun"},{"id":"L10-019","de":"versuchen","uz":"urinib ko'rmoq","gender":null,"pos":"other"},{"id":"L10-020","de":"hoffentlich","uz":"ishonch bilan","gender":null,"pos":"other"},{"id":"L10-021","de":"Die Verspätung","uz":"kechikish","gender":"f","pos":"noun"},{"id":"L10-022","de":"kaputt","uz":"buzilgan","gender":null,"pos":"other"},{"id":"L10-023","de":"Die Maschine","uz":"texnika","gender":"f","pos":"noun"},{"id":"L10-024","de":"landen","uz":"qo'nmoq","gender":null,"pos":"other"},{"id":"L10-025","de":"alles","uz":"hammasi","gender":null,"pos":"other"},{"id":"L10-026","de":"alles klar","uz":"hammasi tushunarli, ajoyib","gender":null,"pos":"other"},{"id":"L10-027","de":"lieber","uz":"yaxshisi","gender":null,"pos":"other"},{"id":"L10-028","de":"wenig","uz":"oz(roq)","gender":null,"pos":"other"},{"id":"L10-029","de":"Der Akku","uz":"akkumulyator","gender":"m","pos":"noun"},{"id":"L10-030","de":"verstehen","uz":"tushunmoq","gender":null,"pos":"other"},{"id":"L10-031","de":"abholen","uz":"kutib olmoq","gender":null,"pos":"other"},{"id":"L10-032","de":"was für","uz":"qaysi","gender":null,"pos":"other"},{"id":"L10-033","de":"natürlich","uz":"albatta","gender":null,"pos":"other"},{"id":"L10-034","de":"freuen sich","uz":"xursand bo'lmoq","gender":null,"pos":"other"},{"id":"L10-035","de":"bis gleich","uz":"ko'rishguncha","gender":null,"pos":"other"},{"id":"L10-036","de":"einsteigen","uz":"chiqmoq (transportga)","gender":null,"pos":"other"},{"id":"L10-037","de":"umsteigen","uz":"almashtirmoq (transportni)","gender":null,"pos":"other"},{"id":"L10-038","de":"aussteigen","uz":"tushmoq (transportdan)","gender":null,"pos":"other"},{"id":"L10-039","de":"Der Verkehr","uz":"yo'l harakati","gender":"m","pos":"noun"},{"id":"L10-040","de":"Das Gepäck","uz":"yuk","gender":"n","pos":"noun"},{"id":"L10-041","de":"einkaufen","uz":"xarid qilmoq","gender":null,"pos":"other"},{"id":"L10-042","de":"abfahren","uz":"jo'nab ketmoq","gender":null,"pos":"other"},{"id":"L10-043","de":"fernsehen","uz":"televizor ko'rmoq","gender":null,"pos":"other"},{"id":"L10-044","de":"Die Durchsage","uz":"e'lon","gender":"f","pos":"noun"},{"id":"L10-045","de":"Der Intercity","uz":"ICY (tezyurar poyezd shaharlar aro)","gender":"m","pos":"noun"},{"id":"L10-046","de":"Der Bahnsteig","uz":"perron","gender":"m","pos":"noun"},{"id":"L10-047","de":"Der/Das Perron","uz":"perron","gender":null,"pos":"other"},{"id":"L10-048","de":"Die Richtung","uz":"yo'nalish","gender":"f","pos":"noun"},{"id":"L10-049","de":"einfahren","uz":"yo'lga chiqmoq","gender":null,"pos":"other"},{"id":"L10-050","de":"Das Gleis","uz":"temiryo'l","gender":"n","pos":"noun"},{"id":"L10-051","de":"Die Fahrt","uz":"yo'l","gender":"f","pos":"noun"},{"id":"L10-052","de":"enden","uz":"tugamoq","gender":null,"pos":"other"},{"id":"L10-053","de":"beginnen","uz":"boshla(n)moq","gender":null,"pos":"other"},{"id":"L10-054","de":"Der Ausgang","uz":"chiqish","gender":"m","pos":"noun"},{"id":"L10-055","de":"nächst-","uz":"keyingi","gender":null,"pos":"other"},{"id":"L10-056","de":"Der Halt","uz":"to'xtash, kutib turish","gender":"m","pos":"noun"},{"id":"L10-057","de":"Der Hauptbahnhof","uz":"vokzal","gender":"m","pos":"noun"},{"id":"L10-058","de":"Die Vorsicht","uz":"ehtiyotkorlik","gender":"f","pos":"noun"},{"id":"L10-059","de":"Achtung","uz":"diqqat","gender":null,"pos":"other"}],"11":[{"id":"L11-001","de":"gestern","uz":"kecha","gender":null,"pos":"other"},{"id":"L11-002","de":"Der Spaziergang","uz":"piyoda sayohat","gender":"m","pos":"noun"},{"id":"L11-003","de":"Der Wald","uz":"o'rmon","gender":"m","pos":"noun"},{"id":"L11-004","de":"Die Zeitung","uz":"gazeta","gender":"f","pos":"noun"},{"id":"L11-005","de":"aufräumen","uz":"yig'ishtirmoq","gender":null,"pos":"other"},{"id":"L11-006","de":"zu wenig","uz":"juda kam, oz","gender":null,"pos":"other"},{"id":"L11-007","de":"zu viel","uz":"juda ko'p","gender":null,"pos":"other"},{"id":"L11-008","de":"Der Vogel","uz":"qush","gender":"m","pos":"noun"},{"id":"L11-009","de":"Der Film","uz":"kinofilm","gender":"m","pos":"noun"},{"id":"L11-010","de":"Die Pause","uz":"tanaffus","gender":"f","pos":"noun"},{"id":"L11-011","de":"Der Doktor","uz":"shifokor","gender":"m","pos":"noun"},{"id":"L11-012","de":"Die Doktorarbeit","uz":"Doktorlik ishi","gender":"f","pos":"noun"},{"id":"L11-013","de":"abwaschen","uz":"yuvmoq","gender":null,"pos":"other"},{"id":"L11-014","de":"von .. bis","uz":"..dan .. gacha","gender":null,"pos":"other"},{"id":"L11-015","de":"Der Basketball","uz":"basketbol","gender":"m","pos":"noun"},{"id":"L11-016","de":"danach","uz":"so'ngra","gender":null,"pos":"other"},{"id":"L11-017","de":"Das T-Shirt","uz":"Futbolka","gender":"n","pos":"noun"},{"id":"L11-018","de":"ab","uz":"-dan (boshlab)","gender":null,"pos":"other"},{"id":"L11-019","de":"ganze","uz":"butunlay","gender":null,"pos":"other"},{"id":"L11-020","de":"zurückkommen","uz":"qaytib kelmoq","gender":null,"pos":"other"},{"id":"L11-021","de":"Der Kuss","uz":"o'pich","gender":"m","pos":"noun"},{"id":"L11-022","de":"Das Bussi","uz":"o'pich","gender":"n","pos":"noun"},{"id":"L11-023","de":"geöffnet","uz":"ochiq","gender":null,"pos":"other"},{"id":"L11-024","de":"Das Schild","uz":"e'lon","gender":"n","pos":"noun"},{"id":"L11-025","de":"Der Kinderarzt","uz":"bolalar shifokori","gender":"m","pos":"noun"},{"id":"L11-026","de":"Die Boutique","uz":"butik, kiyim magazini","gender":"f","pos":"noun"},{"id":"L11-027","de":"Die Mode","uz":"moda","gender":"f","pos":"noun"},{"id":"L11-028","de":"Der Urlaub","uz":"ta'til","gender":"m","pos":"noun"},{"id":"L11-029","de":"Die Ferien","uz":"ta'til","gender":"f","pos":"noun"},{"id":"L11-030","de":"Der Unterricht","uz":"dars","gender":"m","pos":"noun"},{"id":"L11-031","de":"Der Kursleiter","uz":"kurs rahbari","gender":"m","pos":"noun"},{"id":"L11-032","de":"Die Blume","uz":"gul","gender":"f","pos":"noun"},{"id":"L11-033","de":"Der Laden","uz":"magazin","gender":"m","pos":"noun"},{"id":"L11-034","de":"geschlossen","uz":"yopiq","gender":null,"pos":"other"},{"id":"L11-035","de":"Das Eiscafé","uz":"sovuq kofe","gender":"n","pos":"noun"},{"id":"L11-036","de":"Die Praxis","uz":"amaliyot","gender":"f","pos":"noun"},{"id":"L11-037","de":"Der Kiosk","uz":"matbuot","gender":"m","pos":"noun"}],"12":[{"id":"L12-001","de":"Der Marathon","uz":"marafon","gender":"m","pos":"noun"},{"id":"L12-002","de":"laufen","uz":"yugurmoq","gender":null,"pos":"other"},{"id":"L12-003","de":"gibt es","uz":"bor","gender":null,"pos":"other"},{"id":"L12-004","de":"seit","uz":"..dan berii","gender":null,"pos":"other"},{"id":"L12-005","de":"Der Kilometer","uz":"kilometr","gender":"m","pos":"noun"},{"id":"L12-006","de":"unterwegs","uz":"yo'lda","gender":null,"pos":"other"},{"id":"L12-007","de":"Der August","uz":"avgust","gender":"m","pos":"noun"},{"id":"L12-008","de":"Die Radtour","uz":"velosaayohat","gender":"f","pos":"noun"},{"id":"L12-009","de":"nach","uz":"(biror joy)ga","gender":null,"pos":"other"},{"id":"L12-010","de":"bis","uz":".. gacha","gender":null,"pos":"other"},{"id":"L12-011","de":"weiterfahren","uz":"(yo'lida)davom etmoq","gender":null,"pos":"other"},{"id":"L12-012","de":"Die Tour","uz":"sayohat","gender":"f","pos":"noun"},{"id":"L12-013","de":"Das Wetter","uz":"ob-havo","gender":"n","pos":"noun"},{"id":"L12-014","de":"der Herbst","uz":"kuz","gender":"m","pos":"noun"},{"id":"L12-015","de":"paar","uz":"juft","gender":null,"pos":"other"},{"id":"L12-016","de":"besuchen","uz":"borib ko'rmoq, mehmon bo'lmoq","gender":null,"pos":"other"},{"id":"L12-017","de":"bleiben","uz":"qolmoq","gender":null,"pos":"other"},{"id":"L12-018","de":"Das Volksfest","uz":"xalq sayli, bayrami","gender":"n","pos":"noun"},{"id":"L12-019","de":"also","uz":"xullas","gender":null,"pos":"other"},{"id":"L12-020","de":"fast","uz":"deyarli","gender":null,"pos":"other"},{"id":"L12-021","de":"Die Mitte","uz":"o'rtasi","gender":"f","pos":"noun"},{"id":"L12-022","de":"Der Oktober","uz":"oktabr","gender":"m","pos":"noun"},{"id":"L12-023","de":"Der Anfang","uz":"boshlanish","gender":"m","pos":"noun"},{"id":"L12-024","de":"Der November","uz":"noyabr","gender":"m","pos":"noun"},{"id":"L12-025","de":"diese","uz":"bu","gender":null,"pos":"other"},{"id":"L12-026","de":"etwa","uz":"biroz","gender":null,"pos":"other"},{"id":"L12-027","de":"Der Besucher","uz":"tashriff buyuruvchi","gender":"m","pos":"noun"},{"id":"L12-028","de":"Der Winter","uz":"qish","gender":"m","pos":"noun"},{"id":"L12-029","de":"Der Dezember","uz":"dekabr","gender":"m","pos":"noun"},{"id":"L12-030","de":"Das/Die Weihnachten","uz":"rojdestvo","gender":null,"pos":"other"},{"id":"L12-031","de":"feiern","uz":"nishonlamoq","gender":null,"pos":"other"},{"id":"L12-032","de":"zurückfahren","uz":"qaytib bormoq","gender":null,"pos":"other"},{"id":"L12-033","de":"ziemlich","uz":"juda","gender":null,"pos":"other"},{"id":"L12-034","de":"cool","uz":"ajoyib","gender":null,"pos":"other"},{"id":"L12-035","de":"Der Sommer","uz":"yoz","gender":"m","pos":"noun"},{"id":"L12-036","de":"durch","uz":"orqali","gender":null,"pos":"other"},{"id":"L12-037","de":"Die Jahreszeiten","uz":"yil fasllari","gender":"f","pos":"noun"},{"id":"L12-038","de":"Der Monat","uz":"oy","gender":"m","pos":"noun"},{"id":"L12-039","de":"Der Geburtstag","uz":"tug'ilgan kun","gender":"m","pos":"noun"},{"id":"L12-040","de":"Die Erdbeere","uz":"qulupnay","gender":"f","pos":"noun"},{"id":"L12-041","de":"passieren","uz":"sodir bo'lmoq","gender":null,"pos":"other"},{"id":"L12-042","de":"wandern","uz":"piyoda yurmoq","gender":null,"pos":"other"},{"id":"L12-043","de":"segeln","uz":"yelkanliqayiqda suzmoq","gender":null,"pos":"other"},{"id":"L12-044","de":"nachts","uz":"tunlari","gender":null,"pos":"other"},{"id":"L12-045","de":"ja, das stimmt","uz":"ha, to'g'ri","gender":null,"pos":"other"},{"id":"L12-046","de":"Der Hafen","uz":"bandargoh","gender":"m","pos":"noun"},{"id":"L12-047","de":"jede","uz":"har bir","gender":null,"pos":"other"},{"id":"L12-048","de":"wie lange","uz":"qancha vaqt","gender":null,"pos":"other"},{"id":"L12-049","de":"dauern","uz":"davom etmoq","gender":null,"pos":"other"},{"id":"L12-050","de":"Das Schiff","uz":"kema","gender":"n","pos":"noun"},{"id":"L12-051","de":"Der Bauingenieur","uz":"qurilish injeneri","gender":"m","pos":"noun"},{"id":"L12-052","de":"Der Bauleiter","uz":"qurilish rahbari","gender":"m","pos":"noun"},{"id":"L12-053","de":"Das Projekt","uz":"loyiha","gender":"n","pos":"noun"},{"id":"L12-054","de":"unterschiedlich","uz":"turli xil","gender":null,"pos":"other"},{"id":"L12-055","de":"betreuen","uz":"shug'ullanmoq","gender":null,"pos":"other"},{"id":"L12-056","de":"langweilig","uz":"zerikarli","gender":null,"pos":"other"},{"id":"L12-057","de":"Die Betreffziele","uz":"suhbat mavzusi","gender":"f","pos":"noun"},{"id":"L12-058","de":"Der Abschied","uz":"xayrlashuv","gender":"m","pos":"noun"},{"id":"L12-059","de":"Die Geburtstagsfeier","uz":"tug'ilgan kun bayrami","gender":"f","pos":"noun"},{"id":"L12-060","de":"Der Arbeitstag","uz":"ish kuni","gender":"m","pos":"noun"},{"id":"L12-061","de":"Die Kantine","uz":"ishxonadagi oshxona","gender":"f","pos":"noun"},{"id":"L12-062","de":"Herzliche Grüße","uz":"Chin yurakdan salomlar","gender":null,"pos":"other"},{"id":"L12-063","de":"Die Zusammenarbeit","uz":"hamkorlik","gender":"f","pos":"noun"},{"id":"L12-064","de":"Der Einstand","uz":"boshi, boshlanishi","gender":"m","pos":"noun"},{"id":"L12-065","de":"Die Teeküche","uz":"tamaddixona","gender":"f","pos":"noun"},{"id":"L12-066","de":"Die Einladung","uz":"taklif","gender":"f","pos":"noun"},{"id":"L12-067","de":"Die Zusage","uz":"qabul qilish, rozilik","gender":"f","pos":"noun"},{"id":"L12-068","de":"zusagen","uz":"rozi bo'lmoq","gender":null,"pos":"other"},{"id":"L12-069","de":"Die Absage","uz":"inkor","gender":"f","pos":"noun"},{"id":"L12-070","de":"absagen","uz":"inkor qilmoq","gender":null,"pos":"other"},{"id":"L12-071","de":"nachträglich","uz":"keyin, keyinroq","gender":null,"pos":"other"}],"13":[{"id":"L13-001","de":"Die Mauer","uz":"devor","gender":"f","pos":"noun"},{"id":"L13-002","de":"geteilt","uz":"bo'lingan","gender":null,"pos":"other"},{"id":"L13-003","de":"Die Mietpreis","uz":"ijara haqi","gender":"f","pos":"noun"},{"id":"L13-004","de":"Der Tipp","uz":"maslahat","gender":"m","pos":"noun"},{"id":"L13-005","de":"Der Zoo","uz":"hayvonot bog'i","gender":"m","pos":"noun"},{"id":"L13-006","de":"Der Tierpark","uz":"hayvonot bog'i","gender":"m","pos":"noun"},{"id":"L13-007","de":"Die Informatik","uz":"informatika","gender":"f","pos":"noun"},{"id":"L13-008","de":"zeigen","uz":"ko'rsatmoq","gender":null,"pos":"other"},{"id":"L13-009","de":"Die Kunst","uz":"san'at","gender":"f","pos":"noun"},{"id":"L13-010","de":"Die Kultur","uz":"madaniyat","gender":"f","pos":"noun"},{"id":"L13-011","de":"Das Festival","uz":"festival","gender":"n","pos":"noun"},{"id":"L13-012","de":"manche","uz":"ba'zi","gender":null,"pos":"other"},{"id":"L13-013","de":"verrückt","uz":"jinni","gender":null,"pos":"other"},{"id":"L13-014","de":"anders","uz":"boshqa","gender":null,"pos":"other"},{"id":"L13-015","de":"denken","uz":"o'ylamoq","gender":null,"pos":"other"},{"id":"L13-016","de":"gefallen","uz":"yoqmoq","gender":null,"pos":"other"},{"id":"L13-017","de":"billig","uz":"arzon","gender":null,"pos":"other"},{"id":"L13-018","de":"Die Wohnung","uz":"xona","gender":"f","pos":"noun"},{"id":"L13-019","de":"recht haben","uz":"haq bo'lmoq","gender":null,"pos":"other"},{"id":"L13-020","de":"der Spielplatz","uz":"o'yingoh","gender":"m","pos":"noun"},{"id":"L13-021","de":"zum Beispiel","uz":"misol uchun","gender":null,"pos":"other"},{"id":"L13-022","de":"Das Märchen","uz":"ertak","gender":"n","pos":"noun"},{"id":"L13-023","de":"ganz","uz":"butunlay","gender":null,"pos":"other"},{"id":"L13-024","de":"Die Nähe","uz":"yaqinda","gender":"f","pos":"noun"},{"id":"L13-025","de":"danken","uz":"rahmat aytmoq","gender":null,"pos":"other"},{"id":"L13-026","de":"helfen","uz":"yordam bermoq","gender":null,"pos":"other"},{"id":"L13-027","de":"gehören","uz":"tegishli bo'lmoq","gender":null,"pos":"other"},{"id":"L13-028","de":"Wohin?","uz":"qayerga?","gender":null,"pos":"phrase"},{"id":"L13-029","de":"reisen","uz":"sayohat qilmoq","gender":null,"pos":"other"},{"id":"L13-030","de":"Italien","uz":"Italiya","gender":null,"pos":"other"},{"id":"L13-031","de":"Die Bibliothek","uz":"kutubxona","gender":"f","pos":"noun"},{"id":"L13-032","de":"Das Viertel","uz":"kvartal","gender":"n","pos":"noun"},{"id":"L13-033","de":"Das Picknick","uz":"piknik","gender":"n","pos":"noun"},{"id":"L13-034","de":"Das Boot","uz":"qayiq","gender":"n","pos":"noun"},{"id":"L13-035","de":"mieten","uz":"ijaraga olmoq","gender":null,"pos":"other"},{"id":"L13-036","de":"Der Volleyball","uz":"voleybal","gender":"m","pos":"noun"},{"id":"L13-037","de":"Die Natur","uz":"tabiat","gender":"f","pos":"noun"},{"id":"L13-038","de":"Der Ball","uz":"koptok","gender":"m","pos":"noun"},{"id":"L13-039","de":"angeln","uz":"baliq tutmoq","gender":null,"pos":"other"},{"id":"L13-040","de":"fischen","uz":"baliq tutmoq","gender":null,"pos":"other"}],"14":[{"id":"L14-001","de":"Das Kaufhaus","uz":"savdo uyi","gender":"n","pos":"noun"},{"id":"L14-002","de":"Das Warenhaus","uz":"sotuv uyi","gender":"n","pos":"noun"},{"id":"L14-003","de":"weit","uz":"uzoq","gender":null,"pos":"other"},{"id":"L14-004","de":"Der Weg","uz":"yo'l","gender":"m","pos":"noun"},{"id":"L14-005","de":"Der Fuß","uz":"oyoq","gender":"m","pos":"noun"},{"id":"L14-006","de":"nach rechts","uz":"o'ngga","gender":null,"pos":"other"},{"id":"L14-007","de":"nach links","uz":"chapga","gender":null,"pos":"other"},{"id":"L14-008","de":"geradeaus","uz":"to'g'riga","gender":null,"pos":"other"},{"id":"L14-009","de":"abbiegen","uz":"burilmoq","gender":null,"pos":"other"},{"id":"L14-010","de":"über","uz":"ustida","gender":null,"pos":"other"},{"id":"L14-011","de":"Der Meter","uz":"metr","gender":"m","pos":"noun"},{"id":"L14-012","de":"Die Ampel","uz":"svetafor","gender":"f","pos":"noun"},{"id":"L14-013","de":"Das Lichtsignal","uz":"svetafor","gender":"n","pos":"noun"},{"id":"L14-014","de":"Der Platz","uz":"joy","gender":"m","pos":"noun"},{"id":"L14-015","de":"Die Brücke","uz":"ko'prik","gender":"f","pos":"noun"},{"id":"L14-016","de":"Der Baum","uz":"daraxt","gender":"m","pos":"noun"},{"id":"L14-017","de":"Das Foto","uz":"rasm","gender":"n","pos":"noun"},{"id":"L14-018","de":"Das Smartphone","uz":"smartfon","gender":"n","pos":"noun"},{"id":"L14-019","de":"beschreiben","uz":"ifodalamoq","gender":null,"pos":"other"},{"id":"L14-020","de":"aussehen","uz":"tashqaridan ko'rinmoq","gender":null,"pos":"other"},{"id":"L14-021","de":"Der Plan","uz":"reja","gender":"m","pos":"noun"},{"id":"L14-022","de":"ausschauen","uz":"tashqaridan qaramoq","gender":null,"pos":"other"},{"id":"L14-023","de":"erste","uz":"birinchi","gender":null,"pos":"other"},{"id":"L14-024","de":"Zweite","uz":"ikkinchi","gender":null,"pos":"other"},{"id":"L14-025","de":"dritte","uz":"uchinchi","gender":null,"pos":"other"},{"id":"L14-026","de":"fremd","uz":"begona","gender":null,"pos":"other"}],"15":[{"id":"L15-001","de":"Die Wohngemeinschaft","uz":"umumiy turar joy","gender":"f","pos":"noun"},{"id":"L15-002","de":"gemütlich","uz":"qulay","gender":null,"pos":"other"},{"id":"L15-003","de":"ordentlich","uz":"tartibli","gender":null,"pos":"other"},{"id":"L15-004","de":"überhaupt","uz":"umuman","gender":null,"pos":"other"},{"id":"L15-005","de":"Der Balkon","uz":"balkon","gender":"m","pos":"noun"},{"id":"L15-006","de":"Das Fenster","uz":"deraza","gender":"n","pos":"noun"},{"id":"L15-007","de":"Die Tür","uz":"eshik","gender":"f","pos":"noun"},{"id":"L15-008","de":"Der Garten","uz":"bog'","gender":"m","pos":"noun"},{"id":"L15-009","de":"oben","uz":"tepada","gender":null,"pos":"other"},{"id":"L15-010","de":"hinten","uz":"orqasida","gender":null,"pos":"other"},{"id":"L15-011","de":"vorn","uz":"oldida","gender":null,"pos":"other"},{"id":"L15-012","de":"unten","uz":"tagida","gender":null,"pos":"other"},{"id":"L15-013","de":"ihr","uz":"uning (qiz bola)","gender":null,"pos":"other"},{"id":"L15-014","de":"sein","uz":"uning (o'g'il bola)","gender":null,"pos":"other"},{"id":"L15-015","de":"umziehen","uz":"ko'chmoq","gender":null,"pos":"other"},{"id":"L15-016","de":"laut","uz":"baland (ovoz)","gender":null,"pos":"other"},{"id":"L15-017","de":"Die Miete","uz":"ijara","gender":"f","pos":"noun"},{"id":"L15-018","de":"Die Quadratmeter","uz":"kvadratmeter","gender":"f","pos":"noun"},{"id":"L15-019","de":"übermorgen","uz":"ertadan keyin","gender":null,"pos":"other"},{"id":"L15-020","de":"Das Semester","uz":"semestr","gender":"n","pos":"noun"},{"id":"L15-021","de":"anfangen","uz":"boshla(n)moq","gender":null,"pos":"other"},{"id":"L15-022","de":"schlecht","uz":"yomon","gender":null,"pos":"other"},{"id":"L15-023","de":"Die Leute","uz":"odamlar","gender":"f","pos":"noun"},{"id":"L15-024","de":"inklusive","uz":"qo'shimcha ravishda","gender":null,"pos":"other"},{"id":"L15-025","de":"Die Nebenkosten","uz":"qo'shimcha narxlar","gender":"f","pos":"noun"},{"id":"L15-026","de":"dabei","uz":"birga (o'zi bilan)","gender":null,"pos":"other"},{"id":"L15-027","de":"bald","uz":"yaqinda","gender":null,"pos":"other"},{"id":"L15-028","de":"Die Anzeige","uz":"E'lon","gender":"f","pos":"noun"},{"id":"L15-029","de":"möbiliert","uz":"jihozlangan","gender":null,"pos":"other"},{"id":"L15-030","de":"Das Apartment","uz":"ijara","gender":"n","pos":"noun"},{"id":"L15-031","de":"Der Stock","uz":"qavat","gender":"m","pos":"noun"},{"id":"L15-032","de":"sofort","uz":"shu zahoti","gender":null,"pos":"other"},{"id":"L15-033","de":"maximal","uz":"maksimal","gender":null,"pos":"other"},{"id":"L15-034","de":"bezahlen","uz":"to'lamoq","gender":null,"pos":"other"},{"id":"L15-035","de":"Traum","uz":"orzu","gender":null,"pos":"other"},{"id":"L15-036","de":"gleich","uz":"bir vaqtda, teng","gender":null,"pos":"other"},{"id":"L15-037","de":"Der Anwalt","uz":"xodim","gender":"m","pos":"noun"},{"id":"L15-038","de":"Das Recht","uz":"huquq","gender":"n","pos":"noun"},{"id":"L15-039","de":"Die Stelle","uz":"o'rin, joy","gender":"f","pos":"noun"},{"id":"L15-040","de":"Das Einzelbüro","uz":"shaxsiy ofis","gender":"n","pos":"noun"},{"id":"L15-041","de":"Das Zweierbüro","uz":"ikki kishilik byuro","gender":"n","pos":"noun"},{"id":"L15-042","de":"Das Großraumbüro","uz":"katta byuro","gender":"n","pos":"noun"},{"id":"L15-043","de":"Der Empfang","uz":"qabulxona","gender":"m","pos":"noun"},{"id":"L15-044","de":"Die Reception","uz":"qabulxona","gender":"f","pos":"noun"},{"id":"L15-045","de":"Die Kantine","uz":"ishxonadagi oshxona","gender":"f","pos":"noun"},{"id":"L15-046","de":"Die Konferenz","uz":"konferensiya","gender":"f","pos":"noun"},{"id":"L15-047","de":"Der Kopierraum","uz":"bosmaxona","gender":"m","pos":"noun"},{"id":"L15-048","de":"Die Teeküche","uz":"tamaddixona","gender":"f","pos":"noun"}],"16":[{"id":"L16-001","de":"Der Aufzug","uz":"lift","gender":"m","pos":"noun"},{"id":"L16-002","de":"Der Lift","uz":"lift","gender":"m","pos":"noun"},{"id":"L16-003","de":"kennenlernen","uz":"tanishmoq","gender":null,"pos":"other"},{"id":"L16-004","de":"nervös","uz":"asabiy","gender":null,"pos":"other"},{"id":"L16-005","de":"Die Angst","uz":"qo'rquv","gender":"f","pos":"noun"},{"id":"L16-006","de":"Das Netz","uz":"antenna","gender":"n","pos":"noun"},{"id":"L16-007","de":"funktionieren","uz":"ishlamoq","gender":null,"pos":"other"},{"id":"L16-008","de":"los sein","uz":"sodir bo'lmoq","gender":null,"pos":"other"},{"id":"L16-009","de":"reparieren","uz":"tuzatmoq","gender":null,"pos":"other"},{"id":"L16-010","de":"anbieten","uz":"taklif qilmoq","gender":null,"pos":"other"},{"id":"L16-011","de":"Die Bitte","uz":"iltimos","gender":"f","pos":"noun"},{"id":"L16-012","de":"Der Handwerker","uz":"Usta, hunarmand","gender":"m","pos":"noun"},{"id":"L16-013","de":"selbst","uz":"mustaqil","gender":null,"pos":"other"},{"id":"L16-014","de":"selber","uz":"mustaqil","gender":null,"pos":"other"},{"id":"L16-015","de":"erklären","uz":"tushuntirmoq","gender":null,"pos":"other"},{"id":"L16-016","de":"Die Reparatur","uz":"tuzatish","gender":"f","pos":"noun"},{"id":"L16-017","de":"ausmachen","uz":"kelishmoq","gender":null,"pos":"other"},{"id":"L16-018","de":"vereinbaren","uz":"kelishmoq","gender":null,"pos":"other"},{"id":"L16-019","de":"pünktlich","uz":"o'z vaqtida","gender":null,"pos":"other"},{"id":"L16-020","de":"vorschlagen","uz":"taklif qilmoq","gender":null,"pos":"other"},{"id":"L16-021","de":"absagen","uz":"rad etmoq","gender":null,"pos":"other"},{"id":"L16-022","de":"verabschieden","uz":"xayrlashmmoq","gender":null,"pos":"other"},{"id":"L16-023","de":"sehr geehrte","uz":"qadrli","gender":null,"pos":"other"},{"id":"L16-024","de":"mit freundlichen Grüßen","uz":"Do'stona salomlar ila","gender":null,"pos":"other"},{"id":"L16-025","de":"in","uz":".. (ichi)da","gender":null,"pos":"other"},{"id":"L16-026","de":"vor","uz":".. oldi, -da, -ga","gender":null,"pos":"other"},{"id":"L16-027","de":"nach","uz":"(tomon)ga","gender":null,"pos":"other"},{"id":"L16-028","de":"bekommen","uz":"olmoq","gender":null,"pos":"other"},{"id":"L16-029","de":"Das Vorstellungsgespräch","uz":"tanishuv suhbati","gender":"n","pos":"noun"},{"id":"L16-030","de":"Nach Hause","uz":"uyga","gender":null,"pos":"other"},{"id":"L16-031","de":"erst","uz":"birinchi","gender":null,"pos":"other"},{"id":"L16-032","de":"Oje, du Arme","uz":"O, bechoragina","gender":null,"pos":"other"},{"id":"L16-033","de":"klappen","uz":"o'xshamoq","gender":null,"pos":"other"},{"id":"L16-034","de":"Das Training","uz":"trening","gender":"n","pos":"noun"},{"id":"L16-035","de":"Das Treffen","uz":"uchrashuv","gender":"n","pos":"noun"}],"17":[{"id":"L17-001","de":"werden","uz":"bo'lmoq","gender":null,"pos":"other"},{"id":"L17-002","de":"auf jeden Fall","uz":"har qanday holatda","gender":null,"pos":"other"},{"id":"L17-003","de":"unbedingt","uz":"tezda","gender":null,"pos":"other"},{"id":"L17-004","de":"auf keinen Fall","uz":"hech qachon","gender":null,"pos":"other"},{"id":"L17-005","de":"Der Astronaut","uz":"astronavt","gender":"m","pos":"noun"},{"id":"L17-006","de":"Der Polizist","uz":"politsiyachi","gender":"m","pos":"noun"},{"id":"L17-007","de":"wollen","uz":"xohlamoq","gender":null,"pos":"other"},{"id":"L17-008","de":"Der Plan","uz":"reja","gender":"m","pos":"noun"},{"id":"L17-009","de":"gründen","uz":"asos solmoq","gender":null,"pos":"other"},{"id":"L17-010","de":"Das Geld","uz":"pul","gender":"n","pos":"noun"},{"id":"L17-011","de":"Geld verdienen","uz":"pul ishlab topmoq","gender":null,"pos":"other"},{"id":"L17-012","de":"Das Berufsleben","uz":"kasbiy hayot","gender":"n","pos":"noun"},{"id":"L17-013","de":"jung","uz":"yosh","gender":null,"pos":"other"},{"id":"L17-014","de":"Das Marketing","uz":"marketing","gender":"n","pos":"noun"},{"id":"L17-015","de":"Der Lifestyle","uz":"hayot tarzi","gender":"m","pos":"noun"},{"id":"L17-016","de":"Die Wirtschaft","uz":"iqtisodiyot","gender":"f","pos":"noun"},{"id":"L17-017","de":"Die Halbtagsstelle","uz":"yarim kunlik ish joyi","gender":"f","pos":"noun"},{"id":"L17-018","de":"selbstständig","uz":"mustaqil","gender":null,"pos":"other"},{"id":"L17-019","de":"eigene","uz":"shaxsiy","gender":null,"pos":"other"},{"id":"L17-020","de":"damit","uz":"bu bilan","gender":null,"pos":"other"},{"id":"L17-021","de":"Der Abschluss","uz":"yakun, nihoya","gender":"m","pos":"noun"},{"id":"L17-022","de":"Der Studienplatz","uz":"o'qish joyi","gender":"m","pos":"noun"},{"id":"L17-023","de":"Die Note","uz":"baho","gender":"f","pos":"noun"},{"id":"L17-024","de":"Der Krankenpfleger","uz":"medbrat","gender":"m","pos":"noun"},{"id":"L17-025","de":"ohne","uz":"-siz","gender":null,"pos":"other"},{"id":"L17-026","de":"Die Grenze","uz":"chegara","gender":"f","pos":"noun"},{"id":"L17-027","de":"Die Welt","uz":"dunyo","gender":"f","pos":"noun"},{"id":"L17-028","de":"Der Mensch","uz":"inson, odam","gender":"m","pos":"noun"},{"id":"L17-029","de":"wichtig","uz":"muhim","gender":null,"pos":"other"},{"id":"L17-030","de":"halbtags","uz":"kunning yarim qismida","gender":null,"pos":"other"},{"id":"L17-031","de":"Der Hund","uz":"kuchuk","gender":"m","pos":"noun"},{"id":"L17-032","de":"traurig","uz":"xafa","gender":null,"pos":"other"},{"id":"L17-033","de":"Der Politiker","uz":"siyosatchi","gender":"m","pos":"noun"},{"id":"L17-034","de":"Die Fremdsprache","uz":"chet tili","gender":"f","pos":"noun"},{"id":"L17-035","de":"Der Chef","uz":"xo'jayin","gender":"m","pos":"noun"},{"id":"L17-036","de":"heiraten","uz":"turmush qurmoq","gender":null,"pos":"other"},{"id":"L17-037","de":"Der Berg","uz":"tog'","gender":"m","pos":"noun"},{"id":"L17-038","de":"Das Europa","uz":"yevropa","gender":"n","pos":"noun"},{"id":"L17-039","de":"Das Ausland","uz":"chet el","gender":"n","pos":"noun"},{"id":"L17-040","de":"Das Motorrad","uz":"mototsikl","gender":"n","pos":"noun"},{"id":"L17-041","de":"Der Führerschein","uz":"haydovchilik guvohnomasi","gender":"m","pos":"noun"},{"id":"L17-042","de":"Der Führerausweis","uz":"haydovchilik guvohnomasi","gender":"m","pos":"noun"},{"id":"L17-043","de":"Das Instrument","uz":"asbob, uskuna","gender":"n","pos":"noun"},{"id":"L17-044","de":"Das Norwegen","uz":"Norvegiya","gender":"n","pos":"noun"},{"id":"L17-045","de":"Der Koch","uz":"oshpaz","gender":"m","pos":"noun"},{"id":"L17-046","de":"Die Köchin","uz":"oshpaz, ayol","gender":"f","pos":"noun"}],"18":[{"id":"L18-001","de":"Die Übung","uz":"mashq","gender":"f","pos":"noun"},{"id":"L18-002","de":"Der Kopf","uz":"bosh","gender":"m","pos":"noun"},{"id":"L18-003","de":"Der Schmerz","uz":"og'riq","gender":"m","pos":"noun"},{"id":"L18-004","de":"Das Weh","uz":"og'riq","gender":"n","pos":"noun"},{"id":"L18-005","de":"müde","uz":"charchagan","gender":null,"pos":"other"},{"id":"L18-006","de":"schlimm","uz":"yomon","gender":null,"pos":"other"},{"id":"L18-007","de":"gegen","uz":"qarshi","gender":null,"pos":"other"},{"id":"L18-008","de":"Die Situation","uz":"holat","gender":"f","pos":"noun"},{"id":"L18-009","de":"üblich","uz":"odatiy","gender":null,"pos":"other"},{"id":"L18-010","de":"sitzen","uz":"o'tirmoq","gender":null,"pos":"other"},{"id":"L18-011","de":"krank","uz":"kasal","gender":null,"pos":"other"},{"id":"L18-012","de":"gesund","uz":"sog'lom","gender":null,"pos":"other"},{"id":"L18-013","de":"Die Bewegung","uz":"harakatlanish","gender":"f","pos":"noun"},{"id":"L18-014","de":"ungefähr","uz":"taxminan","gender":null,"pos":"other"},{"id":"L18-015","de":"sogar","uz":"hattoki","gender":null,"pos":"other"},{"id":"L18-016","de":"bedeuten","uz":"anglatmoq","gender":null,"pos":"other"},{"id":"L18-017","de":"Die Übergewicht","uz":"ortiqcha vazn","gender":"f","pos":"noun"},{"id":"L18-018","de":"Das Herz","uz":"yurak","gender":"n","pos":"noun"},{"id":"L18-019","de":"Die Krankheit","uz":"kasallik","gender":"f","pos":"noun"},{"id":"L18-020","de":"dagegen","uz":"shunga qarshi","gender":null,"pos":"other"},{"id":"L18-021","de":"aufstehen","uz":"o'rnidan turmoq","gender":null,"pos":"other"},{"id":"L18-022","de":"benutzen","uz":"foydalanmoq","gender":null,"pos":"other"},{"id":"L18-023","de":"Der Ratschlag","uz":"maslahat","gender":"m","pos":"noun"},{"id":"L18-024","de":"benützen","uz":"foydalanmoq","gender":null,"pos":"other"},{"id":"L18-025","de":"schicken","uz":"yubormoq","gender":null,"pos":"other"},{"id":"L18-026","de":"gewinnen","uz":"yutmoq","gender":null,"pos":"other"},{"id":"L18-027","de":"Das Frisbee","uz":"bumerang","gender":"n","pos":"noun"},{"id":"L18-028","de":"Der Roller","uz":"skuter","gender":"m","pos":"noun"},{"id":"L18-029","de":"Der Körper","uz":"tana","gender":"m","pos":"noun"},{"id":"L18-030","de":"Der Körperteil","uz":"tana a'zolari","gender":"m","pos":"noun"},{"id":"L18-031","de":"Das Forum","uz":"form","gender":"n","pos":"noun"},{"id":"L18-032","de":"Der Schnupfen","uz":"tumov","gender":"m","pos":"noun"},{"id":"L18-033","de":"wehtun","uz":"og'rimoq","gender":null,"pos":"other"},{"id":"L18-034","de":"genug","uz":"yetarli","gender":null,"pos":"other"},{"id":"L18-035","de":"Die Erkältung","uz":"shamollash","gender":"f","pos":"noun"},{"id":"L18-036","de":"Die Verkültung","uz":"shamollash","gender":"f","pos":"noun"},{"id":"L18-037","de":"Der Honig","uz":"asal","gender":"m","pos":"noun"},{"id":"L18-038","de":"sollen","uz":"shart, lozim, darkor","gender":null,"pos":"other"},{"id":"L18-039","de":"Das Fieber","uz":"isitma","gender":"n","pos":"noun"},{"id":"L18-040","de":"Die Ruhe","uz":"sokinlik","gender":"f","pos":"noun"},{"id":"L18-041","de":"Die Tablette","uz":"tabletka","gender":"f","pos":"noun"},{"id":"L18-042","de":"Das Medikament","uz":"dori vositalari","gender":"n","pos":"noun"},{"id":"L18-043","de":"Die Salbe","uz":"malham","gender":"f","pos":"noun"},{"id":"L18-044","de":"Der Hustensaft","uz":"sirop","gender":"m","pos":"noun"},{"id":"L18-045","de":"Die Umfrage","uz":"so'rovnoma","gender":"f","pos":"noun"},{"id":"L18-046","de":"betreuen","uz":"shug'ullanmoq","gender":null,"pos":"other"},{"id":"L18-047","de":"Die Datei","uz":"malumot, jild","gender":"f","pos":"noun"},{"id":"L18-048","de":"Die Präsentation","uz":"prezentatsiya","gender":"f","pos":"noun"},{"id":"L18-049","de":"schaffen","uz":"uddalamoq","gender":null,"pos":"other"},{"id":"L18-050","de":"eilig","uz":"shoshilib","gender":null,"pos":"other"},{"id":"L18-051","de":"Die Software","uz":"dasturiy ta'minot","gender":"f","pos":"noun"},{"id":"L18-052","de":"Die Teamarbeit","uz":"jamoaviy ish","gender":"f","pos":"noun"},{"id":"L18-053","de":"Der Workshop","uz":"seminar","gender":"m","pos":"noun"},{"id":"L18-054","de":"Das Modell","uz":"model","gender":"n","pos":"noun"},{"id":"L18-055","de":"Die Abteilung","uz":"qism, bo'lim","gender":"f","pos":"noun"}],"19":[{"id":"L19-001","de":"aufmachen","uz":"ochmoq","gender":null,"pos":"other"},{"id":"L19-002","de":"zumachen","uz":"yopmoq","gender":null,"pos":"other"},{"id":"L19-003","de":"Der Abfall","uz":"chiqindi","gender":"m","pos":"noun"},{"id":"L19-004","de":"Der Mist","uz":"chiqindi","gender":"m","pos":"noun"},{"id":"L19-005","de":"sauer","uz":"jaxldor","gender":null,"pos":"other"},{"id":"L19-006","de":"Der Haushalt","uz":"uy ishlari","gender":"m","pos":"noun"},{"id":"L19-007","de":"rausbringen","uz":"tashqariga olib chiqmoq","gender":null,"pos":"other"},{"id":"L19-008","de":"Die Spülmaschine","uz":"idish tovoq yuvuvchi mashina","gender":"f","pos":"noun"},{"id":"L19-009","de":"ausräumen","uz":"yig'ishtirmoq","gender":null,"pos":"other"},{"id":"L19-010","de":"sauber","uz":"toza","gender":null,"pos":"other"},{"id":"L19-011","de":"Das Geschirr","uz":"idish tovoq","gender":"n","pos":"noun"},{"id":"L19-012","de":"putzen","uz":"tozalamoq","gender":null,"pos":"other"},{"id":"L19-013","de":"Der Boden","uz":"yer, tuproq","gender":"m","pos":"noun"},{"id":"L19-014","de":"wischen","uz":"artmoq","gender":null,"pos":"other"},{"id":"L19-015","de":"vergessen","uz":"unutmoq","gender":null,"pos":"other"},{"id":"L19-016","de":"herkommen","uz":"kelmoq","gender":null,"pos":"other"},{"id":"L19-017","de":"lieb","uz":"sevimli","gender":null,"pos":"other"},{"id":"L19-018","de":"rauchen","uz":"chekmoq","gender":null,"pos":"other"},{"id":"L19-019","de":"heiß","uz":"issiq","gender":null,"pos":"other"},{"id":"L19-020","de":"Die Luft","uz":"havo","gender":"f","pos":"noun"},{"id":"L19-021","de":"anmachen","uz":"yoqmoq","gender":null,"pos":"other"},{"id":"L19-022","de":"einschalten","uz":"yoqmoq","gender":null,"pos":"other"},{"id":"L19-023","de":"ausmachen","uz":"o'chirmoq","gender":null,"pos":"other"},{"id":"L19-024","de":"zuhören","uz":"diqqat bilan eshitmoq","gender":null,"pos":"other"},{"id":"L19-025","de":"Das Lied","uz":"qo'shiq","gender":"n","pos":"noun"},{"id":"L19-026","de":"Die Notiz","uz":"qayd, eslatma","gender":"f","pos":"noun"},{"id":"L19-027","de":"leise sein","uz":"sekinroq bo'lmoq","gender":null,"pos":"other"},{"id":"L19-028","de":"Das Spiel","uz":"o'yin","gender":"n","pos":"noun"},{"id":"L19-029","de":"lachen","uz":"kulmoq","gender":null,"pos":"other"},{"id":"L19-030","de":"Die Tüte","uz":"qop","gender":"f","pos":"noun"},{"id":"L19-031","de":"Das Sackerl","uz":"qop","gender":"n","pos":"noun"},{"id":"L19-032","de":"Der Sack","uz":"qop","gender":"m","pos":"noun"},{"id":"L19-033","de":"Die Maschine","uz":"mashina","gender":"f","pos":"noun"},{"id":"L19-034","de":"schmutzig","uz":"iflos","gender":null,"pos":"other"},{"id":"L19-035","de":"zurückrufen","uz":"qayta qo'ng'iroq qilmoq","gender":null,"pos":"other"},{"id":"L19-036","de":"Die Pause","uz":"tanaffus","gender":"f","pos":"noun"},{"id":"L19-037","de":"Der Grund","uz":"asos, sabab","gender":"m","pos":"noun"},{"id":"L19-038","de":"in Ordnung","uz":"joyida, tartibli","gender":null,"pos":"other"},{"id":"L19-039","de":"das geht so nicht","uz":"bunaqasi ketmaydi","gender":"n","pos":"noun"},{"id":"L19-040","de":"recht haben","uz":"haq bo'lmoq","gender":null,"pos":"other"},{"id":"L19-041","de":"böse","uz":"jaxldor","gender":null,"pos":"other"}],"20":[{"id":"L20-001","de":"Die Website","uz":"Web-sayt","gender":"f","pos":"noun"},{"id":"L20-002","de":"Der/das Service","uz":"servis","gender":null,"pos":"other"},{"id":"L20-003","de":"Der Fehler","uz":"xato","gender":"m","pos":"noun"},{"id":"L20-004","de":"beraten","uz":"maslahat bermoq","gender":null,"pos":"other"},{"id":"L20-005","de":"Das Team","uz":"jamoa","gender":"n","pos":"noun"},{"id":"L20-006","de":"Der Berater","uz":"maslahatchi","gender":"m","pos":"noun"},{"id":"L20-007","de":"Der Experte","uz":"ekspert","gender":"m","pos":"noun"},{"id":"L20-008","de":"Das Projekt","uz":"loyiha","gender":"n","pos":"noun"},{"id":"L20-009","de":"der Manager","uz":"menejer","gender":"m","pos":"noun"},{"id":"L20-010","de":"Der Psychologe","uz":"psixolog","gender":"m","pos":"noun"},{"id":"L20-011","de":"Die Fachmann","uz":"mutaxasis","gender":"f","pos":"noun"},{"id":"L20-012","de":"Die Medien","uz":"OAV, ommaviy axborot vositalari","gender":"f","pos":"noun"},{"id":"L20-013","de":"Die Kommunikation","uz":"Kommunikatsiya","gender":"f","pos":"noun"},{"id":"L20-014","de":"Die Szene","uz":"sahna","gender":"f","pos":"noun"},{"id":"L20-015","de":"irgendwann","uz":"qachondir","gender":null,"pos":"other"},{"id":"L20-016","de":"probieren","uz":"sinab ko'rmoq","gender":null,"pos":"other"},{"id":"L20-017","de":"Der Schritt","uz":"qadam","gender":"m","pos":"noun"},{"id":"L20-018","de":"Die Organisation","uz":"tashkilot","gender":"f","pos":"noun"},{"id":"L20-019","de":"organisieren","uz":"tashkillashtirmoq","gender":null,"pos":"other"},{"id":"L20-020","de":"verbessern","uz":"yaxshilamoq","gender":null,"pos":"other"},{"id":"L20-021","de":"Die Technik","uz":"texnika","gender":"f","pos":"noun"},{"id":"L20-022","de":"Das Werkzeug","uz":"asbob, uskuna","gender":"n","pos":"noun"},{"id":"L20-023","de":"mehrere","uz":"ko'plab","gender":null,"pos":"other"},{"id":"L20-024","de":"erfolgreich","uz":"muvaffaqiyatli","gender":null,"pos":"other"},{"id":"L20-025","de":"mitarbeiten","uz":"birga ishlamoq","gender":null,"pos":"other"},{"id":"L20-026","de":"Der Spezialist","uz":"mutaxasis","gender":"m","pos":"noun"},{"id":"L20-027","de":"Die Werbung","uz":"reklama","gender":"f","pos":"noun"},{"id":"L20-028","de":"transportieren","uz":"tashimoq","gender":null,"pos":"other"},{"id":"L20-029","de":"sympathisch","uz":"yoqimli","gender":null,"pos":"other"},{"id":"L20-030","de":"freundlich","uz":"do'stona","gender":null,"pos":"other"},{"id":"L20-031","de":"kräftig","uz":"kuchli","gender":null,"pos":"other"},{"id":"L20-032","de":"schlank","uz":"kuchsiz","gender":null,"pos":"other"},{"id":"L20-033","de":"fröhlich","uz":"quvnoq","gender":null,"pos":"other"},{"id":"L20-034","de":"kreativ","uz":"kreativ","gender":null,"pos":"other"},{"id":"L20-035","de":"ruhig","uz":"sokin, tinch","gender":null,"pos":"other"},{"id":"L20-036","de":"langweilig","uz":"zerikarli","gender":null,"pos":"other"},{"id":"L20-037","de":"fad","uz":"zerikarli","gender":null,"pos":"other"},{"id":"L20-038","de":"Die Agentur","uz":"agentlik","gender":"f","pos":"noun"},{"id":"L20-039","de":"zufrieden","uz":"mamnun","gender":null,"pos":"other"},{"id":"L20-040","de":"aufstehen","uz":"o'rnidan turmoq","gender":null,"pos":"other"},{"id":"L20-041","de":"verpassen","uz":"o'tkazib yubormoq","gender":null,"pos":"other"},{"id":"L20-042","de":"verlieren","uz":"yo'qotmoq","gender":null,"pos":"other"},{"id":"L20-043","de":"Das Päckchen","uz":"quticha, paketcha","gender":"n","pos":"noun"},{"id":"L20-044","de":"Das Packerl","uz":"paketcha","gender":"n","pos":"noun"},{"id":"L20-045","de":"Echt?","uz":"rostanmi?","gender":null,"pos":"phrase"},{"id":"L20-046","de":"Puh!","uz":"Fuh!","gender":null,"pos":"other"},{"id":"L20-047","de":"lila","uz":"binafsha rang","gender":null,"pos":"other"}],"21":[{"id":"L21-001","de":"werfen","uz":"tashlamoq","gender":null,"pos":"other"},{"id":"L21-002","de":"verboten","uz":"taqiqlamoq","gender":null,"pos":"other"},{"id":"L21-003","de":"erlaubt","uz":"ruxsat berilgan","gender":null,"pos":"other"},{"id":"L21-004","de":"Der Helm","uz":"shlem","gender":"m","pos":"noun"},{"id":"L21-005","de":"gefährlich","uz":"xavfli","gender":null,"pos":"other"},{"id":"L21-006","de":"nutzen","uz":"foydalanmoq","gender":null,"pos":"other"},{"id":"L21-007","de":"Der Fahrer","uz":"haydovchi","gender":"m","pos":"noun"},{"id":"L21-008","de":"grillen","uz":"gril qilmoq","gender":null,"pos":"other"},{"id":"L21-009","de":"stören","uz":"xalal bermoq","gender":null,"pos":"other"},{"id":"L21-010","de":"Der Nachbar","uz":"qo'shni","gender":"m","pos":"noun"},{"id":"L21-011","de":"Die Region","uz":"mintaqa","gender":"f","pos":"noun"},{"id":"L21-012","de":"unglaublich","uz":"ishonib bo'lmaydigan","gender":null,"pos":"other"},{"id":"L21-013","de":"total","uz":"butunlay","gender":null,"pos":"other"},{"id":"L21-014","de":"Der Grill","uz":"gril","gender":"m","pos":"noun"},{"id":"L21-015","de":"Das Grillfest","uz":"Gril bayrami","gender":"n","pos":"noun"},{"id":"L21-016","de":"Das Grillfleisch","uz":"marinadli go'sht","gender":"n","pos":"noun"},{"id":"L21-017","de":"schwierig","uz":"qiyin","gender":null,"pos":"other"},{"id":"L21-018","de":"nämlich","uz":"ya'ni","gender":null,"pos":"other"},{"id":"L21-019","de":"dürfen","uz":"ruxsat ijozatga ega bo'lmoq","gender":null,"pos":"other"},{"id":"L21-020","de":"Der Mieter","uz":"ijarachi","gender":"m","pos":"noun"},{"id":"L21-021","de":"müssen","uz":"kerak, lozim, darkor","gender":null,"pos":"other"},{"id":"L21-022","de":"Die Hausordnung","uz":"uy tartib qoidalari","gender":"f","pos":"noun"},{"id":"L21-023","de":"darin","uz":"buyerda","gender":null,"pos":"other"},{"id":"L21-024","de":"meinen","uz":"fikrlamoq","gender":null,"pos":"other"},{"id":"L21-025","de":"Der Rauch","uz":"chekish","gender":"m","pos":"noun"},{"id":"L21-026","de":"gemeinsam","uz":"birgalikda","gender":null,"pos":"other"},{"id":"L21-027","de":"Die Umwelt","uz":"atrof-muhit","gender":"f","pos":"noun"},{"id":"L21-028","de":"Das Gemüse","uz":"sabzavotlar","gender":"n","pos":"noun"},{"id":"L21-029","de":"Der Tofu","uz":"fasol tvorogi","gender":"m","pos":"noun"},{"id":"L21-030","de":"tragen","uz":"ko'tarib olmoq","gender":null,"pos":"other"},{"id":"L21-031","de":"zelten","uz":"chodir tikmoq","gender":null,"pos":"other"},{"id":"L21-032","de":"baden","uz":"yuvinmoq","gender":null,"pos":"other"},{"id":"L21-033","de":"abladen","uz":"to'kmoq","gender":null,"pos":"other"},{"id":"L21-034","de":"parken","uz":"parkovka qilmoq","gender":null,"pos":"other"},{"id":"L21-035","de":"langsam","uz":"sekin","gender":null,"pos":"other"},{"id":"L21-036","de":"Die Leine","uz":"ip","gender":"f","pos":"noun"},{"id":"L21-037","de":"schieben","uz":"surib yurmoq","gender":null,"pos":"other"},{"id":"L21-038","de":"Die Wiese","uz":"o'tloq","gender":"f","pos":"noun"},{"id":"L21-039","de":"wegwerfen","uz":"tashlab yubormoq","gender":null,"pos":"other"},{"id":"L21-040","de":"Das Lokal","uz":"manzil","gender":"n","pos":"noun"},{"id":"L21-041","de":"mitnehmen","uz":"o'zi bilan olmoq","gender":null,"pos":"other"},{"id":"L21-042","de":"Das Verbot","uz":"taqiq","gender":"n","pos":"noun"},{"id":"L21-043","de":"Die Grundschule","uz":"boshlang'ich makab","gender":"f","pos":"noun"},{"id":"L21-044","de":"mitbringen","uz":"o'zi bilan olib kelmoq","gender":null,"pos":"other"},{"id":"L21-045","de":"angenehm","uz":"yoqimli","gender":null,"pos":"other"},{"id":"L21-046","de":"mega","uz":"juda","gender":null,"pos":"other"},{"id":"L21-047","de":"Die Projektleitung","uz":"loyiha boshqarish","gender":"f","pos":"noun"},{"id":"L21-048","de":"Die Bürogemeinschaft","uz":"ofis hamjamiyati","gender":"f","pos":"noun"},{"id":"L21-049","de":"kommunizieren","uz":"muloqot qilmoq","gender":null,"pos":"other"},{"id":"L21-050","de":"mini","uz":"kichik, mayda hajmli","gender":null,"pos":"other"},{"id":"L21-051","de":"Das Ziel","uz":"maqsad","gender":"n","pos":"noun"},{"id":"L21-052","de":"Die Besprechung","uz":"muhokama","gender":"f","pos":"noun"},{"id":"L21-053","de":"Das Programm","uz":"dastur","gender":"n","pos":"noun"},{"id":"L21-054","de":"lösen","uz":"yechmoq","gender":null,"pos":"other"},{"id":"L21-055","de":"übernehmen","uz":"bo'yniga olmoq","gender":null,"pos":"other"},{"id":"L21-056","de":"unterstützen","uz":"himoya qilmoq","gender":null,"pos":"other"},{"id":"L21-057","de":"Das Homeoffice","uz":"uy ofisi","gender":"n","pos":"noun"},{"id":"L21-058","de":"Das Video","uz":"videorolik","gender":"n","pos":"noun"},{"id":"L21-059","de":"kümmern sich","uz":"g'amxo'rlik qilmoq","gender":null,"pos":"other"}],"22":[{"id":"L22-001","de":"Die Kleidung","uz":"kiyim","gender":"f","pos":"noun"},{"id":"L22-002","de":"Das Gewand","uz":"kiyim","gender":"n","pos":"noun"},{"id":"L22-003","de":"Der Platz","uz":"joy","gender":"m","pos":"noun"},{"id":"L22-004","de":"Die Unordnung","uz":"tartibsizlik","gender":"f","pos":"noun"},{"id":"L22-005","de":"Die Jeans","uz":"jinsi","gender":"f","pos":"noun"},{"id":"L22-006","de":"Die Kleidungsstück","uz":"aksessuarlar","gender":"f","pos":"noun"},{"id":"L22-007","de":"circa (ca.)","uz":"taxminan","gender":null,"pos":"other"},{"id":"L22-008","de":"anziehen","uz":"kiyinmoq","gender":null,"pos":"other"},{"id":"L22-009","de":"zweimal","uz":"ikki marta","gender":null,"pos":"other"},{"id":"L22-010","de":"Der Wahnsinn","uz":"be'manilik","gender":"m","pos":"noun"},{"id":"L22-011","de":"Die Billigkleidung","uz":"Arzon kiyim(lar)","gender":"f","pos":"noun"},{"id":"L22-012","de":"anhaben","uz":"kiymoq","gender":null,"pos":"other"},{"id":"L22-013","de":"Der Strumpf","uz":"paypoq (kalgotki)","gender":"m","pos":"noun"},{"id":"L22-014","de":"Die Kniesocke","uz":"paypoq (kalgotki)","gender":"f","pos":"noun"},{"id":"L22-015","de":"Die Qualität","uz":"sifat","gender":"f","pos":"noun"},{"id":"L22-016","de":"tauschen","uz":"almashmoq","gender":null,"pos":"other"},{"id":"L22-017","de":"Der Billigladen","uz":"arzon magazin","gender":"m","pos":"noun"},{"id":"L22-018","de":"Die Möglichkeit","uz":"imkoniyat","gender":"f","pos":"noun"},{"id":"L22-019","de":"halten sich","uz":"o'zini tutmoq","gender":null,"pos":"other"},{"id":"L22-020","de":"Die Sachen","uz":"narsalar","gender":"f","pos":"noun"},{"id":"L22-021","de":"Die Klamotten","uz":"kiyim kechaklar","gender":"f","pos":"noun"},{"id":"L22-022","de":"nähen","uz":"tikmoq","gender":null,"pos":"other"},{"id":"L22-023","de":"am liebsten","uz":"eng sevimli","gender":null,"pos":"other"},{"id":"L22-024","de":"meistens","uz":"ko'pincha","gender":null,"pos":"other"},{"id":"L22-025","de":"verschieden","uz":"turli xil","gender":null,"pos":"other"},{"id":"L22-026","de":"zusammenpassen","uz":"birga mos tushmoq","gender":null,"pos":"other"},{"id":"L22-027","de":"am meisten","uz":"ko'pincha","gender":null,"pos":"other"},{"id":"L22-028","de":"Der Roman","uz":"roman","gender":"m","pos":"noun"},{"id":"L22-029","de":"hoch","uz":"baland","gender":null,"pos":"other"},{"id":"L22-030","de":"welche","uz":"qaysi","gender":null,"pos":"other"},{"id":"L22-031","de":"witzig","uz":"kulguli","gender":null,"pos":"other"}],"23":[{"id":"L23-001","de":"draußen","uz":"tashqarida","gender":null,"pos":"other"},{"id":"L23-002","de":"glücklich","uz":"baxtli","gender":null,"pos":"other"},{"id":"L23-003","de":"Die Heimat","uz":"vatan","gender":"f","pos":"noun"},{"id":"L23-004","de":"Das Meer","uz":"dengiz","gender":"n","pos":"noun"},{"id":"L23-005","de":"stark","uz":"kuchli","gender":null,"pos":"other"},{"id":"L23-006","de":"wohl","uz":"yaxshi","gender":null,"pos":"other"},{"id":"L23-007","de":"-los","uz":"-siz","gender":null,"pos":"other"},{"id":"L23-008","de":"scheinen","uz":"nur sochmoq","gender":null,"pos":"other"},{"id":"L23-009","de":"Der Himmel","uz":"osmon","gender":"m","pos":"noun"},{"id":"L23-010","de":"irgendwie","uz":"qandaydir","gender":null,"pos":"other"},{"id":"L23-011","de":"Der Schneeman","uz":"qorbobo","gender":"m","pos":"noun"},{"id":"L23-012","de":"Der Hai","uz":"akula","gender":"m","pos":"noun"},{"id":"L23-013","de":"einsam","uz":"yolg'iz","gender":null,"pos":"other"},{"id":"L23-014","de":"warum?","uz":"nima uchun?","gender":null,"pos":"phrase"},{"id":"L23-015","de":"Das Angebot","uz":"taklif","gender":"n","pos":"noun"},{"id":"L23-016","de":"Der Mond","uz":"oy (osmondagi)","gender":"m","pos":"noun"},{"id":"L23-017","de":"verfügbar","uz":"amal qiladigan","gender":null,"pos":"other"},{"id":"L23-018","de":"Das Reisebüro","uz":"sayyohlik byurosi","gender":"n","pos":"noun"},{"id":"L23-019","de":"still","uz":"tinch, sokin","gender":null,"pos":"other"},{"id":"L23-020","de":"Das Zelt","uz":"chodir","gender":"n","pos":"noun"},{"id":"L23-021","de":"Das Kamel","uz":"tuya","gender":"n","pos":"noun"}],"24":[{"id":"L24-001","de":"Das/Die Ostern","uz":"pasxa","gender":null,"pos":"other"},{"id":"L24-002","de":"eigentlich","uz":"odatda","gender":null,"pos":"other"},{"id":"L24-003","de":"schaffen","uz":"uddalamoq","gender":null,"pos":"other"},{"id":"L24-004","de":"Die Liebe","uz":"sevgi","gender":"f","pos":"noun"},{"id":"L24-005","de":"Der Blick","uz":"nigoh, nazar","gender":"m","pos":"noun"},{"id":"L24-006","de":"Die Katze","uz":"mushuk","gender":"f","pos":"noun"},{"id":"L24-007","de":"Der Unfall","uz":"baxtsiz hodisa","gender":"m","pos":"noun"},{"id":"L24-008","de":"sterben","uz":"vafot etmoq","gender":null,"pos":"other"},{"id":"L24-009","de":"Das Paar","uz":"juft(lik)","gender":"n","pos":"noun"},{"id":"L24-010","de":"Das Datum","uz":"sana","gender":"n","pos":"noun"},{"id":"L24-011","de":"Das Ereignis","uz":"vaziyat","gender":"n","pos":"noun"},{"id":"L24-012","de":"Das Neujahr","uz":"yangi yil","gender":"n","pos":"noun"},{"id":"L24-013","de":"Der Karneval","uz":"karnaval","gender":"m","pos":"noun"},{"id":"L24-014","de":"Der Fasching","uz":"karnaval","gender":"m","pos":"noun"},{"id":"L24-015","de":"Die Fastnacht","uz":"karnaval","gender":"f","pos":"noun"},{"id":"L24-016","de":"Der Feiertag","uz":"bayram","gender":"m","pos":"noun"},{"id":"L24-017","de":"Die Hochzeit","uz":"to'y","gender":"f","pos":"noun"},{"id":"L24-018","de":"bestehen","uz":"topshirmoq","gender":null,"pos":"other"},{"id":"L24-019","de":"Die Prüfung","uz":"imtihon","gender":"f","pos":"noun"},{"id":"L24-020","de":"Der Glückwunsch","uz":"tabrik","gender":"m","pos":"noun"},{"id":"L24-021","de":"alles Gute","uz":"barcha yaxshiliklar","gender":null,"pos":"other"},{"id":"L24-022","de":"gratulieren","uz":"tabriklamoq","gender":null,"pos":"other"},{"id":"L24-023","de":"Die Aktion","uz":"harakat, tadbir","gender":"f","pos":"noun"},{"id":"L24-024","de":"Die Lösung","uz":"yechim","gender":"f","pos":"noun"},{"id":"L24-025","de":"beachten","uz":"e'tibor bermoq","gender":null,"pos":"other"},{"id":"L24-026","de":"Der Mitmensch","uz":"hamroh","gender":"m","pos":"noun"},{"id":"L24-027","de":"Weltweit","uz":"dunyo bo'ylab","gender":null,"pos":"other"},{"id":"L24-028","de":"stattfinden","uz":"bo'lib o'tmoq","gender":null,"pos":"other"},{"id":"L24-029","de":"Die Freude","uz":"quvonch","gender":"f","pos":"noun"},{"id":"L24-030","de":"wünschen","uz":"tilamoq","gender":null,"pos":"other"},{"id":"L24-031","de":"es geht um","uz":"- haqida gap ketmoq","gender":null,"pos":"other"},{"id":"L24-032","de":"Die Sympathie","uz":"o'zaro hurmat","gender":"f","pos":"noun"},{"id":"L24-033","de":"Das Haustier","uz":"uy hayvoni","gender":"n","pos":"noun"},{"id":"L24-034","de":"Das Insekt","uz":"hashorot","gender":"n","pos":"noun"},{"id":"L24-035","de":"mitmachen","uz":"birga bajarmoq","gender":null,"pos":"other"},{"id":"L24-036","de":"Die Generation","uz":"avlod","gender":"f","pos":"noun"},{"id":"L24-037","de":"Die Veranstaltung","uz":"tadbir","gender":"f","pos":"noun"},{"id":"L24-038","de":"Im Ferien","uz":"ta'tilda","gender":null,"pos":"other"},{"id":"L24-039","de":"Nachsehen","uz":"ko'rib chiqmoq","gender":null,"pos":"other"},{"id":"L24-040","de":"nachschauen","uz":"ko'rib chiqmoq","gender":null,"pos":"other"},{"id":"L24-041","de":"Der Kommentar","uz":"kommentariya","gender":"m","pos":"noun"},{"id":"L24-042","de":"wunderbar","uz":"ajoyib","gender":null,"pos":"other"},{"id":"L24-043","de":"umarmen","uz":"quchoqlamoq","gender":null,"pos":"other"},{"id":"L24-044","de":"niemals","uz":"hech qachon","gender":null,"pos":"other"},{"id":"L24-045","de":"doof","uz":"ahmoq","gender":null,"pos":"other"},{"id":"L24-046","de":"blöd","uz":"jinni","gender":null,"pos":"other"},{"id":"L24-047","de":"fasten","uz":"ro'za tutmoq, biror narsani bajarishdan tiyilmoq","gender":null,"pos":"other"},{"id":"L24-048","de":"faulenzen","uz":"yalqovlanmoq","gender":null,"pos":"other"},{"id":"L24-049","de":"Die Gesundheit","uz":"sog'lik","gender":"f","pos":"noun"},{"id":"L24-050","de":"Der Small Talk","uz":"qisqa suhbat","gender":"m","pos":"noun"},{"id":"L24-051","de":"Der Coach","uz":"ustoz","gender":"m","pos":"noun"},{"id":"L24-052","de":"Der Trainer","uz":"treyner","gender":"m","pos":"noun"},{"id":"L24-053","de":"Der Konflikt","uz":"munozara","gender":"m","pos":"noun"},{"id":"L24-054","de":"vermeiden","uz":"cheklamoq","gender":null,"pos":"other"},{"id":"L24-055","de":"Die Religion","uz":"din","gender":"f","pos":"noun"},{"id":"L24-056","de":"Die Politik","uz":"siyosat","gender":"f","pos":"noun"},{"id":"L24-057","de":"Die Erfahrung","uz":"tajriba","gender":"f","pos":"noun"},{"id":"L24-058","de":"Die Einleitung","uz":"boshlanish(i)","gender":"f","pos":"noun"},{"id":"L24-059","de":"verwenden","uz":"qo'llamoq","gender":null,"pos":"other"},{"id":"L24-060","de":"Die Teilzeit","uz":"yarim ish kuni","gender":"f","pos":"noun"}]};
+const GRAMMAR_DATA = {"1":[{"q":"Ich ___ aus Portugal.","options":["komme","kommst","kommt","kommen"],"correct":0,"explanation":"ich-Form endet auf -e: ich komme."},{"q":"___ heißt du?","options":["Wie","Wer","Woher","Was"],"correct":0,"explanation":"'Wie heißt du?' fragt nach dem Namen. 'Wer' fragt nach der Person selbst."},{"q":"Er ___ mein Freund.","options":["ist","bin","bist","sind"],"correct":0,"explanation":"er/sie-Form von 'sein' ist 'ist'."},{"q":"Woher ___ Sie?","options":["kommen","kommst","kommt","komme"],"correct":0,"explanation":"Bei der Höflichkeitsform 'Sie' benutzt man die Plural-Form: kommen."},{"q":"Sie kommt ___ Deutschland.","options":["aus","in","von","nach"],"correct":0,"explanation":"Herkunft (Woher?) drückt man mit 'aus' aus: aus Deutschland."},{"q":"Wir ___ Deutsch.","options":["lernen","lerne","lernt","lernst"],"correct":0,"explanation":"wir-Form endet auf -en: wir lernen."}],"2":[{"q":"Er arbeitet ___ Lehrer.","options":["als","bei","in","für"],"correct":0,"explanation":"Beruf nennt man mit 'als' (ohne Artikel): als Lehrer."},{"q":"Sie arbeitet ___ der Firma Müller.","options":["bei","als","in","aus"],"correct":0,"explanation":"Arbeitgeber/Firma nennt man mit 'bei': bei der Firma Müller."},{"q":"Wir ___ nicht verheiratet.","options":["sind","ist","bin","seid"],"correct":0,"explanation":"wir-Form von 'sein' ist 'sind'."},{"q":"Kellner -> weibliche Form?","options":["Kellnerin","Kellnerfrau","Kellnera","Kellnern"],"correct":0,"explanation":"Weibliche Berufsbezeichnungen bekommen die Endung -in: Kellner -> Kellnerin."},{"q":"Ich ___ zwei Kinder.","options":["habe","hast","hat","haben"],"correct":0,"explanation":"ich-Form von 'haben' ist 'habe'."},{"q":"Wir sind ___ verheiratet.","options":["nicht","kein","keine","nein"],"correct":0,"explanation":"Verben werden mit 'nicht' verneint, nicht mit 'kein'."}],"3":[{"q":"Ist das nicht deine Schwester? – ___, das ist sie.","options":["Doch","Ja","Nein","Genau"],"correct":0,"explanation":"Auf eine negative Frage antwortet man mit 'doch', wenn die Antwort positiv ist."},{"q":"Das ist ___ Onkel.","options":["mein","meine","meinen","meins"],"correct":0,"explanation":"'Onkel' ist maskulin -> mein Onkel."},{"q":"Das sind ___ Eltern.","options":["meine","mein","meinen","meins"],"correct":0,"explanation":"Im Plural benutzt man immer 'meine': meine Eltern."},{"q":"Du ___ sehr gut Deutsch.","options":["sprichst","sprechst","spricht","sprecht"],"correct":0,"explanation":"'sprechen' hat Vokalwechsel e->i bei du/er/sie: du sprichst."},{"q":"Ich glaube, Dorothea ist ___ Mutter.","options":["Jans","Jan","Jan's","Jane"],"correct":0,"explanation":"Genitiv bei Namen: Name + s, ohne Apostroph: Jans Mutter."},{"q":"Ist das deine Schwester? – ___","options":["Ja.","Doch.","Genau nicht.","Aber nein."],"correct":0,"explanation":"Auf eine positive Frage antwortet man normal mit 'Ja' oder 'Nein'."}],"4":[{"q":"___ Stuhl ist schön.","options":["Der","Das","Die","Den"],"correct":0,"explanation":"'Stuhl' ist maskulin -> der Stuhl."},{"q":"Das ist die Lampe. ___ ist schön.","options":["Sie","Er","Es","Das"],"correct":0,"explanation":"'die Lampe' wird durch 'sie' ersetzt."},{"q":"___ Bett ist neu.","options":["Das","Der","Die","Den"],"correct":0,"explanation":"'Bett' ist neutrum -> das Bett."},{"q":"Der Stuhl ist teuer. ___ kostet 100 Euro.","options":["Er","Sie","Es","Der"],"correct":0,"explanation":"'der Stuhl' wird durch 'er' ersetzt."},{"q":"Das Bett ist bequem. ___ ist neu.","options":["Es","Er","Sie","Das"],"correct":0,"explanation":"'das Bett' wird durch 'es' ersetzt."},{"q":"Wie viel kostet ___ Bild?","options":["das","der","die","den"],"correct":0,"explanation":"'Bild' ist neutrum -> das Bild."}],"5":[{"q":"Ist das ein Tisch? – Nein, das ist ___ Tisch.","options":["kein","keine","keinen","nicht"],"correct":0,"explanation":"'Tisch' ist maskulin, Nominativ -> kein Tisch."},{"q":"Ich habe ___ Kalender. (Akkusativ)","options":["einen","ein","eine","einem"],"correct":0,"explanation":"'Kalender' ist maskulin, im Akkusativ wird 'ein' zu 'einen'."},{"q":"Die Flasche ist ___ Plastik.","options":["aus","von","mit","in"],"correct":0,"explanation":"Material beschreibt man mit 'aus': aus Plastik."},{"q":"Du ___ das Bild.","options":["siehst","sehst","sieht","seht"],"correct":0,"explanation":"'sehen' hat Vokalwechsel e->ie bei du/er/sie: du siehst."},{"q":"Das ist ___ Buch.","options":["ein","eine","einen","einem"],"correct":0,"explanation":"'Buch' ist neutrum, Nominativ -> ein Buch."},{"q":"Ich habe ___ Mail bekommen. (Akkusativ)","options":["eine","ein","einen","einer"],"correct":0,"explanation":"'Mail' ist feminin -> eine Mail (Akkusativ bleibt 'eine')."}],"6":[{"q":"die Maus -> Plural?","options":["die Mäuse","die Mausen","die Mause","die Mäusen"],"correct":0,"explanation":"Plural mit Umlaut + e: die Maus -> die Mäuse."},{"q":"das Passwort -> Plural?","options":["die Passwörter","die Passworte","die Passwörten","die Passwortes"],"correct":0,"explanation":"Plural mit Umlaut + er: das Passwort -> die Passwörter."},{"q":"der Laptop -> Plural?","options":["die Laptops","die Laptope","die Laptopen","die Laptopse"],"correct":0,"explanation":"Fremdwörter bekommen oft ein Plural-s: der Laptop -> die Laptops."},{"q":"die Nachricht -> Plural?","options":["die Nachrichten","die Nachrichte","die Nachrichtse","die Nachricht"],"correct":0,"explanation":"Plural mit -en: die Nachricht -> die Nachrichten."},{"q":"der Drucker -> Plural?","options":["die Drucker","die Druckere","die Druckeren","die Druckers"],"correct":0,"explanation":"Manche Nomen bleiben im Plural gleich: der Drucker -> die Drucker."},{"q":"Ich habe ___ Drucker. (Akkusativ, negiert)","options":["keinen","kein","keine","keinem"],"correct":0,"explanation":"'Drucker' ist maskulin, im Akkusativ: keinen Drucker."}],"7":[{"q":"___ du schwimmen?","options":["Kannst","Kann","Können","Könnt"],"correct":0,"explanation":"du-Form von 'können' ist 'kannst'."},{"q":"Sie ___ super tanzen. (sie = she)","options":["kann","kannst","könnt","können"],"correct":0,"explanation":"er/sie-Form von 'können' ist 'kann'."},{"q":"Er ___ sehr schnell.","options":["fährt","fahrt","fahrst","fährst"],"correct":0,"explanation":"'fahren' hat Vokalwechsel a->ä bei er/sie: er fährt."},{"q":"Du ___ gern Bücher.","options":["liest","lese","lest","lesen"],"correct":0,"explanation":"'lesen' hat Vokalwechsel e->ie bei du: du liest."},{"q":"Wer kann toll ___?","options":["malen","malt","male","gemalt"],"correct":0,"explanation":"Nach einem Modalverb steht der Infinitiv am Satzende: kann ... malen."},{"q":"Ich ___ meine Freunde.","options":["treffe","triffst","trifft","trefft"],"correct":0,"explanation":"ich-Form von 'treffen' ist 'treffe'."}],"8":[{"q":"___ Montag habe ich keine Zeit.","options":["Am","Um","In","An"],"correct":0,"explanation":"Wochentage stehen mit 'am': am Montag."},{"q":"Der Film beginnt ___ acht Uhr.","options":["um","am","in","an"],"correct":0,"explanation":"Uhrzeiten stehen mit 'um': um acht Uhr."},{"q":"___ der Nacht arbeite ich nicht.","options":["In","Am","Um","An"],"correct":0,"explanation":"Ausnahme: 'in der Nacht' (nicht 'am')."},{"q":"Ich ___ das nicht.","options":["weiß","weißt","weißen","wisse"],"correct":0,"explanation":"ich-Form von 'wissen' ist 'weiß'."},{"q":"Am Montag ___ Julia keine Zeit.","options":["hat","haben","hatte","habt"],"correct":0,"explanation":"Verb bleibt auf Position 2, auch wenn ein anderes Element am Satzanfang steht."},{"q":"Wie viel Uhr ist es? – Es ist ___ vor drei.","options":["Viertel","Halb","Uhr","Um"],"correct":0,"explanation":"'Viertel vor drei' = 2:45 Uhr."}],"9":[{"q":"Er ___ Pizza.","options":["mag","magst","mögt","mögen"],"correct":0,"explanation":"er/sie-Form von 'mögen' ist 'mag'."},{"q":"Du ___ viel Obst.","options":["isst","esse","esst","isse"],"correct":0,"explanation":"'essen' hat Vokalwechsel e->i bei du: du isst."},{"q":"Ich ___ einen Kaffee.","options":["möchte","möchtest","möchten","möchtet"],"correct":0,"explanation":"ich-Form von 'möchte' ist 'möchte'."},{"q":"Sie ___ den Kuchen. (sie = she, nehmen)","options":["nimmt","nehme","nimmst","nehmt"],"correct":0,"explanation":"'nehmen' hat Vokalwechsel e->i bei er/sie: sie nimmt."},{"q":"die Nuss + der Kuchen = ?","options":["der Nusskuchen","die Nusskuchen","das Nusskuchen","der Nusskuche"],"correct":0,"explanation":"Bei zusammengesetzten Nomen bestimmt das letzte Wort den Artikel: der Kuchen -> der Nusskuchen."},{"q":"die Schokolade + der Kuchen = ?","options":["der Schokoladenkuchen","der Schokoladekuchen","die Schokoladenkuchen","das Schokoladekuchen"],"correct":0,"explanation":"Hier kommt ein Fugen-n dazu: Schokolade + n + Kuchen = der Schokoladenkuchen."}],"10":[{"q":"Wann kommst du ___?","options":["an","ab","aus","zu"],"correct":0,"explanation":"'ankommen' ist trennbar: an... kommen -> Wann kommst du an?"},{"q":"Ich hole dich ___.","options":["ab","an","aus","zu"],"correct":0,"explanation":"'abholen' ist trennbar: Ich hole dich ab."},{"q":"Wir steigen in Berlin ___.","options":["um","an","ab","aus"],"correct":0,"explanation":"'umsteigen' ist trennbar: Wir steigen um."},{"q":"Ich rufe dich später ___.","options":["an","ab","aus","zu"],"correct":0,"explanation":"'anrufen' ist trennbar: Ich rufe dich an."},{"q":"Mein Flug startet um 8 Uhr. Ich fliege um 8 Uhr ___.","options":["ab","an","aus","zu"],"correct":0,"explanation":"'abfliegen' ist trennbar: Ich fliege ab."},{"q":"Wann kommt der Bus in Berlin ___?","options":["an","ab","aus","um"],"correct":0,"explanation":"'ankommen' ist trennbar: Der Bus kommt an."}],"11":[{"q":"Ich habe die Zeitung ___.","options":["gelesen","gelest","lesen","liest"],"correct":0,"explanation":"Partizip II von 'lesen' (unregelmäßig): gelesen."},{"q":"Was hast du ___ gemacht?","options":["gestern","morgen","nächste Woche","bald"],"correct":0,"explanation":"Perfekt beschreibt die Vergangenheit -> 'gestern' passt."},{"q":"Wir haben gestern ___.","options":["eingekauft","gekauft ein","einkauft","kauftein"],"correct":0,"explanation":"Partizip II von trennbaren Verben: ein + gekauft = eingekauft."},{"q":"___ Mittwoch war ich krank.","options":["Letzten","Letztes","Letzte","Letzter"],"correct":0,"explanation":"'Mittwoch' ist maskulin -> letzten Mittwoch."},{"q":"Ich habe ___ 13 Uhr ___ 14 Uhr gearbeitet.","options":["von...bis","ab...bis","seit...bis","um...bis"],"correct":0,"explanation":"Ein Zeitraum mit Anfang und Ende: von...bis."},{"q":"Er hat gestern ___.","options":["fotografiert","gefotografiert","fotografierte","fotografier"],"correct":0,"explanation":"Verben auf -ieren bilden das Partizip II ohne ge-: fotografiert."}],"12":[{"q":"Ich ___ nach Hamburg gefahren.","options":["bin","habe","war","hatte"],"correct":0,"explanation":"Bewegungsverben wie 'fahren' bilden das Perfekt mit 'sein'."},{"q":"Er ist gestern ___.","options":["angekommen","gekommenan","ankommen","ankam"],"correct":0,"explanation":"Partizip II von 'ankommen' (trennbar + sein): angekommen."},{"q":"Achtung: 'bleiben' -> Partizip II?","options":["geblieben","gebleibt","bleibt","geblibt"],"correct":0,"explanation":"'bleiben' ist unregelmäßig: geblieben (mit sein, obwohl keine Bewegung)."},{"q":"___ Winter war ich in Berlin.","options":["Im","In","An","Am"],"correct":0,"explanation":"Jahreszeiten stehen mit 'im': im Winter."},{"q":"___ 1977 wohne ich hier.","options":["Seit","Vor","Ab","Im"],"correct":0,"explanation":"Ein Zeitpunkt in der Vergangenheit bis jetzt: seit 1977."},{"q":"Ich fahre ___ Österreich.","options":["nach","in","zu","an"],"correct":0,"explanation":"Länder ohne Artikel: nach Österreich (Ausnahme: in die Schweiz/Türkei)."},{"q":"Letztes Jahr ___ ich viel Spaß.","options":["hatte","habe","hat","hatten"],"correct":0,"explanation":"Präteritum von 'haben', ich-Form: hatte."}]};
+
+/* =========================== LOGIC =========================== */
+// ---------------------------------------------------------------------------
+// Pure quiz-generation / grading logic. No DOM access here so it can be
+// unit-tested with plain node before being embedded in the app.
+// ---------------------------------------------------------------------------
+
+const PASS_THRESHOLD = 0.8;
+const FINAL_VOCAB_COUNT = 10;
+const FINAL_GRAMMAR_COUNT = 5;
+const PRACTICE_BATCH_SIZE = 10;
+const MATCH_ROUND_SIZE = 5;
+const FLASHCARD_BATCH_SIZE = 10;
+const MISSED_ROUND_SIZE = 10;
+const TOTAL_LEKTIONEN = 24;
+
+function shuffle(arr) {
+  const a = arr.slice();
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+function sample(arr, n) {
+  return shuffle(arr).slice(0, Math.min(n, arr.length));
+}
+
+function normalizeDe(text) {
+  let t = (text || "").trim().toLowerCase();
+  t = t.replace(/ä/g, "a").replace(/ö/g, "o").replace(/ü/g, "u").replace(/ß/g, "ss");
+  for (const art of ["der ", "die ", "das "]) {
+    if (t.startsWith(art)) { t = t.slice(art.length); break; }
+  }
+  return t.split(/\s+/).filter(Boolean).join(" ");
+}
+
+function getVocab(lektion) {
+  return VOCAB_DATA[String(lektion)] || [];
+}
+
+function getGrammarQuestions(lektion) {
+  return GRAMMAR_DATA[String(lektion)] || [];
+}
+
+function lektionHasGrammar(lektion) {
+  return getGrammarQuestions(lektion).length > 0;
+}
+
+function makeMcItem(item, allItems) {
+  const seenUz = new Set([item.uz]);
+  const candidates = [];
+  for (const i of allItems) {
+    if (i.id === item.id) continue;
+    if (!i.uz || seenUz.has(i.uz)) continue;
+    seenUz.add(i.uz);
+    candidates.push(i);
+  }
+  const distractors = sample(candidates, 3);
+  const options = shuffle([item.uz, ...distractors.map(d => d.uz)]);
+  return {
+    kind: "vocab_mc",
+    id: item.id,
+    prompt: item.de,
+    options,
+    correctIndex: options.indexOf(item.uz),
+  };
+}
+
+function buildVocabMc(lektion, n = PRACTICE_BATCH_SIZE, idPool = null) {
+  const all = getVocab(lektion);
+  let usable = all.filter(i => i.uz);
+  if (idPool) usable = usable.filter(i => idPool.has(i.id));
+  return sample(usable, n).map(item => makeMcItem(item, all));
+}
+
+function buildVocabType(lektion, n = PRACTICE_BATCH_SIZE) {
+  const all = getVocab(lektion);
+  let pool = all.filter(i => i.pos !== "phrase" && i.uz);
+  if (pool.length < 5) pool = all.filter(i => i.uz);
+  return sample(pool, n).map(item => ({
+    kind: "vocab_type",
+    id: item.id,
+    prompt: item.uz,
+    accepted: [normalizeDe(item.de)],
+    answerDisplay: item.de,
+  }));
+}
+
+function gradeTypeAnswer(question, userText) {
+  return normalizeDe(userText) === question.accepted[0];
+}
+
+function buildMatchingRound(lektion, size = MATCH_ROUND_SIZE) {
+  const all = getVocab(lektion);
+  const seenUz = new Set();
+  const pool = [];
+  for (const i of all) {
+    if (i.uz && !seenUz.has(i.uz)) { seenUz.add(i.uz); pool.push(i); }
+  }
+  const chosen = sample(pool, size);
+  const rightOrder = shuffle(chosen.map((_, idx) => idx));
+  return {
+    kind: "vocab_match",
+    left: chosen.map((c, i) => ({ id: c.id, text: c.de, key: i })),
+    right: rightOrder.map(idx => ({ text: chosen[idx].uz, matchKey: idx })),
+  };
+}
+
+function buildFlashcards(lektion, n = FLASHCARD_BATCH_SIZE) {
+  const all = getVocab(lektion).filter(i => i.uz);
+  return sample(all, n).map(i => ({ kind: "vocab_flash", id: i.id, de: i.de, uz: i.uz }));
+}
+
+function buildMissedRound(missedIds, lektion) {
+  if (!missedIds || missedIds.length === 0) return [];
+  const all = getVocab(lektion);
+  const byId = Object.fromEntries(all.map(i => [i.id, i]));
+  const ids = sample(missedIds, MISSED_ROUND_SIZE);
+  const items = ids.map(id => byId[id]).filter(Boolean);
+  return items.map(item => makeMcItem(item, all));
+}
+
+function buildGrammarQuiz(lektion, n = null) {
+  const qs = getGrammarQuestions(lektion);
+  if (qs.length === 0) return [];
+  const chosen = sample(qs, n || qs.length);
+  return chosen.map(q => ({
+    kind: "grammar_mc",
+    prompt: q.q,
+    options: q.options,
+    correctIndex: q.correct,
+    explanation: q.explanation,
+  }));
+}
+
+function buildFinalTest(lektion) {
+  const hasGrammar = lektionHasGrammar(lektion);
+  let vocabQs, grammarQs;
+  if (hasGrammar) {
+    vocabQs = buildVocabMc(lektion, FINAL_VOCAB_COUNT);
+    grammarQs = buildGrammarQuiz(lektion, FINAL_GRAMMAR_COUNT);
+  } else {
+    vocabQs = buildVocabMc(lektion, FINAL_VOCAB_COUNT + FINAL_GRAMMAR_COUNT);
+    grammarQs = [];
+  }
+  return shuffle([...vocabQs, ...grammarQs]);
+}
+
+if (typeof module !== "undefined") {
+  module.exports = {
+    PASS_THRESHOLD, TOTAL_LEKTIONEN,
+    normalizeDe, getVocab, getGrammarQuestions, lektionHasGrammar,
+    buildVocabMc, buildVocabType, gradeTypeAnswer, buildMatchingRound,
+    buildFlashcards, buildMissedRound, buildGrammarQuiz, buildFinalTest,
+  };
+}
+
+/* =========================== APP CONTROLLER =========================== */
+
+const LEKTION_TITLES = {
+  1:"Ich heiße Miriam.",2:"Was macht ihr beruflich?",3:"Das ist meine Schwester.",
+  4:"Das Bild ist so schön.",5:"Ist das ein Tisch?",6:"Wir haben einen Termin.",
+  7:"Sie können super tanzen!",8:"Ich habe leider keine Zeit.",9:"Ich mag Hamburger.",
+  10:"Wann kommst du denn an?",11:"Was haben Sie gestern gemacht?",12:"Im Frühling bin ich nach Hamburg gefahren."
+};
+const MODE_LABELS = {vocab_mc:'Multiple Choice', vocab_missed:'Missed Words', grammar:'Grammar Quiz', final:'Final Test'};
+
+function esc(s){
+  return String(s==null?'':s).replace(/[&<>"']/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+
+/* ---------- storage ---------- */
+function safeGet(key){ try{ const v = localStorage.getItem(key); return v?JSON.parse(v):null; }catch(e){ return null; } }
+function safeSet(key,val){ try{ localStorage.setItem(key, JSON.stringify(val)); }catch(e){} }
+
+function loadProgress(){ return safeGet('dp_progress_v1') || {}; }
+function saveProgress(p){ safeSet('dp_progress_v1', p); }
+function loadMissed(){ return safeGet('dp_missed_v1') || {}; }
+function saveMissed(m){ safeSet('dp_missed_v1', m); }
+
+function getProgress(lektion){
+  const p = loadProgress();
+  return p[lektion] || {bestScore:0, passed:false, attempts:0};
+}
+function isUnlocked(lektion){
+  if(lektion<=1) return true;
+  return getProgress(lektion-1).passed;
+}
+function recordFinalAttempt(lektion, pct){
+  const p = loadProgress();
+  const cur = p[lektion] || {bestScore:0, passed:false, attempts:0};
+  const passedNow = pct >= PASS_THRESHOLD;
+  cur.bestScore = Math.max(cur.bestScore, pct);
+  cur.passed = cur.passed || passedNow;
+  cur.attempts = (cur.attempts||0)+1;
+  p[lektion]=cur;
+  saveProgress(p);
+  return passedNow;
+}
+function getMissed(lektion){ const m = loadMissed(); return m[lektion] || []; }
+function addMissed(lektion, id){
+  const m = loadMissed(); const arr = m[lektion] || [];
+  if(!arr.includes(id)) arr.push(id);
+  m[lektion]=arr; saveMissed(m);
+}
+function removeMissed(lektion, id){
+  const m = loadMissed(); const arr = (m[lektion]||[]).filter(x=>x!==id);
+  m[lektion]=arr; saveMissed(m);
+}
+
+/* ---------- state ---------- */
+var STATE = {view:'home'};
+
+function goLektion(n){ STATE={view:'lektion', lektion:n}; render(); }
+function goVocabMenu(n){ STATE={view:'vocabMenu', lektion:n}; render(); }
+function goHome(){ STATE={view:'home'}; render(); }
+function goBack(){
+  if(STATE.view==='lektion') STATE={view:'home'};
+  else if(STATE.view==='vocabMenu') STATE={view:'lektion', lektion:STATE.lektion};
+  else if(STATE.view==='result') STATE={view:'lektion', lektion:STATE.payload.lektion};
+  else STATE={view:'home'};
+  render();
+}
+function confirmQuit(){
+  const s = STATE.session;
+  STATE = (s.mode==='grammar'||s.mode==='final')
+    ? {view:'lektion', lektion:s.lektion}
+    : {view:'vocabMenu', lektion:s.lektion};
+  render();
+}
+
+function startQuiz(lektion, modeCode){
+  let questions, mode;
+  if(modeCode==='mc'){ questions=buildVocabMc(lektion); mode='vocab_mc'; }
+  else if(modeCode==='grammar'){
+    questions=buildGrammarQuiz(lektion); mode='grammar';
+    if(questions.length===0){ alert('No grammar quiz for this lektion yet.'); return; }
+  }
+  else if(modeCode==='missed'){
+    const ids=getMissed(lektion); questions=buildMissedRound(ids, lektion); mode='vocab_missed';
+    if(questions.length===0){ alert('No missed words yet for this lektion — keep practicing!'); return; }
+  }
+  else if(modeCode==='final'){ questions=buildFinalTest(lektion); mode='final'; }
+  if(!questions || questions.length===0){ alert('Not enough content yet.'); return; }
+  STATE = {view:'quiz', session:{mode, lektion, questions, index:0, score:0, total:questions.length, answered:false, chosenIndex:null}};
+  render();
+}
+function answerMc(choiceIdx){
+  const s = STATE.session;
+  if(s.answered) return;
+  const q = s.questions[s.index];
+  s.answered = true; s.chosenIndex = choiceIdx;
+  const correct = choiceIdx === q.correctIndex;
+  if(q.kind==='vocab_mc'){ if(correct) removeMissed(s.lektion, q.id); else addMissed(s.lektion, q.id); }
+  if(correct) s.score++;
+  render();
+}
+function nextMc(){
+  const s = STATE.session;
+  s.index++; s.answered=false; s.chosenIndex=null;
+  if(s.index>=s.questions.length){ finishMcSession(); } else { render(); }
+}
+function finishMcSession(){
+  const s = STATE.session;
+  const pct = s.total? s.score/s.total : 0;
+  let passedNow=false;
+  if(s.mode==='final'){ passedNow = recordFinalAttempt(s.lektion, pct); }
+  STATE = {view:'result', payload:{lektion:s.lektion, mode:s.mode, score:s.score, total:s.total, pct, passedNow}};
+  render();
+  if(s.mode==='final' && passedNow) spawnConfetti();
+}
+
+function spawnConfetti(){
+  if(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  const colors = ['#A9772F','#3F6B52','#9A3B3B','#232A3B'];
+  for(let i=0;i<26;i++){
+    const el = document.createElement('div');
+    el.className = 'confetti-piece';
+    el.style.left = (Math.random()*100) + 'vw';
+    el.style.background = colors[i % colors.length];
+    el.style.animationDelay = (Math.random()*0.3) + 's';
+    el.style.animationDuration = (1.3 + Math.random()*0.9) + 's';
+    document.body.appendChild(el);
+    setTimeout(() => el.remove(), 2700);
+  }
+}
+
+function startType(lektion){
+  const questions = buildVocabType(lektion);
+  STATE = {view:'type', session:{mode:'vocab_type', lektion, questions, index:0, score:0, total:questions.length, answered:false}};
+  render();
+}
+function submitType(){
+  const s = STATE.session;
+  if(s.answered) return;
+  const q = s.questions[s.index];
+  const input = document.getElementById('typeInput');
+  const text = input ? input.value : '';
+  const correct = gradeTypeAnswer(q, text);
+  s.answered = true; s.lastCorrect = correct;
+  if(correct){ s.score++; removeMissed(s.lektion, q.id); } else { addMissed(s.lektion, q.id); }
+  render();
+}
+function nextType(){
+  const s = STATE.session;
+  s.index++; s.answered=false;
+  if(s.index>=s.questions.length){
+    STATE = {view:'result', payload:{lektion:s.lektion, mode:s.mode, score:s.score, total:s.total, pct:s.total?s.score/s.total:0, passedNow:false}};
+  }
+  render();
+}
+
+function startMatch(lektion){
+  const round = buildMatchingRound(lektion);
+  if(!round.left.length){ alert('Not enough content yet.'); return; }
+  STATE = {view:'match', session:{mode:'vocab_match', lektion, round, selectedLeftKey:null, matched:new Set(), wrongOnce:new Set()}};
+  render();
+}
+function selectLeft(key){
+  const s = STATE.session;
+  if(s.flashWrong || s.matched.has(key)) return;
+  s.selectedLeftKey = key;
+  render();
+}
+function selectRight(matchKey){
+  const s = STATE.session;
+  if(s.flashWrong || s.selectedLeftKey===null) return;
+  if(s.selectedLeftKey === matchKey){
+    s.matched.add(s.selectedLeftKey);
+    s.selectedLeftKey = null;
+    render();
+    if(s.matched.size === s.round.left.length){ setTimeout(finishMatch, 280); }
+  } else {
+    s.wrongOnce.add(s.selectedLeftKey);
+    s.flashWrong = {left:s.selectedLeftKey, right:matchKey};
+    s.selectedLeftKey = null;
+    render();
+    setTimeout(()=>{ s.flashWrong=null; render(); }, 320);
+  }
+}
+function finishMatch(){
+  const s = STATE.session;
+  const total = s.round.left.length;
+  const correctCount = total - s.wrongOnce.size;
+  for(const item of s.round.left){
+    if(s.wrongOnce.has(item.key)) addMissed(s.lektion, item.id); else removeMissed(s.lektion, item.id);
+  }
+  STATE = {view:'result', payload:{lektion:s.lektion, mode:'vocab_match', score:correctCount, total, pct: total?correctCount/total:0, passedNow:false}};
+  render();
+}
+
+function startFlash(lektion){
+  const questions = buildFlashcards(lektion);
+  if(!questions.length){ alert('Not enough content yet.'); return; }
+  STATE = {view:'flash', session:{mode:'vocab_flash', lektion, questions, index:0, score:0, total:questions.length, flipped:false}};
+  render();
+}
+function flipCard(){ STATE.session.flipped = true; render(); }
+function flashRate(know){
+  const s = STATE.session;
+  const q = s.questions[s.index];
+  if(know){ s.score++; removeMissed(s.lektion, q.id); } else { addMissed(s.lektion, q.id); }
+  s.index++; s.flipped=false;
+  if(s.index>=s.questions.length){
+    STATE = {view:'result', payload:{lektion:s.lektion, mode:s.mode, score:s.score, total:s.total, pct:s.total?s.score/s.total:0, passedNow:false}};
+  }
+  render();
+}
+
+/* ---------- render ---------- */
+function render(){
+  const app = document.getElementById('app');
+  let html;
+  switch(STATE.view){
+    case 'lektion': html = renderLektion(STATE.lektion); break;
+    case 'vocabMenu': html = renderVocabMenu(STATE.lektion); break;
+    case 'quiz': html = renderQuiz(); break;
+    case 'type': html = renderType(); break;
+    case 'match': html = renderMatch(); break;
+    case 'flash': html = renderFlash(); break;
+    case 'result': html = renderResult(); break;
+    default: html = renderHome();
+  }
+  app.innerHTML = html;
+  if(STATE.view==='type' && !STATE.session.answered){
+    const el = document.getElementById('typeInput');
+    if(el) el.focus();
+  }
+}
+
+function renderHome(){
+  let body = `
+    <div class="topbar"><h1>🛂 Deutsch Pass</h1></div>
+    <div class="content">
+      <div class="intro">
+        <div class="kicker">A1 · Momente</div>
+        <h2>Your Lektionen</h2>
+        <p>Tap a stamp to practice or test that lektion. Pass the Final Test (80%+) to unlock the next one.</p>
+      </div>`;
+  for(let m=1;m<=8;m++){
+    body += `<div class="module-block"><div class="module-label">Module ${m}</div><div class="stamp-row">`;
+    for(let i=0;i<3;i++){
+      const n = (m-1)*3+i+1;
+      const prog = getProgress(n);
+      const unlocked = isUnlocked(n);
+      let cls='locked', state='locked';
+      if(prog.passed){ cls='passed'; state='passed'; }
+      else if(unlocked){ cls='unlocked'; state='open'; }
+      body += `<div class="stamp ${cls}" onclick="goLektion(${n})"><div class="num">${n}</div><div class="state">${state}</div></div>`;
+    }
+    body += `</div></div>`;
+  }
+  body += `<div class="footer-note">Testing only — no explanations up front. Progress is saved on this device.</div></div>`;
+  return body;
+}
+
+function renderLektion(n){
+  const unlocked = isUnlocked(n);
+  const title = LEKTION_TITLES[n] || ('Lektion ' + n);
+  let inner;
+  if(!unlocked){
+    inner = `<div class="locked-note">🔒 Locked.<br>Pass Lektion ${n-1}'s Final Test (80%+) to unlock this one.</div>`;
+  } else {
+    const prog = getProgress(n);
+    const hasG = lektionHasGrammar(n);
+    let scoreLine = '';
+    if(prog.attempts){
+      scoreLine = `<div class="badge ${prog.passed?'pass':''}">${prog.passed?'✓ passed':'not passed yet'} · best ${Math.round(prog.bestScore*100)}%</div>`;
+    }
+    inner = scoreLine +
+      `<button class="btn" onclick="goVocabMenu(${n})">Vocabulary<span class="desc">Flashcards · Multiple choice · Matching · Type the word · Missed words</span></button>` +
+      (hasG
+        ? `<button class="btn" onclick="startQuiz(${n},'grammar')">Grammar Quiz<span class="desc">Multiple choice, with explanations on misses</span></button>`
+        : `<div class="locked-note" style="margin-bottom:14px;">Grammar for this lektion isn't added yet — vocabulary only for now.</div>`) +
+      `<button class="btn primary brass" onclick="startQuiz(${n},'final')">🏁 Final Test<span class="desc">Vocab${hasG?' + grammar':''} · 80% to unlock Lektion ${n+1}</span></button>`;
+  }
+  return `
+    <div class="topbar"><div class="back" onclick="goBack()">‹</div><div><h1>Lektion ${n}</h1><div class="sub">${esc(title)}</div></div></div>
+    <div class="content">${inner}</div>`;
+}
+
+function renderVocabMenu(n){
+  const missedCount = getMissed(n).length;
+  return `
+    <div class="topbar"><div class="back" onclick="goBack()">‹</div><h1>Lektion ${n} · Vocabulary</h1></div>
+    <div class="content">
+      <button class="btn" onclick="startFlash(${n})">🗂 Flashcards</button>
+      <button class="btn" onclick="startQuiz(${n},'mc')">❓ Multiple Choice</button>
+      <button class="btn" onclick="startMatch(${n})">🔗 Matching</button>
+      <button class="btn" onclick="startType(${n})">⌨️ Type the Word</button>
+      <button class="btn ${missedCount?'':'disabled'}" onclick="startQuiz(${n},'missed')">🔁 Missed Words${missedCount?(' ('+missedCount+')'):''}</button>
+    </div>`;
+}
+
+function renderQuiz(){
+  const s = STATE.session;
+  const q = s.questions[s.index];
+  const pct = Math.round((s.index)/s.questions.length*100);
+  const letters=['A','B','C','D'];
+  let optionsHtml = '';
+  q.options.forEach((opt,i)=>{
+    let cls='option';
+    if(s.answered){
+      if(i===q.correctIndex) cls+=' correct';
+      else if(i===s.chosenIndex) cls+=' wrong';
+      cls+=' disabled';
+    }
+    optionsHtml += `<div class="${cls}" onclick="answerMc(${i})"><div class="letter">${letters[i]}</div><div>${esc(opt)}</div></div>`;
+  });
+  let explain='';
+  if(s.answered && q.kind==='grammar_mc' && s.chosenIndex!==q.correctIndex){
+    explain = `<div class="explain">${esc(q.explanation)}</div>`;
+  }
+  const label = MODE_LABELS[s.mode] || s.mode;
+  return `
+    <div class="topbar"><div class="back" onclick="confirmQuit()">‹</div><h1>${esc(label)}</h1></div>
+    <div class="content">
+      <div class="progress-line"><div class="track"><div class="fill" style="width:${pct}%"></div></div><div class="count">${s.index+1}/${s.questions.length}</div></div>
+      <div class="prompt-card"><div class="label">${q.kind==='grammar_mc'?'Complete the sentence':'What does this mean?'}</div><div class="word">${esc(q.prompt)}</div></div>
+      ${optionsHtml}
+      ${explain}
+      ${s.answered ? `<button class="btn primary" onclick="nextMc()">${s.index+1>=s.questions.length?'See results':'Next'}</button>` : ''}
+    </div>`;
+}
+
+function renderType(){
+  const s = STATE.session;
+  const q = s.questions[s.index];
+  const pct = Math.round((s.index)/s.questions.length*100);
+  let feedback = '';
+  if(s.answered){
+    feedback = s.lastCorrect
+      ? `<div class="explain" style="border-left-color:var(--green);">✅ Correct!</div>`
+      : `<div class="explain" style="border-left-color:var(--red);">❌ Correct answer: <strong>${esc(q.answerDisplay)}</strong></div>`;
+  }
+  return `
+    <div class="topbar"><div class="back" onclick="confirmQuit()">‹</div><h1>Type the Word</h1></div>
+    <div class="content">
+      <div class="progress-line"><div class="track"><div class="fill" style="width:${pct}%"></div></div><div class="count">${s.index+1}/${s.questions.length}</div></div>
+      <div class="prompt-card"><div class="label">Type the German word for</div><div class="word">${esc(q.prompt)}</div></div>
+      <input id="typeInput" class="type-input" placeholder="type here…" ${s.answered?'disabled':''} autocomplete="off" autocapitalize="off" onkeydown="if(event.key==='Enter'){ event.preventDefault(); submitType(); }">
+      ${feedback}
+      ${s.answered
+        ? `<button class="btn primary" onclick="nextType()">${s.index+1>=s.questions.length?'See results':'Next'}</button>`
+        : `<button class="btn primary" onclick="submitType()">Check</button>`}
+    </div>`;
+}
+
+function renderMatch(){
+  const s = STATE.session;
+  const leftHtml = s.round.left.map(item=>{
+    let cls='match-item';
+    if(s.matched.has(item.key)) cls+=' matched';
+    else if(s.selectedLeftKey===item.key) cls+=' selected';
+    else if(s.flashWrong && s.flashWrong.left===item.key) cls+=' wrong-flash';
+    return `<div class="${cls}" onclick="selectLeft(${item.key})">${esc(item.text)}</div>`;
+  }).join('');
+  const rightHtml = s.round.right.map(item=>{
+    let cls='match-item';
+    if(s.matched.has(item.matchKey)) cls+=' matched';
+    else if(s.flashWrong && s.flashWrong.right===item.matchKey) cls+=' wrong-flash';
+    return `<div class="${cls}" onclick="selectRight(${item.matchKey})">${esc(item.text)}</div>`;
+  }).join('');
+  return `
+    <div class="topbar"><div class="back" onclick="confirmQuit()">‹</div><h1>Matching</h1></div>
+    <div class="content">
+      <p style="color:var(--ink-soft); font-size:13px; margin-top:0;">Tap a German word, then tap its meaning.</p>
+      <div class="match-cols"><div>${leftHtml}</div><div>${rightHtml}</div></div>
+    </div>`;
+}
+
+function renderFlash(){
+  const s = STATE.session;
+  const q = s.questions[s.index];
+  return `
+    <div class="topbar"><div class="back" onclick="confirmQuit()">‹</div><h1>Flashcards</h1></div>
+    <div class="content">
+      <div class="progress-line"><div class="track"><div class="fill" style="width:${Math.round(s.index/s.questions.length*100)}%"></div></div><div class="count">${s.index+1}/${s.questions.length}</div></div>
+      <div class="flash-wrap" onclick="${s.flipped?'':'flipCard()'}">
+        <div class="flash-card ${s.flipped?'flipped':''}">
+          <div class="flash-face front">${esc(q.de)}</div>
+          <div class="flash-face back">${esc(q.uz)}</div>
+        </div>
+      </div>
+      ${s.flipped
+        ? `<div class="know-row"><button class="btn" style="border-color:var(--red);" onclick="flashRate(false)">Missed it</button><button class="btn" style="border-color:var(--green);" onclick="flashRate(true)">Knew it</button></div>`
+        : `<div class="flash-hint">Tap the card to reveal the meaning</div>`}
+    </div>`;
+}
+
+function renderResult(){
+  const p = STATE.payload;
+  const pct = Math.round(p.pct*100);
+  const isFinal = p.mode==='final';
+  const passed = isFinal ? p.passedNow : pct>=80;
+  let msg;
+  if(isFinal){
+    msg = p.passedNow
+      ? (p.lektion<24 ? `Lektion ${p.lektion+1} is now unlocked.` : `That was the last lektion. Well done.`)
+      : `Need 80% to pass and unlock the next lektion. Practice the weak spots and try again anytime.`;
+  } else {
+    msg = 'Practice round complete.';
+  }
+  return `
+    <div class="topbar"><div class="back" onclick="goBack()">‹</div><h1>Result</h1></div>
+    <div class="content">
+      <div class="result-wrap">
+        <div class="result-stamp ${passed?'':'fail'}">${passed?'✓':'↻'}</div>
+        <div class="result-score">${p.score}/${p.total}</div>
+        <div class="result-msg">${pct}% — ${esc(msg)}</div>
+        <button class="btn primary" onclick="goLektion(${p.lektion})">Back to Lektion ${p.lektion}</button>
+        <button class="btn" onclick="goHome()">Lesson map</button>
+      </div>
+    </div>`;
+}
+
+render();
+
+</script>
+</body>
+</html>

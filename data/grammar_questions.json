@@ -1,0 +1,871 @@
+{
+  "meta": {
+    "lesson_count": 12,
+    "type": "multiple_choice_only"
+  },
+  "lessons": [
+    {
+      "lektion": 1,
+      "questions": [
+        {
+          "q": "Ich ___ aus Portugal.",
+          "options": [
+            "komme",
+            "kommst",
+            "kommt",
+            "kommen"
+          ],
+          "correct": 0,
+          "explanation": "ich-Form endet auf -e: ich komme."
+        },
+        {
+          "q": "___ heißt du?",
+          "options": [
+            "Wie",
+            "Wer",
+            "Woher",
+            "Was"
+          ],
+          "correct": 0,
+          "explanation": "'Wie heißt du?' fragt nach dem Namen. 'Wer' fragt nach der Person selbst."
+        },
+        {
+          "q": "Er ___ mein Freund.",
+          "options": [
+            "ist",
+            "bin",
+            "bist",
+            "sind"
+          ],
+          "correct": 0,
+          "explanation": "er/sie-Form von 'sein' ist 'ist'."
+        },
+        {
+          "q": "Woher ___ Sie?",
+          "options": [
+            "kommen",
+            "kommst",
+            "kommt",
+            "komme"
+          ],
+          "correct": 0,
+          "explanation": "Bei der Höflichkeitsform 'Sie' benutzt man die Plural-Form: kommen."
+        },
+        {
+          "q": "Sie kommt ___ Deutschland.",
+          "options": [
+            "aus",
+            "in",
+            "von",
+            "nach"
+          ],
+          "correct": 0,
+          "explanation": "Herkunft (Woher?) drückt man mit 'aus' aus: aus Deutschland."
+        },
+        {
+          "q": "Wir ___ Deutsch.",
+          "options": [
+            "lernen",
+            "lerne",
+            "lernt",
+            "lernst"
+          ],
+          "correct": 0,
+          "explanation": "wir-Form endet auf -en: wir lernen."
+        }
+      ]
+    },
+    {
+      "lektion": 2,
+      "questions": [
+        {
+          "q": "Er arbeitet ___ Lehrer.",
+          "options": [
+            "als",
+            "bei",
+            "in",
+            "für"
+          ],
+          "correct": 0,
+          "explanation": "Beruf nennt man mit 'als' (ohne Artikel): als Lehrer."
+        },
+        {
+          "q": "Sie arbeitet ___ der Firma Müller.",
+          "options": [
+            "bei",
+            "als",
+            "in",
+            "aus"
+          ],
+          "correct": 0,
+          "explanation": "Arbeitgeber/Firma nennt man mit 'bei': bei der Firma Müller."
+        },
+        {
+          "q": "Wir ___ nicht verheiratet.",
+          "options": [
+            "sind",
+            "ist",
+            "bin",
+            "seid"
+          ],
+          "correct": 0,
+          "explanation": "wir-Form von 'sein' ist 'sind'."
+        },
+        {
+          "q": "Kellner -> weibliche Form?",
+          "options": [
+            "Kellnerin",
+            "Kellnerfrau",
+            "Kellnera",
+            "Kellnern"
+          ],
+          "correct": 0,
+          "explanation": "Weibliche Berufsbezeichnungen bekommen die Endung -in: Kellner -> Kellnerin."
+        },
+        {
+          "q": "Ich ___ zwei Kinder.",
+          "options": [
+            "habe",
+            "hast",
+            "hat",
+            "haben"
+          ],
+          "correct": 0,
+          "explanation": "ich-Form von 'haben' ist 'habe'."
+        },
+        {
+          "q": "Wir sind ___ verheiratet.",
+          "options": [
+            "nicht",
+            "kein",
+            "keine",
+            "nein"
+          ],
+          "correct": 0,
+          "explanation": "Verben werden mit 'nicht' verneint, nicht mit 'kein'."
+        }
+      ]
+    },
+    {
+      "lektion": 3,
+      "questions": [
+        {
+          "q": "Ist das nicht deine Schwester? – ___, das ist sie.",
+          "options": [
+            "Doch",
+            "Ja",
+            "Nein",
+            "Genau"
+          ],
+          "correct": 0,
+          "explanation": "Auf eine negative Frage antwortet man mit 'doch', wenn die Antwort positiv ist."
+        },
+        {
+          "q": "Das ist ___ Onkel.",
+          "options": [
+            "mein",
+            "meine",
+            "meinen",
+            "meins"
+          ],
+          "correct": 0,
+          "explanation": "'Onkel' ist maskulin -> mein Onkel."
+        },
+        {
+          "q": "Das sind ___ Eltern.",
+          "options": [
+            "meine",
+            "mein",
+            "meinen",
+            "meins"
+          ],
+          "correct": 0,
+          "explanation": "Im Plural benutzt man immer 'meine': meine Eltern."
+        },
+        {
+          "q": "Du ___ sehr gut Deutsch.",
+          "options": [
+            "sprichst",
+            "sprechst",
+            "spricht",
+            "sprecht"
+          ],
+          "correct": 0,
+          "explanation": "'sprechen' hat Vokalwechsel e->i bei du/er/sie: du sprichst."
+        },
+        {
+          "q": "Ich glaube, Dorothea ist ___ Mutter.",
+          "options": [
+            "Jans",
+            "Jan",
+            "Jan's",
+            "Jane"
+          ],
+          "correct": 0,
+          "explanation": "Genitiv bei Namen: Name + s, ohne Apostroph: Jans Mutter."
+        },
+        {
+          "q": "Ist das deine Schwester? – ___",
+          "options": [
+            "Ja.",
+            "Doch.",
+            "Genau nicht.",
+            "Aber nein."
+          ],
+          "correct": 0,
+          "explanation": "Auf eine positive Frage antwortet man normal mit 'Ja' oder 'Nein'."
+        }
+      ]
+    },
+    {
+      "lektion": 4,
+      "questions": [
+        {
+          "q": "___ Stuhl ist schön.",
+          "options": [
+            "Der",
+            "Das",
+            "Die",
+            "Den"
+          ],
+          "correct": 0,
+          "explanation": "'Stuhl' ist maskulin -> der Stuhl."
+        },
+        {
+          "q": "Das ist die Lampe. ___ ist schön.",
+          "options": [
+            "Sie",
+            "Er",
+            "Es",
+            "Das"
+          ],
+          "correct": 0,
+          "explanation": "'die Lampe' wird durch 'sie' ersetzt."
+        },
+        {
+          "q": "___ Bett ist neu.",
+          "options": [
+            "Das",
+            "Der",
+            "Die",
+            "Den"
+          ],
+          "correct": 0,
+          "explanation": "'Bett' ist neutrum -> das Bett."
+        },
+        {
+          "q": "Der Stuhl ist teuer. ___ kostet 100 Euro.",
+          "options": [
+            "Er",
+            "Sie",
+            "Es",
+            "Der"
+          ],
+          "correct": 0,
+          "explanation": "'der Stuhl' wird durch 'er' ersetzt."
+        },
+        {
+          "q": "Das Bett ist bequem. ___ ist neu.",
+          "options": [
+            "Es",
+            "Er",
+            "Sie",
+            "Das"
+          ],
+          "correct": 0,
+          "explanation": "'das Bett' wird durch 'es' ersetzt."
+        },
+        {
+          "q": "Wie viel kostet ___ Bild?",
+          "options": [
+            "das",
+            "der",
+            "die",
+            "den"
+          ],
+          "correct": 0,
+          "explanation": "'Bild' ist neutrum -> das Bild."
+        }
+      ]
+    },
+    {
+      "lektion": 5,
+      "questions": [
+        {
+          "q": "Ist das ein Tisch? – Nein, das ist ___ Tisch.",
+          "options": [
+            "kein",
+            "keine",
+            "keinen",
+            "nicht"
+          ],
+          "correct": 0,
+          "explanation": "'Tisch' ist maskulin, Nominativ -> kein Tisch."
+        },
+        {
+          "q": "Ich habe ___ Kalender. (Akkusativ)",
+          "options": [
+            "einen",
+            "ein",
+            "eine",
+            "einem"
+          ],
+          "correct": 0,
+          "explanation": "'Kalender' ist maskulin, im Akkusativ wird 'ein' zu 'einen'."
+        },
+        {
+          "q": "Die Flasche ist ___ Plastik.",
+          "options": [
+            "aus",
+            "von",
+            "mit",
+            "in"
+          ],
+          "correct": 0,
+          "explanation": "Material beschreibt man mit 'aus': aus Plastik."
+        },
+        {
+          "q": "Du ___ das Bild.",
+          "options": [
+            "siehst",
+            "sehst",
+            "sieht",
+            "seht"
+          ],
+          "correct": 0,
+          "explanation": "'sehen' hat Vokalwechsel e->ie bei du/er/sie: du siehst."
+        },
+        {
+          "q": "Das ist ___ Buch.",
+          "options": [
+            "ein",
+            "eine",
+            "einen",
+            "einem"
+          ],
+          "correct": 0,
+          "explanation": "'Buch' ist neutrum, Nominativ -> ein Buch."
+        },
+        {
+          "q": "Ich habe ___ Mail bekommen. (Akkusativ)",
+          "options": [
+            "eine",
+            "ein",
+            "einen",
+            "einer"
+          ],
+          "correct": 0,
+          "explanation": "'Mail' ist feminin -> eine Mail (Akkusativ bleibt 'eine')."
+        }
+      ]
+    },
+    {
+      "lektion": 6,
+      "questions": [
+        {
+          "q": "die Maus -> Plural?",
+          "options": [
+            "die Mäuse",
+            "die Mausen",
+            "die Mause",
+            "die Mäusen"
+          ],
+          "correct": 0,
+          "explanation": "Plural mit Umlaut + e: die Maus -> die Mäuse."
+        },
+        {
+          "q": "das Passwort -> Plural?",
+          "options": [
+            "die Passwörter",
+            "die Passworte",
+            "die Passwörten",
+            "die Passwortes"
+          ],
+          "correct": 0,
+          "explanation": "Plural mit Umlaut + er: das Passwort -> die Passwörter."
+        },
+        {
+          "q": "der Laptop -> Plural?",
+          "options": [
+            "die Laptops",
+            "die Laptope",
+            "die Laptopen",
+            "die Laptopse"
+          ],
+          "correct": 0,
+          "explanation": "Fremdwörter bekommen oft ein Plural-s: der Laptop -> die Laptops."
+        },
+        {
+          "q": "die Nachricht -> Plural?",
+          "options": [
+            "die Nachrichten",
+            "die Nachrichte",
+            "die Nachrichtse",
+            "die Nachricht"
+          ],
+          "correct": 0,
+          "explanation": "Plural mit -en: die Nachricht -> die Nachrichten."
+        },
+        {
+          "q": "der Drucker -> Plural?",
+          "options": [
+            "die Drucker",
+            "die Druckere",
+            "die Druckeren",
+            "die Druckers"
+          ],
+          "correct": 0,
+          "explanation": "Manche Nomen bleiben im Plural gleich: der Drucker -> die Drucker."
+        },
+        {
+          "q": "Ich habe ___ Drucker. (Akkusativ, negiert)",
+          "options": [
+            "keinen",
+            "kein",
+            "keine",
+            "keinem"
+          ],
+          "correct": 0,
+          "explanation": "'Drucker' ist maskulin, im Akkusativ: keinen Drucker."
+        }
+      ]
+    },
+    {
+      "lektion": 7,
+      "questions": [
+        {
+          "q": "___ du schwimmen?",
+          "options": [
+            "Kannst",
+            "Kann",
+            "Können",
+            "Könnt"
+          ],
+          "correct": 0,
+          "explanation": "du-Form von 'können' ist 'kannst'."
+        },
+        {
+          "q": "Sie ___ super tanzen. (sie = she)",
+          "options": [
+            "kann",
+            "kannst",
+            "könnt",
+            "können"
+          ],
+          "correct": 0,
+          "explanation": "er/sie-Form von 'können' ist 'kann'."
+        },
+        {
+          "q": "Er ___ sehr schnell.",
+          "options": [
+            "fährt",
+            "fahrt",
+            "fahrst",
+            "fährst"
+          ],
+          "correct": 0,
+          "explanation": "'fahren' hat Vokalwechsel a->ä bei er/sie: er fährt."
+        },
+        {
+          "q": "Du ___ gern Bücher.",
+          "options": [
+            "liest",
+            "lese",
+            "lest",
+            "lesen"
+          ],
+          "correct": 0,
+          "explanation": "'lesen' hat Vokalwechsel e->ie bei du: du liest."
+        },
+        {
+          "q": "Wer kann toll ___?",
+          "options": [
+            "malen",
+            "malt",
+            "male",
+            "gemalt"
+          ],
+          "correct": 0,
+          "explanation": "Nach einem Modalverb steht der Infinitiv am Satzende: kann ... malen."
+        },
+        {
+          "q": "Ich ___ meine Freunde.",
+          "options": [
+            "treffe",
+            "triffst",
+            "trifft",
+            "trefft"
+          ],
+          "correct": 0,
+          "explanation": "ich-Form von 'treffen' ist 'treffe'."
+        }
+      ]
+    },
+    {
+      "lektion": 8,
+      "questions": [
+        {
+          "q": "___ Montag habe ich keine Zeit.",
+          "options": [
+            "Am",
+            "Um",
+            "In",
+            "An"
+          ],
+          "correct": 0,
+          "explanation": "Wochentage stehen mit 'am': am Montag."
+        },
+        {
+          "q": "Der Film beginnt ___ acht Uhr.",
+          "options": [
+            "um",
+            "am",
+            "in",
+            "an"
+          ],
+          "correct": 0,
+          "explanation": "Uhrzeiten stehen mit 'um': um acht Uhr."
+        },
+        {
+          "q": "___ der Nacht arbeite ich nicht.",
+          "options": [
+            "In",
+            "Am",
+            "Um",
+            "An"
+          ],
+          "correct": 0,
+          "explanation": "Ausnahme: 'in der Nacht' (nicht 'am')."
+        },
+        {
+          "q": "Ich ___ das nicht.",
+          "options": [
+            "weiß",
+            "weißt",
+            "weißen",
+            "wisse"
+          ],
+          "correct": 0,
+          "explanation": "ich-Form von 'wissen' ist 'weiß'."
+        },
+        {
+          "q": "Am Montag ___ Julia keine Zeit.",
+          "options": [
+            "hat",
+            "haben",
+            "hatte",
+            "habt"
+          ],
+          "correct": 0,
+          "explanation": "Verb bleibt auf Position 2, auch wenn ein anderes Element am Satzanfang steht."
+        },
+        {
+          "q": "Wie viel Uhr ist es? – Es ist ___ vor drei.",
+          "options": [
+            "Viertel",
+            "Halb",
+            "Uhr",
+            "Um"
+          ],
+          "correct": 0,
+          "explanation": "'Viertel vor drei' = 2:45 Uhr."
+        }
+      ]
+    },
+    {
+      "lektion": 9,
+      "questions": [
+        {
+          "q": "Er ___ Pizza.",
+          "options": [
+            "mag",
+            "magst",
+            "mögt",
+            "mögen"
+          ],
+          "correct": 0,
+          "explanation": "er/sie-Form von 'mögen' ist 'mag'."
+        },
+        {
+          "q": "Du ___ viel Obst.",
+          "options": [
+            "isst",
+            "esse",
+            "esst",
+            "isse"
+          ],
+          "correct": 0,
+          "explanation": "'essen' hat Vokalwechsel e->i bei du: du isst."
+        },
+        {
+          "q": "Ich ___ einen Kaffee.",
+          "options": [
+            "möchte",
+            "möchtest",
+            "möchten",
+            "möchtet"
+          ],
+          "correct": 0,
+          "explanation": "ich-Form von 'möchte' ist 'möchte'."
+        },
+        {
+          "q": "Sie ___ den Kuchen. (sie = she, nehmen)",
+          "options": [
+            "nimmt",
+            "nehme",
+            "nimmst",
+            "nehmt"
+          ],
+          "correct": 0,
+          "explanation": "'nehmen' hat Vokalwechsel e->i bei er/sie: sie nimmt."
+        },
+        {
+          "q": "die Nuss + der Kuchen = ?",
+          "options": [
+            "der Nusskuchen",
+            "die Nusskuchen",
+            "das Nusskuchen",
+            "der Nusskuche"
+          ],
+          "correct": 0,
+          "explanation": "Bei zusammengesetzten Nomen bestimmt das letzte Wort den Artikel: der Kuchen -> der Nusskuchen."
+        },
+        {
+          "q": "die Schokolade + der Kuchen = ?",
+          "options": [
+            "der Schokoladenkuchen",
+            "der Schokoladekuchen",
+            "die Schokoladenkuchen",
+            "das Schokoladekuchen"
+          ],
+          "correct": 0,
+          "explanation": "Hier kommt ein Fugen-n dazu: Schokolade + n + Kuchen = der Schokoladenkuchen."
+        }
+      ]
+    },
+    {
+      "lektion": 10,
+      "questions": [
+        {
+          "q": "Wann kommst du ___?",
+          "options": [
+            "an",
+            "ab",
+            "aus",
+            "zu"
+          ],
+          "correct": 0,
+          "explanation": "'ankommen' ist trennbar: an... kommen -> Wann kommst du an?"
+        },
+        {
+          "q": "Ich hole dich ___.",
+          "options": [
+            "ab",
+            "an",
+            "aus",
+            "zu"
+          ],
+          "correct": 0,
+          "explanation": "'abholen' ist trennbar: Ich hole dich ab."
+        },
+        {
+          "q": "Wir steigen in Berlin ___.",
+          "options": [
+            "um",
+            "an",
+            "ab",
+            "aus"
+          ],
+          "correct": 0,
+          "explanation": "'umsteigen' ist trennbar: Wir steigen um."
+        },
+        {
+          "q": "Ich rufe dich später ___.",
+          "options": [
+            "an",
+            "ab",
+            "aus",
+            "zu"
+          ],
+          "correct": 0,
+          "explanation": "'anrufen' ist trennbar: Ich rufe dich an."
+        },
+        {
+          "q": "Mein Flug startet um 8 Uhr. Ich fliege um 8 Uhr ___.",
+          "options": [
+            "ab",
+            "an",
+            "aus",
+            "zu"
+          ],
+          "correct": 0,
+          "explanation": "'abfliegen' ist trennbar: Ich fliege ab."
+        },
+        {
+          "q": "Wann kommt der Bus in Berlin ___?",
+          "options": [
+            "an",
+            "ab",
+            "aus",
+            "um"
+          ],
+          "correct": 0,
+          "explanation": "'ankommen' ist trennbar: Der Bus kommt an."
+        }
+      ]
+    },
+    {
+      "lektion": 11,
+      "questions": [
+        {
+          "q": "Ich habe die Zeitung ___.",
+          "options": [
+            "gelesen",
+            "gelest",
+            "lesen",
+            "liest"
+          ],
+          "correct": 0,
+          "explanation": "Partizip II von 'lesen' (unregelmäßig): gelesen."
+        },
+        {
+          "q": "Was hast du ___ gemacht?",
+          "options": [
+            "gestern",
+            "morgen",
+            "nächste Woche",
+            "bald"
+          ],
+          "correct": 0,
+          "explanation": "Perfekt beschreibt die Vergangenheit -> 'gestern' passt."
+        },
+        {
+          "q": "Wir haben gestern ___.",
+          "options": [
+            "eingekauft",
+            "gekauft ein",
+            "einkauft",
+            "kauftein"
+          ],
+          "correct": 0,
+          "explanation": "Partizip II von trennbaren Verben: ein + gekauft = eingekauft."
+        },
+        {
+          "q": "___ Mittwoch war ich krank.",
+          "options": [
+            "Letzten",
+            "Letztes",
+            "Letzte",
+            "Letzter"
+          ],
+          "correct": 0,
+          "explanation": "'Mittwoch' ist maskulin -> letzten Mittwoch."
+        },
+        {
+          "q": "Ich habe ___ 13 Uhr ___ 14 Uhr gearbeitet.",
+          "options": [
+            "von...bis",
+            "ab...bis",
+            "seit...bis",
+            "um...bis"
+          ],
+          "correct": 0,
+          "explanation": "Ein Zeitraum mit Anfang und Ende: von...bis."
+        },
+        {
+          "q": "Er hat gestern ___.",
+          "options": [
+            "fotografiert",
+            "gefotografiert",
+            "fotografierte",
+            "fotografier"
+          ],
+          "correct": 0,
+          "explanation": "Verben auf -ieren bilden das Partizip II ohne ge-: fotografiert."
+        }
+      ]
+    },
+    {
+      "lektion": 12,
+      "questions": [
+        {
+          "q": "Ich ___ nach Hamburg gefahren.",
+          "options": [
+            "bin",
+            "habe",
+            "war",
+            "hatte"
+          ],
+          "correct": 0,
+          "explanation": "Bewegungsverben wie 'fahren' bilden das Perfekt mit 'sein'."
+        },
+        {
+          "q": "Er ist gestern ___.",
+          "options": [
+            "angekommen",
+            "gekommenan",
+            "ankommen",
+            "ankam"
+          ],
+          "correct": 0,
+          "explanation": "Partizip II von 'ankommen' (trennbar + sein): angekommen."
+        },
+        {
+          "q": "Achtung: 'bleiben' -> Partizip II?",
+          "options": [
+            "geblieben",
+            "gebleibt",
+            "bleibt",
+            "geblibt"
+          ],
+          "correct": 0,
+          "explanation": "'bleiben' ist unregelmäßig: geblieben (mit sein, obwohl keine Bewegung)."
+        },
+        {
+          "q": "___ Winter war ich in Berlin.",
+          "options": [
+            "Im",
+            "In",
+            "An",
+            "Am"
+          ],
+          "correct": 0,
+          "explanation": "Jahreszeiten stehen mit 'im': im Winter."
+        },
+        {
+          "q": "___ 1977 wohne ich hier.",
+          "options": [
+            "Seit",
+            "Vor",
+            "Ab",
+            "Im"
+          ],
+          "correct": 0,
+          "explanation": "Ein Zeitpunkt in der Vergangenheit bis jetzt: seit 1977."
+        },
+        {
+          "q": "Ich fahre ___ Österreich.",
+          "options": [
+            "nach",
+            "in",
+            "zu",
+            "an"
+          ],
+          "correct": 0,
+          "explanation": "Länder ohne Artikel: nach Österreich (Ausnahme: in die Schweiz/Türkei)."
+        },
+        {
+          "q": "Letztes Jahr ___ ich viel Spaß.",
+          "options": [
+            "hatte",
+            "habe",
+            "hat",
+            "hatten"
+          ],
+          "correct": 0,
+          "explanation": "Präteritum von 'haben', ich-Form: hatte."
+        }
+      ]
+    }
+  ]
+}

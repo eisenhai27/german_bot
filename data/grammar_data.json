@@ -1,0 +1,644 @@
+{
+  "meta": {
+    "source_file": "Momente_A1_1.pdf (Hueber, Momente A1 Kursbuch)",
+    "coverage": "Lektion 1-12 only (Modul 1-4). Lektion 13-24 are NOT present in the uploaded file.",
+    "note": "The uploaded PDF jumps from the end of Lektion 12 (print page ~82) directly to a later 'Aktionsseiten' review section (print page ~155) with no pages in between. Modules 5-8 are missing from this scan.",
+    "lesson_count_available": 12,
+    "lesson_count_total_expected": 24
+  },
+  "lessons": [
+    {
+      "lektion": 1,
+      "title": "Ich heiße Miriam.",
+      "topics": [
+        {
+          "point": "Konjugation Singular & Plural: kommen, lernen, heißen, sein",
+          "explanation": "Regelmäßige Verben (kommen, lernen) + heißen + sein, alle Personen.",
+          "table": {
+            "ich": {
+              "kommen": "komme",
+              "lernen": "lerne",
+              "heißen": "heiße",
+              "sein": "bin"
+            },
+            "du": {
+              "kommen": "kommst",
+              "lernen": "lernst",
+              "heißen": "heißt",
+              "sein": "bist"
+            },
+            "er/sie": {
+              "kommen": "kommt",
+              "lernen": "lernt",
+              "heißen": "heißt",
+              "sein": "ist"
+            },
+            "wir": {
+              "kommen": "kommen",
+              "lernen": "lernen",
+              "heißen": "heißen",
+              "sein": "sind"
+            },
+            "ihr": {
+              "kommen": "kommt",
+              "lernen": "lernt",
+              "heißen": "heißt",
+              "sein": "seid"
+            },
+            "sie/Sie": {
+              "kommen": "kommen",
+              "lernen": "lernen",
+              "heißen": "heißen",
+              "sein": "sind"
+            }
+          },
+          "examples": [
+            "Ich heiße Andrea.",
+            "Woher kommst du?",
+            "Sie kommt aus Eritrea."
+          ]
+        },
+        {
+          "point": "W-Fragen: Woher...? / Wie...?",
+          "explanation": "W-Fragen stehen am Satzanfang, danach das Verb.",
+          "examples": [
+            "Wer ist das?",
+            "Wie heißt du?",
+            "Woher kommst du?"
+          ]
+        },
+        {
+          "point": "Aussagen (Satzstruktur)",
+          "explanation": "Subjekt + Verb + Rest.",
+          "examples": [
+            "Das ist Alva.",
+            "Ich heiße Rita.",
+            "Ich komme aus Portugal."
+          ]
+        },
+        {
+          "point": "Lokale Präposition: aus",
+          "explanation": "aus + Land/Stadt. Ausnahme: aus der Türkei/Schweiz, aus den USA (Länder mit Artikel). Wo? -> in + Stadt.",
+          "examples": [
+            "aus Eritrea / Österreich / Deutschland",
+            "aus der Türkei / aus der Schweiz / aus den USA",
+            "Wo? -> in München."
+          ]
+        }
+      ],
+      "kommunikation": [
+        "sich begrüßen/verabschieden: Hallo. – Tschüs.",
+        "nach dem Befinden fragen: Wie geht's (dir/Ihnen)? Super!/Sehr gut./Gut./Es geht./Nicht so gut. Auch gut.",
+        "nach dem Namen fragen und sich vorstellen: Wie heißt du? / Wie heißen Sie? Ich heiße/bin Andrea. Wer sind Sie? Mein Name ist David Ramos.",
+        "die Herkunft und den Wohnort nennen: Woher kommst du? (Ich komme) aus Eritrea. Wo wohnst du? (Ich wohne) in München.",
+        "um Wiederholung bitten: Entschuldigung. Wie bitte?",
+        "sich bedanken: Danke."
+      ]
+    },
+    {
+      "lektion": 2,
+      "title": "Was macht ihr beruflich?",
+      "topics": [
+        {
+          "point": "Konjugation Singular & Plural: wohnen, leben, haben, sein, arbeiten",
+          "table": {
+            "ich": {
+              "wohnen": "wohne",
+              "leben": "lebe",
+              "haben": "habe",
+              "sein": "bin",
+              "arbeiten": "arbeite"
+            },
+            "du": {
+              "wohnen": "wohnst",
+              "leben": "lebst",
+              "haben": "hast",
+              "sein": "bist",
+              "arbeiten": "arbeitest"
+            },
+            "er/sie": {
+              "wohnen": "wohnt",
+              "leben": "lebt",
+              "haben": "hat",
+              "sein": "ist",
+              "arbeiten": "arbeitet"
+            },
+            "wir": {
+              "wohnen": "wohnen",
+              "leben": "leben",
+              "haben": "haben",
+              "sein": "sind",
+              "arbeiten": "arbeiten"
+            },
+            "ihr": {
+              "wohnen": "wohnt",
+              "leben": "lebt",
+              "haben": "habt",
+              "sein": "seid",
+              "arbeiten": "arbeitet"
+            },
+            "sie/Sie": {
+              "wohnen": "wohnen",
+              "leben": "leben",
+              "haben": "haben",
+              "sein": "sind",
+              "arbeiten": "arbeiten"
+            }
+          }
+        },
+        {
+          "point": "Personalpronomen er/sie/sie",
+          "explanation": "Personen durch Pronomen ersetzen.",
+          "examples": [
+            "Simon -> er",
+            "Miriam -> sie",
+            "Lydia + Arno -> sie (Plural)"
+          ]
+        },
+        {
+          "point": "Negation mit nicht",
+          "examples": [
+            "Wir sind verheiratet.",
+            "Wir sind nicht verheiratet."
+          ]
+        },
+        {
+          "point": "Präpositionen: als, bei",
+          "explanation": "als + Beruf (ohne Artikel); bei + Firma.",
+          "examples": [
+            "Er/Sie arbeitet als Friseurin.",
+            "Er/Sie arbeitet bei HotSped."
+          ]
+        },
+        {
+          "point": "Wortbildung: Endung -in (weibliche Berufsbezeichnung)",
+          "examples": [
+            "Student -> Studentin",
+            "Kellner -> Kellnerin",
+            "Arzt -> Ärztin"
+          ]
+        }
+      ],
+      "kommunikation": [
+        "über den Beruf sprechen: Was machen Sie/machst du beruflich? Was sind Sie/bist du von Beruf? Ich habe eine Stelle/einen Job als... Ich arbeite als... Ich bin... von Beruf. Ich studiere Medizin. Ich mache eine Ausbildung/ein Praktikum als.../bei... Ich arbeite im Moment nicht.",
+        "über Persönliches sprechen: Ich bin verheiratet/geschieden. Wir leben (nicht) zusammen. Ich lebe allein./Ich bin Single. Wir haben ein Kind/zwei Kinder/keine Kinder. Wie alt sind Sie/bist du? Ich bin 32 (Jahre alt).",
+        "den Wohnort nennen: Wo wohnen/leben Sie/wohnst/lebst du? (Ich wohne/lebe) in München."
+      ]
+    },
+    {
+      "lektion": 3,
+      "title": "Das ist meine Schwester.",
+      "topics": [
+        {
+          "point": "Genitiv bei Namen",
+          "examples": [
+            "Wer ist Jans Mutter?",
+            "Ich glaube, Dorothea ist Jans Mutter."
+          ]
+        },
+        {
+          "point": "Possessivartikel mein/dein",
+          "table": {
+            "maskulin": {
+              "ich": "mein Onkel",
+              "du": "dein Vater"
+            },
+            "feminin": {
+              "ich": "meine Schwester",
+              "du": "deine Schwester"
+            },
+            "plural": {
+              "ich": "meine Eltern",
+              "du": "deine Kinder"
+            }
+          }
+        },
+        {
+          "point": "Ja-/Nein-Fragen: ja – nein – doch",
+          "explanation": "Auf eine negativ formulierte Frage antwortet man mit 'doch' (= ja) statt 'ja'.",
+          "examples": [
+            "Ist das deine Schwester? -> Ja. / Nein.",
+            "Ist das nicht deine Schwester? -> Doch. / Nein."
+          ]
+        },
+        {
+          "point": "Konjugation: sprechen (Vokalwechsel e->i)",
+          "table": {
+            "ich": "spreche",
+            "du": "sprichst",
+            "er/sie": "spricht",
+            "wir": "sprechen",
+            "ihr": "sprecht",
+            "sie/Sie": "sprechen"
+          }
+        }
+      ],
+      "kommunikation": [
+        "über die Familie sprechen: Ist das dein Vater/Bruder/...? Ja, das ist mein Vater/Bruder/... Nein, das ist mein Onkel/Opa/... Sind Antonio und Eva deine Eltern/Großeltern...? Ja(, das sind meine Großeltern). Nein(, das sind nicht meine Großeltern).",
+        "über Sprachkenntnisse sprechen: Welche Sprachen sprechen Sie/sprichst du? Ich spreche sehr gut/gut/ein bisschen/Russisch/Chinesisch/... Sprechen Sie/Sprichst du Englisch/Spanisch...? Ja, ein bisschen. / Nein, gar nicht.",
+        "etwas vermuten: Ich glaube, Dorothea ist Jans Mutter."
+      ]
+    },
+    {
+      "lektion": 4,
+      "title": "Das Bild ist so schön.",
+      "topics": [
+        {
+          "point": "Definiter Artikel: der/das/die (Nominativ)",
+          "examples": [
+            "der Stuhl",
+            "das Bett",
+            "die Lampe"
+          ]
+        },
+        {
+          "point": "Personalpronomen er/es/sie",
+          "explanation": "Nomen im Nominativ durch Pronomen ersetzen, passend zum Artikel.",
+          "examples": [
+            "der Stuhl -> er",
+            "das Bett -> es",
+            "die Lampe -> sie"
+          ]
+        }
+      ],
+      "kommunikation": [
+        "nach Preisen fragen und Preise nennen: Wie viel kostet der Stuhl? Er kostet (nur) 19,99 Euro. Das ist ein Sonderangebot.",
+        "etwas bewerten: Der Stuhl ist (so/sehr/wirklich/nicht so) schön/teuer/... Das finde ich auch. Ich finde, das Zimmer ist schön. Aber das Regal ist... Das finde ich nicht. Der Schrank ist zu groß/zu klein. Finden Sie? / Findest du?"
+      ]
+    },
+    {
+      "lektion": 5,
+      "title": "Ist das ein Tisch?",
+      "topics": [
+        {
+          "point": "Indefiniter Artikel & Negativartikel (Nominativ)",
+          "table": {
+            "der -> ein/kein": "Das ist ein/kein Tisch.",
+            "das -> ein/kein": "Das ist ein/kein Buch.",
+            "die -> eine/keine": "Das ist eine/keine Uhr.",
+            "die (Plural) -> -/keine": "Das sind keine Termine."
+          }
+        },
+        {
+          "point": "Indefiniter Artikel & Negativartikel (Akkusativ)",
+          "table": {
+            "den -> einen/keinen": "Ich habe einen/keinen Kalender.",
+            "das -> ein/kein": "Ich habe ein/kein Tablet.",
+            "die -> eine/keine": "Ich habe eine/keine Mail.",
+            "die (Plural) -> -/keine": "Ich habe keine Tablets."
+          }
+        },
+        {
+          "point": "Modale Präposition: aus (Material)",
+          "examples": [
+            "Die Flasche ist aus Plastik/Glas.",
+            "Die Brille ist aus Metall."
+          ]
+        },
+        {
+          "point": "Konjugation: sehen (Vokalwechsel e->ie)",
+          "table": {
+            "ich": "sehe",
+            "du": "siehst",
+            "er/sie": "sieht",
+            "wir": "sehen",
+            "ihr": "seht",
+            "sie/Sie": "sehen"
+          }
+        }
+      ],
+      "kommunikation": [
+        "etwas beschreiben: Es ist aus Plastik/Metall/Glas/... Es ist weiß/gelb/orange/...",
+        "nach Wörtern fragen und Wörter nennen: Entschuldigung, wie heißt das auf Deutsch? Ich weiß nicht. Wie schreibt man Schirm? S-C-H-I-R-M. Was ist das? Das ist ein/eine... Ist das ein/eine...? Ja, das ist ein/eine... Nein, das ist kein/keine...",
+        "um Wiederholung bitten: Wie bitte? Noch einmal, bitte.",
+        "die E-Mail-Adresse nennen: Wie ist deine E-Mail-Adresse? M-A-R-I-A Unterstrich 87 ät gmail Punkt com.",
+        "sich bedanken und darauf reagieren: Dankeschön./Danke./Vielen Dank. Bitteschön./Bitte./Sehr gern./Kein Problem."
+      ]
+    },
+    {
+      "lektion": 6,
+      "title": "Wir haben einen Termin.",
+      "topics": [
+        {
+          "point": "Singular - Plural (Nomen-Endungen)",
+          "table": {
+            "-(e)n": "die Nachricht -> die Nachrichten",
+            "-s": "der Laptop -> die Laptops",
+            "-e / Umlaut+e": "die Maus -> die Mäuse",
+            "-er / Umlaut+er": "das Passwort -> die Passwörter",
+            "- / Umlaut": "der Drucker -> die Drucker"
+          }
+        },
+        {
+          "point": "Akkusativ: definiter/indefiniter Artikel und Negativartikel",
+          "explanation": "Wiederholung/Vertiefung der Akkusativ-Formen aus Lektion 5, jetzt inkl. definitem Artikel."
+        }
+      ],
+      "kommunikation": [
+        "Telefonstrategien: Firma..., ..., guten Tag. Guten Tag/Hallo, ... hier. Hier ist... Mein Name ist... Guten Tag, Herr/Frau... Was kann ich für Sie tun? Ist Herr/Frau... da? Einen Moment bitte. Herr/Frau... ist leider nicht da. Vielen Dank. Auf Wiederhören. Sehr gern. Auf Wiederhören, Herr/Frau..."
+      ]
+    },
+    {
+      "lektion": 7,
+      "title": "Sie können super tanzen!",
+      "topics": [
+        {
+          "point": "Modalverb: können",
+          "table": {
+            "ich": "kann",
+            "du": "kannst",
+            "er/sie": "kann",
+            "wir": "können",
+            "ihr": "könnt",
+            "sie/Sie": "können"
+          }
+        },
+        {
+          "point": "Satzklammer bei Modalverben",
+          "explanation": "Modalverb auf Position 2, Infinitiv am Satzende.",
+          "examples": [
+            "Sie können wirklich super tanzen!",
+            "Meine Enkelin kann auch gut tanzen!",
+            "Wer kann toll malen?",
+            "Kannst du schwimmen?",
+            "Können Sie schwimmen?"
+          ]
+        },
+        {
+          "point": "Konjugation mit Vokalwechsel: lesen, treffen, fahren",
+          "table": {
+            "ich": {
+              "lesen": "lese",
+              "treffen": "treffe",
+              "fahren": "fahre"
+            },
+            "du": {
+              "lesen": "liest",
+              "treffen": "triffst",
+              "fahren": "fährst"
+            },
+            "er/sie": {
+              "lesen": "liest",
+              "treffen": "trifft",
+              "fahren": "fährt"
+            }
+          }
+        }
+      ],
+      "kommunikation": [
+        "Komplimente machen und sich bedanken: Sie können/Du kannst ja/aber/wirklich toll/super Ski fahren! Vielen Dank! Oh danke! Danke sehr! Herzlichen Dank!",
+        "über Fähigkeiten sprechen: Ich kann (gar) nicht/nicht so gut/ein bisschen/toll/(sehr) gut/super kochen.",
+        "über Häufigkeit sprechen: Wie oft...? Ich... immer/oft/manchmal/nie...",
+        "über Hobbys sprechen: Was sind deine Hobbys? Meine Hobbys sind... und... Mein Hobby ist.../... Was machst du gern? Ich... gern. Mein Lieblings-.../... ist... Was machst du in deiner Freizeit? Ich liebe... Das macht Spaß.",
+        "etwas bewerten: Ich finde das toll/super/normal/komisch/blöd/interessant/lustig."
+      ]
+    },
+    {
+      "lektion": 8,
+      "title": "Ich habe leider keine Zeit.",
+      "topics": [
+        {
+          "point": "Verbposition im Satz (Position 2)",
+          "examples": [
+            "Julia hat am Montag keine Zeit.",
+            "Am Montag hat Julia keine Zeit."
+          ]
+        },
+        {
+          "point": "Temporale Präpositionen: am, um",
+          "explanation": "am + Tag/Wochenende/Abend (ABER: in der Nacht); um + Uhrzeit.",
+          "examples": [
+            "am Montag/Dienstag...",
+            "am Wochenende",
+            "am Abend",
+            "in der Nacht (Ausnahme!)",
+            "um ein Uhr / eins / zwei...",
+            "um ein Uhr fünfzehn / Viertel nach eins / drei..."
+          ]
+        },
+        {
+          "point": "Konjugation: wissen",
+          "table": {
+            "ich": "weiß",
+            "du": "weißt",
+            "er/sie": "weiß",
+            "wir": "wissen",
+            "ihr": "wisst",
+            "sie/Sie": "wissen"
+          }
+        }
+      ],
+      "kommunikation": [
+        "nach der Uhrzeit fragen: Wie spät ist es? / Wie viel Uhr ist es? Es ist Viertel vor drei / vierzehn Uhr fünfundvierzig. Ja, genau.",
+        "sich verabreden: Hast du um vier/am Abend/... Zeit? Ja, (gern)./Gute Idee!/Okay./Ja, klar./Ja, da kann ich./Vielleicht. Was machst du heute Nachmittag/am Montag/...? Das weiß ich noch nicht. Vielleicht können wir mal wieder.../heute Abend/... ins Theater gehen? Wann denn? Gehen wir ins Kino? Tut mir leid, ich kann leider nicht. Ich... Kannst du heute Abend/am/um...? (Nein,) heute Abend/am/um... habe ich (leider) keine Zeit."
+      ]
+    },
+    {
+      "lektion": 9,
+      "title": "Ich mag Hamburger.",
+      "topics": [
+        {
+          "point": "Konjugation: mögen, essen, \"möchte\", nehmen",
+          "table": {
+            "ich": {
+              "mögen": "mag",
+              "essen": "esse",
+              "möchte": "möchte",
+              "nehmen": "nehme"
+            },
+            "du": {
+              "mögen": "magst",
+              "essen": "isst",
+              "möchte": "möchtest",
+              "nehmen": "nimmst"
+            },
+            "er/sie": {
+              "mögen": "mag",
+              "essen": "isst",
+              "möchte": "möchte",
+              "nehmen": "nimmt"
+            },
+            "wir": {
+              "mögen": "mögen",
+              "essen": "essen",
+              "möchte": "möchten",
+              "nehmen": "nehmen"
+            },
+            "ihr": {
+              "mögen": "mögt",
+              "essen": "esst",
+              "möchte": "möchtet",
+              "nehmen": "nehmt"
+            },
+            "sie/Sie": {
+              "mögen": "mögen",
+              "essen": "essen",
+              "möchte": "möchten",
+              "nehmen": "nehmen"
+            }
+          }
+        },
+        {
+          "point": "Wortbildung: Nomen + Nomen",
+          "explanation": "Zusammengesetzte Nomen; manchmal mit Fugen-n (die Schokolade+der Kuchen -> der Schokoladenkuchen).",
+          "examples": [
+            "die Nuss + der Kuchen = der Nusskuchen",
+            "die Schokolade + der Kuchen = der Schokoladenkuchen"
+          ]
+        }
+      ],
+      "kommunikation": [
+        "über Vorlieben und Essgewohnheiten sprechen: Ich mag/liebe... Ich auch!/Ich nicht! Ich mag keinen/kein/keine... ... mag ich nicht. Ich auch nicht!/Ich schon! Was isst/trinkst du gern (zum Frühstück/Mittagessen/Abendessen)? Was magst du besonders gern? Ich esse/trinke gern... Hm, lecker! Ich mag... besonders gern. ... mag ich gar nicht./besonders. Ich esse kein Fleisch. Was ist dein Lieblingsgetränk/Lieblingsessen? Mein Lieblingsgetränk ist.../Mein Lieblingsessen ist... Guten Appetit! Danke.",
+        "im Restaurant bestellen: Guten Tag! Sie wünschen? Eine Tasse Kaffee und einen Kuchen, bitte. Ich möchte/nehme ein/eine/einen... bitte. Tut mir leid, aber wir haben kein/keine/keinen... mehr. Möchten Sie ein.../eine.../einen...? (Na gut,/Schade,) dann nehme ich... (Ja,) gern./Nein, danke."
+      ]
+    },
+    {
+      "lektion": 10,
+      "title": "Wann kommst du denn an?",
+      "topics": [
+        {
+          "point": "Trennbare Verben: Konjugation",
+          "explanation": "Präfix trennt sich ab und steht am Satzende.",
+          "table": {
+            "ich": {
+              "abholen": "hole ab",
+              "ankommen": "komme an",
+              "einkaufen": "kaufe ein",
+              "umsteigen": "steige um"
+            },
+            "du": {
+              "abholen": "holst ab",
+              "ankommen": "kommst an",
+              "einkaufen": "kaufst ein",
+              "umsteigen": "steigst um"
+            }
+          },
+          "examples": [
+            "auch so: abfliegen, anrufen, einsteigen ..."
+          ]
+        },
+        {
+          "point": "Satzklammer bei trennbaren Verben",
+          "examples": [
+            "Wann fliegst du (denn) ab?",
+            "Rufst du mich nochmal an?",
+            "Ich fliege um 8:25 Uhr ab.",
+            "Natürlich hole ich dich ab.",
+            "Kannst du mich abholen?"
+          ]
+        }
+      ],
+      "kommunikation": [
+        "sich informieren: Wann fliegst du (denn) ab? Mein Flug startet um... Uhr. Die Maschine landet um... Uhr. Ich nehme den Flug um... Uhr. Wann kommst du (dort)/in... an? (So) um... Uhr./So kurz nach/vor... Kannst du mich abholen? Natürlich.",
+        "Verständnis zeigen und rückfragen: Verstehe! Ja, alles klar! Was für eine Frage? Bist du sicher?",
+        "Gefühle ausdrücken: Hoffnung und Freude: Hoffentlich haben wir keine Verspätung! Ich freue mich so auf dich!",
+        "Durchsagen verstehen: Der Intercity 642 nach... fährt von Bahnsteig... Die U2 Richtung... fährt an Gleis 2 ein. Die Busfahrt beginnt/endet an... Das Flugzeug nach... steht am Ausgang... Der nächste Halt ist... Achtung! Bitte Vorsicht!"
+      ]
+    },
+    {
+      "lektion": 11,
+      "title": "Was haben Sie gestern gemacht?",
+      "topics": [
+        {
+          "point": "Perfekt mit haben",
+          "table": {
+            "regelmäßig": "machen -> gemacht",
+            "unregelmäßig": "trinken -> getrunken",
+            "trennbare Verben": "einkaufen -> eingekauft, fernsehen -> ferngesehen",
+            "Verben auf -ieren": "fotografieren -> fotografiert (ohne ge-)"
+          }
+        },
+        {
+          "point": "Satzklammer bei Perfekt",
+          "examples": [
+            "Was haben Sie gestern gemacht?",
+            "Habt ihr gestern aufgeräumt?",
+            "Ich habe Zeitung gelesen."
+          ]
+        },
+        {
+          "point": "Temporale Präpositionen: von...bis, ab",
+          "examples": [
+            "von 13:30 Uhr bis 14:30 Uhr",
+            "ab 17:30 Uhr"
+          ]
+        },
+        {
+          "point": "Adjektiv: letzt-",
+          "examples": [
+            "letzten Mittwoch",
+            "letztes Wochenende",
+            "letzte Woche"
+          ]
+        }
+      ],
+      "kommunikation": [
+        "über Vergangenes sprechen: Was hast du gestern/letzten Mittwoch/letzte Woche/letztes Wochenende/... gemacht? Ich habe Zeitung gelesen. Von zwei bis halb drei habe ich... Gestern Morgen habe ich... Danach/Dann habe ich... Ab.../Von... bis... habe ich... Hast du gestern Abend aufgeräumt? Bist du schon einmal einen Marathon gelaufen? Ja, habe/bin ich. / Nein, habe/bin ich nicht.",
+        "nach Öffnungszeiten/Uhrzeiten fragen: Wann ist die Praxis geöffnet/geschlossen? Von Montag bis Freitag. Wann beginnt der Unterricht? Am Mittwoch um acht Uhr. Seit wann gibt es das Fest? Das Fest gibt es seit 1035."
+      ]
+    },
+    {
+      "lektion": 12,
+      "title": "Im Frühling bin ich nach Hamburg gefahren.",
+      "topics": [
+        {
+          "point": "Perfekt mit sein",
+          "table": {
+            "unregelmäßig": "laufen -> gelaufen",
+            "trennbare Verben": "ankommen -> angekommen",
+            "Achtung": "bleiben -> geblieben (kein Vokalwechsel-Partizip trotz sein)",
+            "auch so": "passieren, sein"
+          }
+        },
+        {
+          "point": "Präteritum von sein und haben",
+          "table": {
+            "ich": {
+              "sein": "war",
+              "haben": "hatte"
+            },
+            "du": {
+              "sein": "warst",
+              "haben": "hattest"
+            },
+            "er/sie": {
+              "sein": "war",
+              "haben": "hatte"
+            },
+            "wir": {
+              "sein": "waren",
+              "haben": "hatten"
+            },
+            "ihr": {
+              "sein": "wart",
+              "haben": "hattet"
+            },
+            "sie/Sie": {
+              "sein": "waren",
+              "haben": "hatten"
+            }
+          }
+        },
+        {
+          "point": "Temporale Präpositionen: im, seit",
+          "examples": [
+            "im Winter / im Januar",
+            "seit 1977"
+          ]
+        },
+        {
+          "point": "Lokale Präposition: nach",
+          "explanation": "nach + Stadt/Land ohne Artikel. Ausnahme: in die Schweiz/Türkei (Länder mit Artikel).",
+          "examples": [
+            "nach Bregenz / Österreich",
+            "ABER: in die Schweiz / Türkei"
+          ]
+        }
+      ],
+      "kommunikation": [
+        "über Reisen sprechen: Im August/Im Sommer/Letztes Jahr/... war ich in... Im Herbst/... habe ich Freunde in... besucht. Ich hatte (kein) Glück mit dem Wetter. Ich hatte viel Spaß. Ich war allein/mit Freunden/mit der Familie unterwegs. Die Reise war (nicht so) schön.",
+        "über Feste sprechen: Wann haben Sie/hast du Geburtstag? Ich habe im Winter/August/... Geburtstag. Ich habe Weihnachten in Düsseldorf gefeiert. Ich feiere Silvester am Brandenburger Tor. Wir hatten viel Spaß und sind lange dort geblieben. Das Fest heißt.../gibt es seit.../ist in.../ist im Mai/im Frühling... Es dauert... und hat... Besucher."
+      ]
+    }
+  ]
+}
