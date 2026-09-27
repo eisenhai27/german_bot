@@ -28,6 +28,13 @@ german_bot/
   set_webhook.py            run once after deploying webhook_app.py
   test_offline.py           simulates a full conversation with no network — run this
                             any time you change the code, to catch bugs before deploying
+  run_bot.ps1               Windows: start the bot on this PC (asks for the token)
+  miniapp/                  the Telegram Mini App (see below)
+    index.html                UI
+    quiz.js                   pure quiz logic, unit-tested in tests/test_miniapp.js
+    data.js                   GENERATED from data/ by tools/build_miniapp.py
+  tools/build_miniapp.py    regenerates miniapp/data.js after you edit data/
+  tests/                    mini app tests (node tests/test_miniapp.js)
   requirements.txt
 ```
 
@@ -156,20 +163,37 @@ Once you send the rest of the course book, the new grammar goes into
 (the actual quiz bank, same format as Lektion 1–12 already in there).
 The bot automatically shows the Grammar Quiz option and includes it in
 the Final Test for any lektion that has questions in
-`grammar_questions.json` — no code changes needed.
+`grammar_questions.json` — no code changes needed. Afterwards run
+`python tools/build_miniapp.py` so the mini app picks up the new content too.
 
-## The mini app (miniapp/index.html)
+## The mini app (miniapp/)
 
-This is a self-contained, single-file visual version of the same study
-tool — a "passport" of stamps for your 24 lektionen, with animated
-flashcards, tap-to-pair matching, multiple choice, type-the-word, a
-grammar quiz, and the same 80% Final Test gate. It saves progress on
-whatever device opens it (browser storage), separately from the chat
-bot's own database.
+A visual version of the same study tool, designed as a German passport:
+you collect a stamp for each of the 24 lektionen.
 
-**Preview it right now:** just double-click `miniapp/index.html` on your
-computer — it opens straight in your browser, no server, no account,
-nothing to sign into.
+- **Practice modes:** flashcards, multiple choice, matching (tap either
+  side first), type-it, a **der · die · das** article drill for every
+  noun, a Review pile, and the grammar quiz.
+- **Final test:** 15 questions, 80% unlocks the next lektion. The result
+  screen lists every mistake so you know what to practise.
+- **Review pile:** a missed word stays in it until you get it right
+  twice in a row.
+- **Type-it:** ignores der/die/das and umlaut spelling (a/ä), forgives
+  a one-letter typo on longer words, and has ä ö ü ß buttons.
+- **Pronunciation:** 🔊 buttons read German words aloud, using the
+  phone's own text-to-speech.
+- **Daily streak** and a stats card on the home screen.
+- **Inside Telegram:** it uses Telegram's theme, back button and
+  vibration feedback, and progress **syncs across your devices** through
+  Telegram CloudStorage. In a normal browser it saves progress on that
+  device.
+- Keyboard shortcuts on a computer: 1–4 to answer, Enter/Space to
+  continue or flip a card, Esc to go back.
+
+It keeps its own progress, separate from the chat bot's database.
+
+**Preview it right now:** double-click `miniapp/index.html`. It opens
+straight in your browser with no server and no account.
 
 **Putting it inside the Telegram bot** needs one more thing: Telegram
 can only open a Mini App at a public **https://** address — it can't
