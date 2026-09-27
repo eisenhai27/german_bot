@@ -30,6 +30,7 @@ MODE_CODES = {
     "missed": "vocab_missed",
     "grammar": "grammar",
     "final": "final",
+    "modul": "modul",
 }
 
 
@@ -188,6 +189,9 @@ def _send_lektion_menu(chat_id, user_id, n, edit_message_id=None):
     if has_grammar:
         rows.append([("📖 Grammar Quiz", f"go:{n}:grammar")])
     rows.append([("🏁 Final Test", f"go:{n}:final")])
+    if n % 3 == 0 and data_loader.get_module(n // 3):
+        # Every 3rd lektion closes a Modul: offer its grammar test here.
+        rows.append([(f"📝 Modul {n // 3} Grammar Test (Lektion {n - 2}–{n})", f"go:{n}:modul")])
     rows.append([("« Back to lessons", "menu")])
     _send_or_edit(chat_id, edit_message_id, "\n".join(lines), tg.inline_keyboard(rows))
 
@@ -242,6 +246,11 @@ def _start_session(chat_id, user_id, n, mode_code):
         questions = quiz_engine.build_grammar_quiz(n)
         if not questions:
             tg.send_message(chat_id, "No grammar quiz for this lektion yet.")
+            return
+    elif mode == "modul":
+        questions = quiz_engine.build_module_quiz((n + 2) // 3)
+        if not questions:
+            tg.send_message(chat_id, "No Modul test for this lektion yet.")
             return
     elif mode == "final":
         questions = quiz_engine.build_final_test(n)

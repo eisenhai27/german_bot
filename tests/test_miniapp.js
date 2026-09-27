@@ -95,6 +95,34 @@ test('flashAdvance re-queues a missed card a few places back', () => {
   assert.deepStrictEqual(Q.flashAdvance(['a'], false, 3), ['a']);
 });
 
+test('modul tests: 8 moduls x 10 valid questions, shuffled, unlock at the 3rd lektion', () => {
+  const M = sandbox.window.MODULE_DATA;
+  assert.strictEqual(M.length, 8);
+  let total = 0;
+  M.forEach((mod, i) => {
+    assert.strictEqual(mod.modul, i + 1);
+    assert.strictEqual(JSON.stringify(mod.lektionen), JSON.stringify(Q.moduleLektionen(mod.modul)));
+    assert.strictEqual(mod.questions.length, 10, 'Modul ' + mod.modul);
+    for (const q of mod.questions) {
+      assert.strictEqual(new Set(q.options).size, q.options.length, 'duplicate option in: ' + q.q);
+      assert.ok(q.correct >= 0 && q.correct < q.options.length);
+      assert.ok(q.explanation, 'missing explanation: ' + q.q);
+      total++;
+    }
+    for (const q of Q.buildModuleQuiz(mod)) assert.ok(q.options[q.correctIndex]);
+  });
+  assert.strictEqual(total, 80);
+
+  const positions = new Set();
+  for (let i = 0; i < 30; i++) for (const q of Q.buildModuleQuiz(M[0])) positions.add(q.correctIndex);
+  assert.ok(positions.size > 1, 'answers must not always be option A');
+  for (const q of Q.buildGrammarQuiz(GRAMMAR_DATA['1'])) assert.strictEqual(q.options[q.correctIndex], GRAMMAR_DATA['1'].find(g => g.q === q.prompt).options[0]);
+
+  assert.strictEqual(Q.moduleOf(7), 3);
+  assert.ok(!Q.isModuleUnlocked({ 1: { passed: true } }, 1), 'Lektion 3 not reached yet');
+  assert.ok(Q.isModuleUnlocked({ 2: { passed: true } }, 1));
+});
+
 test('review pile needs two correct answers to clear', () => {
   let pile = Q.updateReview({}, 'w1', false);
   assert.strictEqual(pile.w1, 2);

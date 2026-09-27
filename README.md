@@ -179,6 +179,14 @@ you collect a stamp for each of the 24 lektionen.
   noun, a Review pile, and the grammar quiz.
 - **Final test:** 15 questions, 80% unlocks the next lektion. The result
   screen lists every mistake so you know what to practise.
+- **Modul tests:** after every 3 lektionen (one *Modul*) there's a
+  10-question grammar test: 8 tests, 80 questions in total
+  (`data/module_quizzes.json`). It opens when you reach the Modul's third
+  lektion, explains every wrong answer, and a pass puts a gold star on
+  your passport. The chat bot offers the same test in the menu of
+  Lektion 3, 6, 9 …. Modul 1–4 follow the book's grammar; Modul 5–8 are
+  standard A1 grammar based on the Lektion 13–24 vocabulary and are
+  marked `"verified": false` until they're checked against the A1.2 book.
 - **Review pile:** a missed word stays in it until you get it right
   twice in a row.
 - **Type-it:** ignores der/die/das and umlaut spelling (a/ä), forgives

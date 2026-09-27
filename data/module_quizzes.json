@@ -1,0 +1,161 @@
+{
+  "meta": {
+    "description": "Grammar test after every 3 lektionen (one Modul). 10 multiple-choice questions each.",
+    "question_count": 80,
+    "note": "Modul 1-4 follow the grammar topics of Momente A1.1 (see grammar_data.json). Modul 5-8 cover standard A1 grammar inferred from the Lektion 13-24 vocabulary and are not yet checked against the A1.2 book (verified: false)."
+  },
+  "modules": [
+    {
+      "modul": 1,
+      "lektionen": [1, 2, 3],
+      "title": "Ich, du, wir: sich vorstellen",
+      "topics": ["Konjugation Präsens", "W-Fragen", "Negation mit nicht", "Genitiv bei Namen", "mein / dein", "ja – nein – doch", "sprechen (e → i)"],
+      "verified": true,
+      "questions": [
+        {"q": "Woher ___ du?", "options": ["kommst", "kommt", "komme", "kommen"], "correct": 0, "explanation": "du-Form: Stamm + -st → du kommst."},
+        {"q": "Welche Sprachen ___ du?", "options": ["sprichst", "sprechst", "spricht", "sprecht"], "correct": 0, "explanation": "sprechen hat den Vokalwechsel e → i: du sprichst."},
+        {"q": "Ihr ___ 28 Jahre alt.", "options": ["seid", "sind", "seit", "ist"], "correct": 0, "explanation": "sein: ihr seid. (seit ist eine Präposition.)"},
+        {"q": "Er ___ als Friseur bei HotSped.", "options": ["arbeitet", "arbeitest", "arbeit", "arbeiten"], "correct": 0, "explanation": "Stamm endet auf -t: er arbeit-e-t."},
+        {"q": "Anna ___ zwei Kinder.", "options": ["hat", "habt", "hast", "haben"], "correct": 0, "explanation": "haben: er / sie / es hat."},
+        {"q": "___ wohnst du? – In München.", "options": ["Wo", "Woher", "Wie", "Wer"], "correct": 0, "explanation": "Wo? fragt nach dem Wohnort, Woher? nach der Herkunft."},
+        {"q": "Dorothea ist ___ Mutter.", "options": ["Jans", "Jan", "Janes", "der Jan"], "correct": 0, "explanation": "Bei Namen: Name + s → Jans Mutter."},
+        {"q": "Simon ist ___ verheiratet.", "options": ["nicht", "kein", "keine", "nein"], "correct": 0, "explanation": "Adjektive und Verben verneint man mit nicht."},
+        {"q": "Jan, ist das ___ Vater?", "options": ["dein", "deine", "mein", "meine"], "correct": 0, "explanation": "Frage an Jan (du) → dein; der Vater ist maskulin → dein."},
+        {"q": "Sprichst du nicht Englisch? – ___, ich spreche Englisch.", "options": ["Doch", "Ja", "Nein", "Nicht"], "correct": 0, "explanation": "Positive Antwort auf eine negative Frage: doch."}
+      ]
+    },
+    {
+      "modul": 2,
+      "lektionen": [4, 5, 6],
+      "title": "Möbel, Dinge, Büro",
+      "topics": ["der / das / die", "er / es / sie", "ein / kein (Nominativ, Akkusativ)", "aus + Material", "sehen (e → ie)", "Plural"],
+      "verified": true,
+      "questions": [
+        {"q": "___ Stuhl ist so schön.", "options": ["Der", "Die", "Das", "Den"], "correct": 0, "explanation": "Stuhl ist maskulin: der Stuhl (Nominativ)."},
+        {"q": "Die Lampe ist teuer. – Ja, ___ kostet 200 Euro.", "options": ["sie", "er", "es", "ihr"], "correct": 0, "explanation": "die Lampe → sie."},
+        {"q": "Wie findest du das Bett? – ___ ist zu klein.", "options": ["Es", "Er", "Sie", "Ihr"], "correct": 0, "explanation": "das Bett → es."},
+        {"q": "Ist das ein Kugelschreiber? – Nein, das ist ___ Kugelschreiber.", "options": ["kein", "keine", "keinen", "nicht"], "correct": 0, "explanation": "Nominativ maskulin: kein."},
+        {"q": "Ich habe leider ___ Handy.", "options": ["kein", "keinen", "keine", "nicht"], "correct": 0, "explanation": "das Handy ist neutral; Akkusativ neutral = kein."},
+        {"q": "Hast du ___ Stift?", "options": ["einen", "ein", "eine", "einem"], "correct": 0, "explanation": "haben + Akkusativ; maskulin → einen Stift."},
+        {"q": "Die Tasche ist ___ Plastik.", "options": ["aus", "von", "mit", "bei"], "correct": 0, "explanation": "Material: aus + Material (aus Holz, aus Glas …)."},
+        {"q": "___ du den Schlüssel?", "options": ["Siehst", "Sehst", "Sieht", "Seht"], "correct": 0, "explanation": "sehen hat den Vokalwechsel e → ie: du siehst."},
+        {"q": "Im Zimmer sind zwei ___.", "options": ["Lampen", "Lampe", "Lampes", "Lämpe"], "correct": 0, "explanation": "Nomen auf -e: Plural meist mit -n → die Lampen."},
+        {"q": "Ich brauche ___ Drucker. Wo ist er?", "options": ["den", "der", "dem", "die"], "correct": 0, "explanation": "brauchen + Akkusativ; maskulin → den Drucker."}
+      ]
+    },
+    {
+      "modul": 3,
+      "lektionen": [7, 8, 9],
+      "title": "Hobbys, Zeit, Essen",
+      "topics": ["können + Satzklammer", "lesen (e → ie)", "Verb auf Position 2", "am / um", "wissen", "mögen, nehmen", "Nomen + Nomen"],
+      "verified": true,
+      "questions": [
+        {"q": "Ich ___ gut schwimmen.", "options": ["kann", "könne", "kannst", "können"], "correct": 0, "explanation": "können: ich kann (ohne Endung)."},
+        {"q": "Welcher Satz ist richtig?", "options": ["Er kann sehr gut tanzen.", "Er kann tanzen sehr gut.", "Er sehr gut kann tanzen.", "Er tanzen kann sehr gut."], "correct": 0, "explanation": "Satzklammer: Modalverb auf Position 2, Infinitiv am Ende."},
+        {"q": "Carla ___ gern Bücher.", "options": ["liest", "lest", "lesst", "lies"], "correct": 0, "explanation": "lesen hat den Vokalwechsel e → ie: sie liest."},
+        {"q": "Wir gehen ___ Montag ins Kino.", "options": ["am", "um", "im", "an"], "correct": 0, "explanation": "Wochentage und Tageszeiten: am Montag, am Abend."},
+        {"q": "Der Film beginnt ___ acht Uhr.", "options": ["um", "am", "im", "in"], "correct": 0, "explanation": "Uhrzeit: um acht Uhr."},
+        {"q": "Welcher Satz ist richtig?", "options": ["Am Wochenende fahre ich Ski.", "Am Wochenende ich fahre Ski.", "Ich am Wochenende fahre Ski.", "Am Wochenende Ski fahre ich."], "correct": 0, "explanation": "Im Aussagesatz steht das Verb immer auf Position 2."},
+        {"q": "Wann beginnt das Konzert? – Das ___ ich nicht.", "options": ["weiß", "weißt", "wisse", "wissen"], "correct": 0, "explanation": "wissen: ich weiß, du weißt, er weiß."},
+        {"q": "Martin ___ keinen Käse.", "options": ["mag", "magt", "mögt", "möge"], "correct": 0, "explanation": "mögen: ich mag, du magst, er mag."},
+        {"q": "Was ___ du? – Ich nehme den Apfelkuchen.", "options": ["nimmst", "nehmst", "nimmt", "nehmt"], "correct": 0, "explanation": "nehmen: du nimmst, er nimmt."},
+        {"q": "der Apfel + der Kuchen = ___ Apfelkuchen", "options": ["der", "die", "das", "den"], "correct": 0, "explanation": "Bei Nomen + Nomen bestimmt das letzte Nomen den Artikel: der Kuchen → der Apfelkuchen."}
+      ]
+    },
+    {
+      "modul": 4,
+      "lektionen": [10, 11, 12],
+      "title": "Reisen und Vergangenheit",
+      "topics": ["trennbare Verben", "Perfekt mit haben / sein", "Partizip II", "war / hatte", "von … bis", "seit"],
+      "verified": true,
+      "questions": [
+        {"q": "Wann ___ du in Frankfurt ___?", "options": ["kommst … an", "ankommst … –", "kommst … ab", "an … kommst"], "correct": 0, "explanation": "Trennbares Verb ankommen: kommst auf Position 2, an am Satzende."},
+        {"q": "Der Zug ___ um 9 Uhr ab.", "options": ["fährt", "fahrt", "fährst", "abfährt"], "correct": 0, "explanation": "abfahren: er fährt … ab (Vokalwechsel a → ä)."},
+        {"q": "Rufst du mich morgen ___?", "options": ["an", "auf", "ab", "um"], "correct": 0, "explanation": "anrufen: Das Präfix an steht am Satzende."},
+        {"q": "Gestern ___ ich einen Spaziergang gemacht.", "options": ["habe", "bin", "hat", "war"], "correct": 0, "explanation": "machen bildet das Perfekt mit haben."},
+        {"q": "Im Frühling ___ Lea nach Hamburg gefahren.", "options": ["ist", "hat", "war", "sind"], "correct": 0, "explanation": "Bewegung von A nach B (fahren) → Perfekt mit sein."},
+        {"q": "Was hast du am Wochenende ___?", "options": ["gemacht", "gemachen", "macht", "machte"], "correct": 0, "explanation": "Regelmäßiges Partizip: ge- + mach + -t."},
+        {"q": "Ich habe die ganze Nacht ___.", "options": ["geschlafen", "geschlaft", "schlafen", "geschläft"], "correct": 0, "explanation": "schlafen ist unregelmäßig: geschlafen (-en)."},
+        {"q": "Letzte Woche ___ ich krank.", "options": ["war", "bin", "hatte", "habe"], "correct": 0, "explanation": "Präteritum von sein: ich war."},
+        {"q": "Die Boutique ist ___ Montag ___ Freitag geöffnet.", "options": ["von … bis", "ab … bis", "seit … bis", "um … bis"], "correct": 0, "explanation": "Zeitraum mit Anfang und Ende: von … bis."},
+        {"q": "Ich wohne ___ drei Jahren in Berlin.", "options": ["seit", "vor", "ab", "im"], "correct": 0, "explanation": "seit + Dativ: Es hat in der Vergangenheit begonnen und dauert noch an."}
+      ]
+    },
+    {
+      "modul": 5,
+      "lektionen": [13, 14, 15],
+      "title": "Stadt, Weg, Wohnung",
+      "topics": ["Personalpronomen im Dativ (mir, dir)", "zum / zur", "Imperativ (Sie)", "sein / ihr / unser / euer", "trennbare Verben"],
+      "verified": false,
+      "questions": [
+        {"q": "Berlin gefällt ___ sehr gut. (ich)", "options": ["mir", "mich", "ich", "mein"], "correct": 0, "explanation": "gefallen + Dativ: ich → mir."},
+        {"q": "Wie gefällt ___ die Wohnung? (du)", "options": ["dir", "dich", "du", "dein"], "correct": 0, "explanation": "gefallen + Dativ: du → dir."},
+        {"q": "Entschuldigung, wie komme ich ___ Bahnhof?", "options": ["zum", "zur", "nach", "in"], "correct": 0, "explanation": "zu + dem = zum (der Bahnhof)."},
+        {"q": "Wie komme ich ___ Post?", "options": ["zur", "zum", "nach", "zu"], "correct": 0, "explanation": "zu + der = zur (die Post)."},
+        {"q": "___ Sie an der Ampel links ab!", "options": ["Biegen", "Abbiegen", "Biegt", "Biegst"], "correct": 0, "explanation": "Imperativ (Sie): Verb + Sie, das Präfix ab steht am Ende."},
+        {"q": "Das ist Tom. Das ist ___ Zimmer.", "options": ["sein", "ihr", "seine", "ihre"], "correct": 0, "explanation": "Tom (er) → sein; das Zimmer ist neutral → sein Zimmer."},
+        {"q": "Das ist Anna. Das ist ___ Balkon.", "options": ["ihr", "sein", "ihre", "seine"], "correct": 0, "explanation": "Anna (sie) → ihr; der Balkon ist maskulin → ihr Balkon."},
+        {"q": "Wir wohnen in einer WG. ___ Wohnung ist gemütlich.", "options": ["Unsere", "Unser", "Eure", "Euer"], "correct": 0, "explanation": "wir → unser; die Wohnung ist feminin → unsere."},
+        {"q": "Kinder, ist das ___ Ball?", "options": ["euer", "eure", "unser", "dein"], "correct": 0, "explanation": "ihr (die Kinder) → euer; der Ball ist maskulin → euer Ball."},
+        {"q": "Wir ziehen nächste Woche ___.", "options": ["um", "an", "ab", "auf"], "correct": 0, "explanation": "umziehen: Das Präfix um steht am Satzende."}
+      ]
+    },
+    {
+      "modul": 6,
+      "lektionen": [16, 17, 18],
+      "title": "Hilfe, Pläne, Gesundheit",
+      "topics": ["höfliche Bitte mit können", "Personalpronomen im Akkusativ", "wollen", "werden", "Imperativ (du, ihr, Sie)"],
+      "verified": false,
+      "questions": [
+        {"q": "___ Sie mir bitte helfen?", "options": ["Können", "Kann", "Könnt", "Kannst"], "correct": 0, "explanation": "Höfliche Bitte: Können Sie …?"},
+        {"q": "Der Aufzug ist kaputt. Können Sie ___ reparieren?", "options": ["ihn", "er", "ihm", "sein"], "correct": 0, "explanation": "reparieren + Akkusativ: der Aufzug → ihn."},
+        {"q": "Ich rufe ___ morgen an. (du)", "options": ["dich", "dir", "du", "dein"], "correct": 0, "explanation": "anrufen + Akkusativ: du → dich."},
+        {"q": "Ich ___ Astronaut werden!", "options": ["will", "wolle", "willst", "wollen"], "correct": 0, "explanation": "wollen: ich will, du willst, er will."},
+        {"q": "___ ihr ein Start-up gründen?", "options": ["Wollt", "Will", "Wollen", "Willst"], "correct": 0, "explanation": "wollen: ihr wollt."},
+        {"q": "Meine Schwester ___ Ärztin.", "options": ["wird", "werdet", "wirst", "werde"], "correct": 0, "explanation": "werden: ich werde, du wirst, sie wird."},
+        {"q": "Du bist krank. ___ heute zu Hause!", "options": ["Bleib", "Bleibst", "Bleiben", "Bleibt"], "correct": 0, "explanation": "Imperativ (du): Verbstamm ohne -st und ohne du → Bleib!"},
+        {"q": "___ eine Tablette! (du, nehmen)", "options": ["Nimm", "Nehm", "Nimmst", "Nehmt"], "correct": 0, "explanation": "du nimmst → Imperativ: Nimm! (e → i bleibt)."},
+        {"q": "Frau Klein, ___ Sie viel Wasser!", "options": ["trinken", "trinkt", "trink", "trinkst"], "correct": 0, "explanation": "Imperativ (Sie): Infinitiv + Sie → Trinken Sie!"},
+        {"q": "Kinder, ___ bitte leise!", "options": ["seid", "sind", "sei", "seien"], "correct": 0, "explanation": "Imperativ von sein (ihr): Seid!"}
+      ]
+    },
+    {
+      "modul": 7,
+      "lektionen": [19, 20, 21],
+      "title": "Haushalt, Beratung, Regeln",
+      "topics": ["Imperativ mit trennbaren Verben", "Personalpronomen im Dativ", "müssen", "dürfen", "man"],
+      "verified": false,
+      "questions": [
+        {"q": "___ bitte das Fenster ___! (du, aufmachen)", "options": ["Mach … auf", "Machst … auf", "Aufmach … –", "Macht … auf"], "correct": 0, "explanation": "Imperativ (du) + trennbares Verb: Mach … auf!"},
+        {"q": "Kinder, ___ bitte die Spülmaschine aus!", "options": ["räumt", "räum", "räumen", "räumst"], "correct": 0, "explanation": "Imperativ (ihr): ihr räumt → Räumt … aus! (ohne ihr)."},
+        {"q": "___ die Schlüssel nicht! (du, vergessen)", "options": ["Vergiss", "Vergess", "Vergisst", "Vergessen"], "correct": 0, "explanation": "du vergisst → Imperativ: Vergiss!"},
+        {"q": "Kannst du ___ helfen? (ich)", "options": ["mir", "mich", "ich", "mein"], "correct": 0, "explanation": "helfen + Dativ: ich → mir."},
+        {"q": "Der Berater erklärt ___ das Projekt. (wir)", "options": ["uns", "unser", "wir", "euch"], "correct": 0, "explanation": "Dativ von wir: uns."},
+        {"q": "Hier ___ man nicht rauchen.", "options": ["darf", "dürfen", "darfst", "dürft"], "correct": 0, "explanation": "man wie er / sie / es: man darf."},
+        {"q": "Ich ___ heute noch den Boden wischen.", "options": ["muss", "müsse", "musst", "müssen"], "correct": 0, "explanation": "müssen: ich muss, du musst, er muss."},
+        {"q": "Auf dem Balkon ___ ihr nicht grillen.", "options": ["dürft", "darf", "dürfen", "darft"], "correct": 0, "explanation": "dürfen: ihr dürft."},
+        {"q": "___ wir die Hausordnung lesen?", "options": ["Müssen", "Muss", "Musst", "Müsst"], "correct": 0, "explanation": "müssen: wir müssen."},
+        {"q": "Welcher Satz ist richtig?", "options": ["Du musst den Müll rausbringen.", "Du musst rausbringen den Müll.", "Du den Müll musst rausbringen.", "Du musst den Müll bringen raus."], "correct": 0, "explanation": "Modalverb auf Position 2; der Infinitiv (auch trennbar: rausbringen) steht zusammen am Ende."}
+      ]
+    },
+    {
+      "modul": 8,
+      "lektionen": [22, 23, 24],
+      "title": "Kleidung, Wetter, Feste",
+      "topics": ["gefallen / stehen + Dativ", "welch-", "Komparativ, gern – lieber", "denn", "es regnet / es schneit", "Datum mit Ordinalzahlen", "gratulieren + Dativ"],
+      "verified": false,
+      "questions": [
+        {"q": "Die Jacke ___ dir sehr gut.", "options": ["steht", "stehen", "stehst", "stehe"], "correct": 0, "explanation": "Die Jacke (sie) steht dir: Das Subjekt ist die Jacke."},
+        {"q": "___ Hose gefällt dir? – Die blaue.", "options": ["Welche", "Welcher", "Welches", "Welchen"], "correct": 0, "explanation": "die Hose → welche (Nominativ feminin)."},
+        {"q": "Die Jeans ist billig, aber das T-Shirt ist noch ___.", "options": ["billiger", "billig", "am billigsten", "billigen"], "correct": 0, "explanation": "Komparativ: Adjektiv + -er → billiger."},
+        {"q": "Ich trage gern Pullover, aber ___ trage ich T-Shirts.", "options": ["lieber", "gerner", "mehr gern", "am liebsten"], "correct": 0, "explanation": "gern – lieber – am liebsten."},
+        {"q": "Ich fahre ans Meer, ___ ich liebe das Wasser.", "options": ["denn", "weil", "aber", "oder"], "correct": 0, "explanation": "denn + Hauptsatz (Verb auf Position 2); nach weil stünde das Verb am Ende."},
+        {"q": "Im Winter ___ es oft.", "options": ["schneit", "schneien", "Schnee", "schneist"], "correct": 0, "explanation": "Wetterverben mit es: es schneit, es regnet."},
+        {"q": "Mein Geburtstag ist am ___ Mai.", "options": ["dritten", "drei", "dritte", "dreiten"], "correct": 0, "explanation": "Datum: am + Ordinalzahl mit -en → am dritten Mai."},
+        {"q": "Heute ist der ___ Dezember.", "options": ["erste", "ersten", "eins", "erst"], "correct": 0, "explanation": "Nominativ: der erste Dezember."},
+        {"q": "Ich gratuliere ___ zum Geburtstag! (du)", "options": ["dir", "dich", "du", "dein"], "correct": 0, "explanation": "gratulieren + Dativ: du → dir."},
+        {"q": "Wann hast du Geburtstag? – ___ 12. April.", "options": ["Am", "Im", "Um", "An"], "correct": 0, "explanation": "Datum: am 12. April; Monat allein: im April."}
+      ]
+    }
+  ]
+}

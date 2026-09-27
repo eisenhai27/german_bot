@@ -251,15 +251,39 @@
       .map(item => makeMcItem(item, vocab, rand));
   }
 
-  function buildGrammarQuiz(grammarQs, n, rand) {
-    if (!grammarQs || !grammarQs.length) return [];
-    return sample(grammarQs, n || grammarQs.length, rand).map(q => ({
+  /**
+   * One grammar question with its options shuffled. The data files store the
+   * right answer first, so without this it would always be option A.
+   */
+  function grammarItem(q, rand) {
+    const order = shuffle(q.options.map((_, i) => i), rand);
+    return {
       kind: 'grammar_mc',
       prompt: q.q,
-      options: q.options,
-      correctIndex: q.correct,
+      options: order.map(i => q.options[i]),
+      correctIndex: order.indexOf(q.correct),
       explanation: q.explanation,
-    }));
+    };
+  }
+
+  function buildGrammarQuiz(grammarQs, n, rand) {
+    if (!grammarQs || !grammarQs.length) return [];
+    return sample(grammarQs, n || grammarQs.length, rand).map(q => grammarItem(q, rand));
+  }
+
+  // ------------------------------------------------------------ modul tests (every 3 lektionen)
+
+  const moduleOf = lektion => Math.ceil(lektion / 3);
+  const moduleLektionen = m => [3 * m - 2, 3 * m - 1, 3 * m];
+
+  /** A Modul test opens once the learner reaches its last lektion. */
+  function isModuleUnlocked(progressMap, m) {
+    return isUnlocked(progressMap, 3 * m);
+  }
+
+  function buildModuleQuiz(module, rand) {
+    if (!module || !module.questions || !module.questions.length) return [];
+    return shuffle(module.questions, rand).map(q => grammarItem(q, rand));
   }
 
   function buildFinalTest(vocab, grammarQs, rand) {
@@ -337,7 +361,7 @@
   }
 
   // Bump when index.html starts relying on a changed quiz.js API.
-  const API_VERSION = 2;
+  const API_VERSION = 3;
 
   const api = {
     API_VERSION, CONFIG, ARTICLE_BY_GENDER,
@@ -345,6 +369,7 @@
     normalizeDe, acceptedAnswers, levenshtein, gradeTypeAnswer,
     buildVocabMc, buildVocabType, buildArticleDrill, articleNouns, nounStem,
     buildMatchingRound, buildFlashcards, splitArticle, flashAdvance, buildReviewRound, buildGrammarQuiz, buildFinalTest,
+    moduleOf, moduleLektionen, isModuleUnlocked, buildModuleQuiz,
     updateReview, recordFinal, isUnlocked, currentLektion,
     bumpStreak, liveStreak,
   };

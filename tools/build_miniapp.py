@@ -36,6 +36,7 @@ def build():
     vocab = load("vocabulary_data.json")
     grammar_qs = load("grammar_questions.json")
     grammar_ref = load("grammar_data.json")
+    modules = load("module_quizzes.json")["modules"]
 
     vocab_by_lek = {
         str(l["lektion"]): [{k: item.get(k) for k in VOCAB_FIELDS} for item in l["items"]]
@@ -52,6 +53,7 @@ def build():
         f"window.VOCAB_DATA = {dump(vocab_by_lek)};\n"
         f"window.GRAMMAR_DATA = {dump(grammar_by_lek)};\n"
         f"window.LEKTION_TITLES = {dump(titles)};\n"
+        f"window.MODULE_DATA = {dump(modules)};\n"
     )
 
 

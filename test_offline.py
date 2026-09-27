@@ -253,6 +253,23 @@ def main():
     session = db.load_session(USER["id"])
     assert session["total"] == config.FINAL_VOCAB_COUNT + config.FINAL_GRAMMAR_COUNT
     print(f"OK: Lektion 13 final test has {session['total']} vocab-only questions")
+    db.clear_session(USER["id"])
+
+    print("\n== Grammar options are shuffled (data stores the answer first) ==")
+    positions = {q["correct_index"] for _ in range(20) for q in quiz_engine.build_grammar_quiz(1)}
+    assert len(positions) > 1, "correct answer is always in the same position"
+    print(f"OK: correct answer appears at positions {sorted(positions)}")
+
+    print("\n== Modul test after every 3rd lektion ==")
+    handlers.handle_update(cb_update("lek:2"))
+    assert find_callback_by_prefix("go:2:modul") is None, "only the 3rd lektion of a Modul offers the test"
+    handlers.handle_update(cb_update("lek:3"))
+    assert find_callback_by_prefix("go:3:modul"), "Lektion 3 should offer the Modul 1 test"
+    final_text = run_mc_quiz_answering_all_correctly(3, "modul")
+    assert "10/10" in final_text, final_text
+    for m in range(1, 9):
+        assert len(quiz_engine.build_module_quiz(m)) == 10, f"Modul {m} should have 10 questions"
+    print("OK: Modul tests 1-8 have 10 questions each; Modul 1 scored", final_text.split("\n")[0])
 
     print("\nALL OFFLINE TESTS PASSED")
 

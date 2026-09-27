@@ -14,7 +14,7 @@
     --bg:#F3EEE4; --surface:#FFFFFF; --surface-2:#EEE7D9; --ink:#1B1F2B; --muted:#5E6273;
     --line:rgba(27,31,43,.11); --line-strong:rgba(27,31,43,.24);
     --pattern:radial-gradient(rgba(122,34,51,.075) 1px, transparent 1.3px);
-    --locked-opacity:.9;
+    --locked-opacity:.9; --medal:#9A6B1F; --medal-soft:rgba(201,164,92,.2);
     --brand:#7A2233; --brand-soft:rgba(122,34,51,.12); --on-brand:#FFF7EC;
     --gold:#E3C47F; --cover-a:#8A2A3C; --cover-b:#561423;
     --ok:#2F7D55; --ok-bg:#E1F0E6; --bad:#B23A48; --bad-bg:#F7E1E3;
@@ -31,7 +31,7 @@
       --ok:#6BC794; --ok-bg:#16291F; --bad:#EF8290; --bad-bg:#33181D;
       --der:#86A9F5; --die:#F28B97; --das:#6FD1A1;
       --shadow:0 1px 2px rgba(0,0,0,.35), 0 10px 28px -14px rgba(0,0,0,.7);
-      --pattern:none; --locked-opacity:.55;
+      --pattern:none; --locked-opacity:.55; --medal:#E3C47F; --medal-soft:rgba(227,196,127,.14);
     }
   }
   :root[data-theme="dark"]{
@@ -41,7 +41,7 @@
     --ok:#6BC794; --ok-bg:#16291F; --bad:#EF8290; --bad-bg:#33181D;
     --der:#86A9F5; --die:#F28B97; --das:#6FD1A1;
     --shadow:0 1px 2px rgba(0,0,0,.35), 0 10px 28px -14px rgba(0,0,0,.7);
-    --pattern:none; --locked-opacity:.55;
+    --pattern:none; --locked-opacity:.55; --medal:#E3C47F; --medal-soft:rgba(227,196,127,.14);
   }
 
   *{box-sizing:border-box;}
@@ -143,6 +143,23 @@
   .author{margin-top:14px; font-size:13px;}
   .author a{color:var(--brand); font-weight:600; text-decoration:none;}
   .linkbtn{background:none; border:none; color:var(--muted); text-decoration:underline; font-size:12px; padding:6px;}
+
+  /* ---------- modul test cards ---------- */
+  .modtest{
+    width:100%; display:flex; align-items:center; gap:12px; margin-top:14px; padding:12px 14px; text-align:left;
+    border-radius:16px; border:1.5px solid var(--line); background:var(--surface); box-shadow:var(--shadow);
+  }
+  .modtest:active{transform:scale(.99);}
+  .modtest .grow{flex:1; min-width:0;}
+  .modtest b{display:block; font:600 15.5px/1.25 var(--serif);}
+  .modtest small{font-size:12px; color:var(--muted);}
+  .modtest-ic{width:38px; height:38px; border-radius:50%; display:grid; place-items:center; flex:none; background:var(--medal-soft); color:var(--medal);}
+  .modtest.locked{background:transparent; box-shadow:none; border-style:dashed; opacity:var(--locked-opacity);}
+  .modtest.locked .modtest-ic{background:var(--surface-2); color:var(--muted);}
+  .modtest.passed{border-color:var(--medal);}
+  .medal{width:32px; height:32px; border-radius:50%; display:grid; place-items:center; flex:none; font-size:16px; color:#5C3D0B;
+    background:linear-gradient(135deg,#F6DE9E,#C9A45C); box-shadow:0 2px 8px -2px rgba(92,61,11,.5);}
+  .view > .modtest{margin-top:12px;}
 
   /* ---------- lektion ---------- */
   .chips{display:flex; flex-wrap:wrap; gap:6px; margin-bottom:18px;}
@@ -360,8 +377,8 @@
 </head>
 <body>
 <div id="app"></div>
-<script src="data.js?v=f5008256e2"></script>
-<script src="quiz.js?v=c4257764f3"></script>
+<script src="data.js?v=134d9eebf2"></script>
+<script src="quiz.js?v=eee04e3124"></script>
 <script>
 'use strict';
 /* ======================================================================
@@ -372,7 +389,7 @@
 const Q = window.Quiz;
 // index.html and quiz.js must come from the same release. If a cache hands
 // us a mismatched pair, reload once with a fresh URL to fetch both again.
-const NEED_QUIZ_API = 2;
+const NEED_QUIZ_API = 3;
 if (!Q || Q.API_VERSION !== NEED_QUIZ_API) {
   if (!/[?&]r=/.test(location.search)) {
     location.replace(location.pathname + '?r=' + Date.now() + location.hash);
@@ -444,7 +461,7 @@ function cycleTheme(){
 }
 applyTheme();
 if (IN_TG) tg.onEvent('themeChanged', applyTheme);
-function freshDB(){ return {progress:{}, review:{}, streak:{last:null, count:0}, stats:{answered:0, correct:0}, t:{}}; }
+function freshDB(){ return {progress:{}, modules:{}, review:{}, streak:{last:null, count:0}, stats:{answered:0, correct:0}, t:{}}; }
 
 function migrateV1(db){
   const p = lsGet('dp_progress_v1'), m = lsGet('dp_missed_v1');
@@ -469,7 +486,7 @@ function commit(keys){
 }
 function cloudValue(k){
   return k === 'core'
-    ? {progress:DB.progress, streak:DB.streak, stats:DB.stats, t:DB.t.core || 0}
+    ? {progress:DB.progress, modules:DB.modules, streak:DB.streak, stats:DB.stats, t:DB.t.core || 0}
     : {p:DB.review[k.slice(1)] || {}, t:DB.t[k] || 0};
 }
 function pushCloud(){
@@ -489,11 +506,13 @@ function pullCloud(done){
         const localT = DB.t[k] || 0, remoteT = (remote && remote.t) || 0;
         if (k === 'core') {
           if (remote) {
-            // Lesson progress only ever improves, so merge it field by field.
-            for (const n in remote.progress || {}) {
-              const a = DB.progress[n] || {best:0, passed:false, attempts:0}, b = remote.progress[n];
-              const merged = {best:Math.max(a.best || 0, b.best || 0), passed:!!(a.passed || b.passed), attempts:Math.max(a.attempts || 0, b.attempts || 0)};
-              if (JSON.stringify(merged) !== JSON.stringify(DB.progress[n])) { DB.progress[n] = merged; changed = true; }
+            // Lesson and modul results only ever improve, so merge them field by field.
+            for (const field of ['progress', 'modules']) {
+              for (const n in remote[field] || {}) {
+                const a = DB[field][n] || {best:0, passed:false, attempts:0}, b = remote[field][n];
+                const merged = {best:Math.max(a.best || 0, b.best || 0), passed:!!(a.passed || b.passed), attempts:Math.max(a.attempts || 0, b.attempts || 0)};
+                if (JSON.stringify(merged) !== JSON.stringify(DB[field][n])) { DB[field][n] = merged; changed = true; }
+              }
             }
             if (remoteT > localT) { DB.streak = remote.streak || DB.streak; DB.stats = remote.stats || DB.stats; DB.t.core = remoteT; changed = true; }
           }
@@ -532,6 +551,7 @@ function trackAnswer(correct){ DB.stats.answered++; if (correct) DB.stats.correc
 const vocabOf = n => (window.VOCAB_DATA || {})[n] || [];
 const grammarOf = n => (window.GRAMMAR_DATA || {})[n] || [];
 const titleOf = n => (window.LEKTION_TITLES || {})[n] || '';
+const moduleData = m => (window.MODULE_DATA || []).find(x => x.modul === m) || null;
 
 /* ---------------------------------------------------------------- speech */
 const CAN_SPEAK = 'speechSynthesis' in window && typeof SpeechSynthesisUtterance !== 'undefined';
@@ -611,6 +631,7 @@ const MODES = {
   review:  {label:'Review',           desc:'Words you missed',        icon:'repeat'},
   grammar: {label:'Grammar',          desc:'Explained when you miss', icon:'book'},
   final:   {label:'Final test',       desc:'',                        icon:'flag'},
+  modul:   {label:'Modul test',       desc:'',                        icon:'book'},
 };
 const EMPTY_MSG = {
   review:'Nothing to review. Words you miss will show up here.',
@@ -627,14 +648,15 @@ function go(view){ VIEW = view; render(); window.scrollTo(0, 0); }
 function back(){
   switch (VIEW.name) {
     case 'lektion': return go({name:'home'});
-    case 'result':  return go({name:'lektion', n:RESULT.lektion});
+    case 'result':  return RESULT.mode === 'modul' ? go({name:'home'}) : go({name:'lektion', n:RESULT.lektion});
     case 'quiz': case 'type': case 'match': case 'flash': return quitSession();
     default: return go({name:'home'});
   }
 }
 function quitSession(){
-  const leave = () => { const n = S.lektion; S = null; go({name:'lektion', n}); };
-  if (S.mode === 'final' && (S.index > 0 || S.answered)) askConfirm("Leave the final test? This attempt won't count.", leave);
+  const leave = () => { const n = S.lektion, home = S.mode === 'modul'; S = null; go(home ? {name:'home'} : {name:'lektion', n}); };
+  const exam = S.mode === 'final' || S.mode === 'modul';
+  if (exam && (S.index > 0 || S.answered)) askConfirm(`Leave the ${MODES[S.mode].label.toLowerCase()}? This attempt won't count.`, leave);
   else leave();
 }
 
@@ -666,6 +688,16 @@ function startMode(n, mode){
   if (!qs.length) return toast(EMPTY_MSG[mode] || 'Not enough words for this yet.');
   S = {mode, lektion:n, questions:qs, index:0, score:0, answered:false, chosen:null, flipped:false, last:null, mistakes:[]};
   go({name: mode === 'type' ? 'type' : mode === 'flash' ? 'flash' : 'quiz'});
+}
+
+/* Modul test: 10 grammar questions after every 3 lektionen. */
+function startModul(m){
+  const mod = moduleData(m);
+  if (!mod) return toast('No test for this modul yet.');
+  if (!Q.isModuleUnlocked(DB.progress, m)) return toast(`Reach Lektion ${Q.moduleLektionen(m)[2]} to open this test.`);
+  const qs = Q.buildModuleQuiz(mod);
+  S = {mode:'modul', modul:m, lektion:3 * m, questions:qs, index:0, score:0, answered:false, chosen:null, flipped:false, last:null, mistakes:[]};
+  go({name:'quiz'});
 }
 
 function current(){ return S.questions[S.index]; }
@@ -705,10 +737,15 @@ function finish(score, total){
     const r = Q.recordFinal(DB.progress[s.lektion], pct);
     DB.progress[s.lektion] = r.progress;
     passedNow = r.passedNow; firstPass = passedNow && !wasPassed;
+  } else if (s.mode === 'modul') {
+    const prev = DB.modules[s.modul];
+    const r = Q.recordFinal(prev, pct);
+    DB.modules[s.modul] = r.progress;
+    passedNow = r.passedNow; firstPass = passedNow && !(prev && prev.passed);
   }
   DB.streak = Q.bumpStreak(DB.streak, today());
   commit(['core']);
-  RESULT = {mode:s.mode, lektion:s.lektion, score, total, pct, passedNow, firstPass, mistakes:s.mistakes};
+  RESULT = {mode:s.mode, lektion:s.lektion, modul:s.modul, score, total, pct, passedNow, firstPass, mistakes:s.mistakes};
   S = null;
   go({name:'result'});
   if (passedNow) { haptic.ok(); confetti(); }
@@ -902,7 +939,7 @@ function viewHome(){
       map += `<button class="stamp ${cls}" style="--rot:${rot}deg" data-act="open" data-n="${n}" aria-label="Lektion ${n}, ${tag}">
         <span class="n">${n}</span><small>${tag}</small></button>`;
     }
-    map += '</div></div>';
+    map += '</div>' + moduleCard(m) + '</div>';
   }
 
   return `<div class="view">
@@ -943,6 +980,21 @@ function viewHome(){
   </div>`;
 }
 
+function moduleCard(m){
+  const mod = moduleData(m);
+  if (!mod) return '';
+  const [a, , c] = Q.moduleLektionen(m);
+  const open = Q.isModuleUnlocked(DB.progress, m), p = DB.modules[m];
+  const state = !open ? 'locked' : p && p.passed ? 'passed' : 'open';
+  const sub = !open ? `Opens at Lektion ${c}`
+    : p && p.attempts ? `Best ${Math.round(p.best * 100)}% · ${mod.questions.length} grammar questions`
+    : `${mod.questions.length} grammar questions · Lektion ${a}–${c}`;
+  const end = state === 'passed' ? '<span class="medal" aria-label="passed">★</span>' : open ? icon('chevron') : '';
+  return `<button class="modtest ${state}" data-act="modul" data-m="${m}">
+    <span class="modtest-ic">${icon(open ? 'book' : 'lock')}</span>
+    <span class="grow"><b>Modul ${m} test</b><small>${esc(sub)}</small></span>${end}</button>`;
+}
+
 function viewLektion(n){
   const title = titleOf(n);
   const head = `<div class="top">${backBtn()}<div class="grow"><h1>Lektion ${n}</h1>${title ? `<div class="sub">${esc(title)}</div>` : ''}</div></div>`;
@@ -981,6 +1033,7 @@ function viewLektion(n){
       <div class="grow"><b>Final test</b><span>${finalCount} questions · ${PASS_PCT}% ${n < TOTAL ? 'unlocks Lektion ' + (n + 1) : 'completes the course'}</span></div>
       ${icon('chevron')}
     </button>
+    ${n % 3 === 0 ? moduleCard(n / 3) : ''}
   </div>`;
 }
 
@@ -1013,7 +1066,7 @@ function viewQuiz(){
       return `<button class="art ${o} ${st}" data-act="answer" data-i="${i}" ${S.answered ? 'disabled' : ''}><span>${o}</span></button>`;
     }).join('')}</div>`;
   } else {
-    const lbl = q.kind === 'grammar_mc' ? 'Complete the sentence' : 'What does it mean?';
+    const lbl = q.kind !== 'grammar_mc' ? 'What does it mean?' : /___/.test(q.prompt) ? 'Complete the sentence' : 'Grammar';
     prompt = `<div class="prompt">${sayBtn(q.speak)}<div class="lbl">${lbl}</div><div class="word">${esc(q.prompt)}</div></div>`;
     options = q.options.map((o, i) => {
       let st = '';
@@ -1115,8 +1168,10 @@ function viewFlash(){
 }
 
 function viewResult(){
-  const r = RESULT, pctInt = Math.round(r.pct * 100), isFinal = r.mode === 'final';
-  const good = isFinal ? r.passedNow : r.pct >= Q.CONFIG.PASS_THRESHOLD;
+  const r = RESULT, pctInt = Math.round(r.pct * 100), isFinal = r.mode === 'final', isModul = r.mode === 'modul';
+  const good = isFinal || isModul ? r.passedNow : r.pct >= Q.CONFIG.PASS_THRESHOLD;
+  let sub = `Lektion ${r.lektion}`;
+  let secondary = `<button class="btn" data-act="open" data-n="${r.lektion}">Back to Lektion ${r.lektion}</button>`;
   const circ = 326.73;
   let seal = '', title, msg, primary;
   if (isFinal) {
@@ -1132,6 +1187,17 @@ function viewResult(){
       msg = `You need ${PASS_PCT}% to pass. Practise the words below, then try again.`;
       primary = `<button class="btn primary" data-act="retry">Try the final test again</button>`;
     }
+  } else if (isModul) {
+    const [a, , c] = Q.moduleLektionen(r.modul);
+    sub = `Lektion ${a}–${c}`;
+    seal = `<div class="seal ${r.passedNow ? '' : 'bad'}">${r.passedNow ? 'BESTANDEN' : 'NOCH NICHT'}</div>`;
+    title = r.passedNow ? (r.firstPass ? `Modul ${r.modul} mastered!` : 'Passed again!') : 'Almost there';
+    msg = r.passedNow ? `You know the grammar of Lektion ${a}–${c}. A gold star is on your passport.`
+                      : `You need ${PASS_PCT}%. Read the explanations below, then try again.`;
+    primary = r.passedNow ? `<button class="btn primary" data-act="home">Back to passport</button>`
+                          : `<button class="btn primary" data-act="retry">Try the test again</button>`;
+    secondary = r.passedNow ? `<button class="btn" data-act="retry">Take it again</button>`
+                            : `<button class="btn" data-act="home">Back to passport</button>`;
   } else {
     title = pctInt === 100 ? 'Perfect round!' : good ? 'Gut gemacht!' : 'Keep practising';
     msg = r.mistakes.length ? 'Missed words were added to your Review list.' : 'No mistakes this time.';
@@ -1141,7 +1207,7 @@ function viewResult(){
     ${r.mistakes.map(m => `<div class="mistake"><div class="q">${esc(m.q)}</div>
       <div class="a">${m.yours ? `<s>${esc(m.yours)}</s> → ` : ''}<b>${esc(m.right)}</b></div>
       ${m.note ? `<span class="note">${esc(m.note)}</span>` : ''}</div>`).join('')}</div>` : '';
-  return `<div class="view"><div class="top">${backBtn()}<div class="grow"><h1>${esc(MODES[r.mode].label)}</h1><div class="sub">Lektion ${r.lektion}</div></div></div>
+  return `<div class="view"><div class="top">${backBtn()}<div class="grow"><h1>${esc(isModul ? `Modul ${r.modul} test` : MODES[r.mode].label)}</h1><div class="sub">${sub}</div></div></div>
     <div class="result">
       <div class="ring-wrap">
         <svg class="ring" viewBox="0 0 120 120"><circle class="track" cx="60" cy="60" r="52"/>
@@ -1151,7 +1217,7 @@ function viewResult(){
       ${seal}
       <h2>${esc(title)}</h2><p>${esc(msg)}</p>
       ${primary}
-      <button class="btn" data-act="open" data-n="${r.lektion}">Back to Lektion ${r.lektion}</button>
+      ${secondary}
       ${mistakes}
     </div></div>`;
 }
@@ -1180,7 +1246,8 @@ const ACTIONS = {
   home:   () => go({name:'home'}),
   back:   () => back(),
   start:  el => { haptic.tap(); startMode(+el.dataset.n, el.dataset.mode); },
-  retry:  () => startMode(RESULT.lektion, RESULT.mode),
+  retry:  () => RESULT.mode === 'modul' ? startModul(RESULT.modul) : startMode(RESULT.lektion, RESULT.mode),
+  modul:  el => { haptic.tap(); startModul(+el.dataset.m); },
   answer: el => answer(+el.dataset.i),
   next:   () => next(),
   speak:  el => speak(el.dataset.say),

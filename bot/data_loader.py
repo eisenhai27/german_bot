@@ -17,6 +17,11 @@ try:
 except FileNotFoundError:
     _GRAMMAR_Q = {"lessons": []}
 
+try:
+    _MODULES = _load("module_quizzes.json")["modules"]
+except FileNotFoundError:
+    _MODULES = []
+
 _VOCAB_BY_LEKTION = {l["lektion"]: l["items"] for l in _VOCAB["lessons"]}
 _GRAMMAR_BY_LEKTION = {l["lektion"]: l["questions"] for l in _GRAMMAR_Q["lessons"]}
 _VOCAB_BY_ID = {item["id"]: item for l in _VOCAB["lessons"] for item in l["items"]}
@@ -45,6 +50,11 @@ def get_grammar_questions(lektion):
 
 def lektion_has_grammar(lektion):
     return len(get_grammar_questions(lektion)) > 0
+
+
+def get_module(modul):
+    """The grammar test for one Modul (3 lektionen), or None."""
+    return next((m for m in _MODULES if m["modul"] == modul), None)
 
 
 def lektion_title(lektion):

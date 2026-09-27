@@ -208,16 +208,31 @@ def build_grammar_quiz(lektion, n=None):
         return []
     n = n or len(qs)
     chosen = random.sample(qs, min(n, len(qs)))
-    out = []
-    for q in chosen:
-        out.append({
-            "kind": "grammar_mc",
-            "prompt": q["q"],
-            "options": q["options"],
-            "correct_index": q["correct"],
-            "explanation": q["explanation"],
-        })
-    return out
+    return [_grammar_item(q) for q in chosen]
+
+
+def _grammar_item(q):
+    """A grammar question with shuffled options. The data files list the
+    right answer first, so without shuffling it would always be option A."""
+    order = list(range(len(q["options"])))
+    random.shuffle(order)
+    return {
+        "kind": "grammar_mc",
+        "prompt": q["q"],
+        "options": [q["options"][i] for i in order],
+        "correct_index": order.index(q["correct"]),
+        "explanation": q["explanation"],
+    }
+
+
+# ---------------------------------------------------------------- modul test
+
+def build_module_quiz(modul):
+    """All questions of the Modul test (one per 3 lektionen), in random order."""
+    module = data_loader.get_module(modul)
+    if not module:
+        return []
+    return [_grammar_item(q) for q in random.sample(module["questions"], len(module["questions"]))]
 
 
 # ---------------------------------------------------------------- final test
@@ -246,4 +261,5 @@ def mode_label(mode):
         "vocab_missed": "Vocabulary — Missed Words Review",
         "grammar": "Grammar Quiz",
         "final": "Final Test",
+        "modul": "Modul Grammar Test",
     }.get(mode, mode)
