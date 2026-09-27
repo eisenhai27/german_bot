@@ -173,22 +173,20 @@ nothing to sign into.
 
 **Putting it inside the Telegram bot** needs one more thing: Telegram
 can only open a Mini App at a public **https://** address — it can't
-reach a file sitting on your computer. The free, permanent way to get
-one, using the GitHub account you're already setting up:
+reach a file sitting on your computer. This repo is published with
+GitHub Pages (Settings → Pages → branch `main`, folder `/ (root)`), so
+the mini app lives at:
 
-1. In your GitHub repo (or a new one), upload `miniapp/index.html` —
-   rename it to exactly `index.html` if it isn't already.
-2. Go to the repo's **Settings → Pages**. Under "Source," pick the
-   branch (usually `main`) and folder (`/root` or `/docs`, matching
-   wherever you put the file), then **Save**.
-3. GitHub gives you a URL like `https://yourusername.github.io/your-repo/`
-   (it can take a minute to go live).
-4. Set the `MINI_APP_URL` environment variable (same place you set
-   `BOT_TOKEN`), e.g.:
+**https://eisenhai27.github.io/german_bot/miniapp/**
+
+Every push to `main` updates it automatically. To show it in the bot:
+
+1. Set the `MINI_APP_URL` environment variable (same place you set
+   `BOT_TOKEN`):
    ```python
-   os.environ['MINI_APP_URL'] = 'https://yourusername.github.io/your-repo/miniapp/'
+   os.environ['MINI_APP_URL'] = 'https://eisenhai27.github.io/german_bot/miniapp/'
    ```
-5. Restart the bot. The "🛂 Open Study App" button now appears on
+2. Restart the bot. The "🛂 Open Study App" button now appears on
    `/start` and opens the real thing inside Telegram.
 
 No Claude account, no sign-in — it's a plain static page on your own
