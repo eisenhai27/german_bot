@@ -120,11 +120,11 @@ def _handle_callback(cbq):
 
     elif action == "mc":
         q_index, choice = int(parts[1]), int(parts[2])
-        _handle_mc_answer(chat_id, user_id, q_index, choice)
+        _handle_mc_answer(chat_id, message_id, user_id, q_index, choice)
 
     elif action == "flash":
         q_index, sub = int(parts[1]), parts[2]
-        _handle_flash_action(chat_id, user_id, q_index, sub)
+        _handle_flash_action(chat_id, message_id, user_id, q_index, sub)
 
 
 # --------------------------------------------------------------- menus
@@ -334,7 +334,7 @@ def _current_session_for(user_id, expected_index):
     return session
 
 
-def _handle_mc_answer(chat_id, user_id, q_index, choice):
+def _handle_mc_answer(chat_id, message_id, user_id, q_index, choice):
     session = _current_session_for(user_id, q_index)
     if session is None:
         return  # stale button from a previous / already-answered question
@@ -343,6 +343,13 @@ def _handle_mc_answer(chat_id, user_id, q_index, choice):
         return
 
     correct = (choice == q["correct_index"])
+    # Replace the answer buttons with the chosen answer, so old questions
+    # in the chat can't be tapped again and show what you picked.
+    mark = "✅" if correct else "❌"
+    tg.edit_message_text(
+        chat_id, message_id,
+        f"[{q_index + 1}/{len(session['questions'])}] {q['prompt']}\n\n{mark} {q['options'][choice]}",
+    )
     if correct:
         session["score"] += 1
         tg.send_message(chat_id, "✅ Correct!")
@@ -383,7 +390,7 @@ def _handle_match_answer(chat_id, user_id, session, q, text):
     _advance(chat_id, user_id, session)
 
 
-def _handle_flash_action(chat_id, user_id, q_index, sub):
+def _handle_flash_action(chat_id, message_id, user_id, q_index, sub):
     session = _current_session_for(user_id, q_index)
     if session is None:
         return
@@ -391,10 +398,16 @@ def _handle_flash_action(chat_id, user_id, q_index, sub):
     if q["kind"] != "vocab_flash":
         return
 
+    card = f"[{q_index + 1}/{len(session['questions'])}] {q['de']}\n= {q['uz']}"
     if sub == "show":
+        # Flip the card in place instead of sending a new message.
         rows = [[("I knew it ✅", f"flash:{q_index}:know"), ("Missed it ❌", f"flash:{q_index}:miss")]]
-        tg.send_message(chat_id, f"= {q['uz']}", reply_markup=tg.inline_keyboard(rows))
+        res = tg.edit_message_text(chat_id, message_id, card, reply_markup=tg.inline_keyboard(rows))
+        if not res.get("ok"):
+            tg.send_message(chat_id, f"= {q['uz']}", reply_markup=tg.inline_keyboard(rows))
         return  # wait for the know/miss tap; don't advance yet
+
+    tg.edit_message_text(chat_id, message_id, f"{card}\n\n{'✅ knew it' if sub == 'know' else '❌ missed'}")
 
     if sub == "know":
         session["score"] += 1

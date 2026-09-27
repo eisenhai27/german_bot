@@ -201,7 +201,7 @@ def main():
     session = db.load_session(USER["id"])
     idx = session["index"]
     handlers.handle_update(cb_update(f"flash:{idx}:show"))
-    assert last_text().startswith("=")
+    assert "\n= " in last_text()  # card flipped in place
     handlers.handle_update(cb_update(f"flash:{idx}:know"))
     print("OK: flashcard flow (show -> know) works")
 
